@@ -1,0 +1,7 @@
+.header__nav {
+  display: flex; }
+.header__list {
+  display: flex;
+  justify-content: space-between; }
+
+/*# sourceMappingURL=header.css.map */

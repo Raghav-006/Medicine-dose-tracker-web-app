@@ -1,0 +1,33 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+a{
+  text-decoration: none;
+  &hover{
+    text-decoration: none;
+  }
+}
+html{
+  font-size: 100%;
+}
+body{
+  background-color: $bs-white;
+}
+.center{
+  text-align: center;
+  margin: 0 auto;
+}
+.input-group-text {
+  background-color: white;
+}
+.fas{
+  color:#666 !important;
+}
+.form-control{
+  border-left: none !important;
+  &:focus{
+    border-color: silver;
+    box-shadow: none !important;
+  }
+}

@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="center">{{title}}</h1>
+      <p>Welcome to {{title}}</p>
+      <p>User is {{user}}</p>
+
+      <form action="/users/" method="POST">
+        <div class="input-group mb-3">
+          <div class="input-group-text">
+            <span class="fas fa-envelope"></span>
+          </div>
+          <input
+            type="email"
+            class="form-control"
+            placeholder="Email"
+            name="email"
+            required="required"
+          />
+        </div>
+        <button class="btn" type="submit">send</button>
+        <a href="/users/">Home</a>
+      </form>
+    </div>
+  </div>
+</div>
