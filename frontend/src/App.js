@@ -1,17 +1,15 @@
 import react ,{useState} from 'react';
-import './App.css';
+import './Form.css';
 const rootUrl = 'http://localhost:3010';
 
 function App() {
-  const [firstnme,setFirstName] = useState('')
-  const [lastname,setLastName] = useState('')
-  const [username,setUserName] = useState('')
-
+  const [email,setEmail] = useState(' ');
+  const [password,setPassword] = useState(' ');
   
   const handleSubmit = async (e)=>{
     e.preventDefault();
-    if (!firstnme || !lastname || !username) return;
-    const user = { firstnme, lastname,username };
+    if (!email || !password) return;
+    const user = { email, password };
     try {
       const response =  await fetch(rootUrl, {
         method: 'POST',
@@ -21,49 +19,46 @@ function App() {
         },
         body: JSON.stringify(user)
       });
-      setFirstName('');
-      setLastName('');
-      setUserName('');
+      setEmail(' ');
+      setPassword(' ');
       console.log(response)
     } catch (error) {
       console.log(error);
     }
   }
   return (
-    <div className="App">
-      <header className="App-header">
-        <div className='container'>
-        <form className="row g-3 needs-validation" noValidate onSubmit={handleSubmit}>
-          <div className="col-md-4">
-            <label htmlFor="validationCustom01" className="form-label">First name</label>
-            <input type="text" className="form-control" id="validationCustom01" onChange={(e)=>setFirstName(e.target.value)} required/>
-            <div className="valid-feedback">
-              Looks good!
-            </div>
-          </div>
-          <div className="col-md-4">
-            <label htmlFor="validationCustom02" className="form-label">Last name</label>
-            <input type="text" className="form-control" id="validationCustom02" onChange={(e)=>setLastName(e.target.value)} required/>
-            <div className="valid-feedback">
-              Looks good!
-            </div>
-          </div>
-          <div className="col-md-4">
-            <label htmlFor="validationCustomUsername" className="form-label">Username</label>
-            <div className="input-group">
-              <span className="input-group-text" id="inputGroupPrepend">@</span>
-              <input type="text" className="form-control" onChange={(e)=>setUserName(e.target.value)} id="validationCustomUsername" aria-describedby="inputGroupPrepend" required/>
-              <div className="invalid-feedback">
-                Please choose a username.
-              </div>
-            </div>
-          </div>
-          <div className="col-12">
-            <button className="btn btn-primary" type="submit">Submit form</button>
-          </div>
-        </form>
+    <div className='App-header'>
+      <form className='form' onSubmit={handleSubmit}>
+        <h4>login form</h4>
+        <div className='form-row'>
+          <label htmlFor='email' className='form-label'>
+            Email
+          </label>
+          <input
+            type='email'
+            className='form-input email-input'
+            name='email'
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </div>
-      </header>
+        <div className='form-row'>
+          <label htmlFor='password' className='form-label'>
+            Password
+          </label>
+          <input
+            type='password'
+            name='password'
+            className='form-input password-input'
+            placeholder='Enter password'
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <button type='submit' className='btn btn-block submit-btn'>
+          submit
+        </button>
+      </form>
+
     </div>
   );
 }

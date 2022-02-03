@@ -1,28 +1,33 @@
-var createError = require('http-errors');
-var express = require('express');
-var cors = require('cors');
-var path = require('path');
-var hbs = require('hbs');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const cors = require('cors');
+const xss = require('xss');
+const mongoSanitize = require('express-mongo-sanitize')
+const path = require('path');
+const hbs = require('hbs');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 require('./backend/DBConnect');
-var viewPartials = path.join(__dirname, 'templates/partials');
-var viewPath = path.join(__dirname, 'templates/views');
+//const viewPartials = path.join(__dirname, 'templates/partials');
+//const viewPath = path.join(__dirname, 'templates/views');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var apiRoute = require('./routes/api/loginApi');
-var apiRouteReg = require('./routes/api/registerApi');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const apiRoute = require('./routes/api/loginApi');
+const apiRouteReg = require('./routes/api/registerApi');
 
 var app = express();
 
 // view engine setup
-app.set('views', viewPath);
+/*app.set('views', viewPath);
 app.set('view engine', 'hbs');
-hbs.registerPartials(viewPartials);
+hbs.registerPartials(viewPartials);*/
 
 app.use(logger('dev'));
 app.use(cors());
+app.use(xss());
+app.use(mongoSanitize());
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());

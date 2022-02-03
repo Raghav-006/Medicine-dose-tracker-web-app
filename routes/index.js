@@ -21,7 +21,7 @@ router.get('/register', function(req, res, next) {
 });
 router.post('/',async (req,res,next)=>{
   console.log(req.body)
-  res.json({
+  res.status.json({
     "t": req.body
   })
 
