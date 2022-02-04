@@ -1,4 +1,4 @@
-import react ,{useState} from 'react';
+import {useState} from 'react';
 import './Form.css';
 const rootUrl = 'http://localhost:3010';
 
