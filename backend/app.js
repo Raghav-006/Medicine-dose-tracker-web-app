@@ -1,7 +1,8 @@
 const createError = require('http-errors');
 const express = require('express');
 const cors = require('cors');
-//const xss = require('xss');
+const xss = require('xss-clean');
+const rateLimiter = require('express-rate-limit');
 const mongoSanitize = require('express-mongo-sanitize')
 const path = require('path');
 const hbs = require('hbs');
@@ -23,9 +24,18 @@ app.set('views', viewPath);
 app.set('view engine', 'hbs');
 hbs.registerPartials(viewPartials);
 
+app.set('trust proxy', 1);
+app.use(
+  rateLimiter({
+    windowMs: 15 * 60 * 1000,
+    max: 60,
+  })
+);
+
 app.use(logger('dev'));
+
 app.use(cors());
-//app.use(xss());
+app.use(xss());
 app.use(mongoSanitize());
 
 app.use(express.json());

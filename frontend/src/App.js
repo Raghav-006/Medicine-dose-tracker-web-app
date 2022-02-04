@@ -11,17 +11,24 @@ function App() {
     if (!email || !password) return;
     const user = { email, password };
     try {
-      const response =  await fetch(rootUrl, {
+      await fetch(rootUrl, {
         method: 'POST',
         mode: 'cors',
+        credentials: 'same-origin',
         headers: {
           'Content-type': 'application/json',
         },
         body: JSON.stringify(user)
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
       });
       setEmail(' ');
       setPassword(' ');
-      console.log(response)
     } catch (error) {
       console.log(error);
     }
