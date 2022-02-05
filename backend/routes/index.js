@@ -1,5 +1,7 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const Users = require('../backend/models/UsersModel');
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -19,13 +21,20 @@ router.get('/register', function(req, res, next) {
   });*/
   res.json({})
 });
-router.post('/',async (req,res,next)=>{
-  const product = req.body;
-  console.log(req.body)
-  res.status(200).json({
-    product
-  })
-
+router.post('/',async function(req,res){
+  let userData = req.body;
+  let name = userData.name.trim().toLowerCase();
+  let email = userData.email.trim().toLowerCase();
+  let password = userData.password.trim().toLowerCase();
+  let users = new Users({name, email, password}) ;
+  try {
+    await users.save()
+    res.status(200).json({
+      users
+    })
+  } catch (error) {
+    res.status(400).json("Error")
+  }
 })
 
 

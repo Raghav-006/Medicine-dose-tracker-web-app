@@ -1,15 +1,18 @@
+import axios from 'axios';
 import {useState} from 'react';
 import './Form.css';
 const rootUrl = 'http://localhost:3010';
 
 function App() {
+  const [name, setName]= useState('');
   const [email,setEmail] = useState(' ');
   const [password,setPassword] = useState(' ');
   
   const handleSubmit = async (e)=>{
     e.preventDefault();
-    if (!email || !password) return;
-    const user = { email, password };
+    if (!name || !email || !password) return;
+    const user = { name, email, password };
+    const register = await axios.post(rootUrl,{user})
     try {
       await fetch(rootUrl, {
         method: 'POST',
@@ -22,11 +25,12 @@ function App() {
       })
       .then(response => response.json())
       .then(data => {
-        console.log('Success:', data);
+        console.log('Success:', data.users.email+' '+ data.users.password);
       })
       .catch((error) => {
         console.error('Error:', error);
       });
+      setName(' ');
       setEmail(' ');
       setPassword(' ');
     } catch (error) {
@@ -37,6 +41,18 @@ function App() {
     <div className='App-header'>
       <form className='form' onSubmit={handleSubmit}>
         <h4>login form</h4>
+        <div className='form-row'>
+          <label htmlFor='name' className='form-label'>
+            Name
+          </label>
+          <input
+            type='text'
+            className='form-input email-input'
+            name='name'
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
         <div className='form-row'>
           <label htmlFor='email' className='form-label'>
             Email
