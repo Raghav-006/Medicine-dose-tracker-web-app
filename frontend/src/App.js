@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {useState} from 'react';
 import './Form.css';
-const rootUrl = 'http://localhost:3010';
+const rootUrl = 'http://localhost:3010/';
 
 function App() {
   const [name, setName]= useState('');
@@ -12,30 +12,15 @@ function App() {
     e.preventDefault();
     if (!name || !email || !password) return;
     const user = { name, email, password };
-    const register = await axios.post(rootUrl,{user})
-    try {
-      await fetch(rootUrl, {
-        method: 'POST',
-        mode: 'cors',
-        credentials: 'same-origin',
-        headers: {
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify(user)
-      })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Success:', data.users.email+' '+ data.users.password);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
-      setName(' ');
-      setEmail(' ');
-      setPassword(' ');
-    } catch (error) {
-      console.log(error);
-    }
+    const {data} = await axios.post(rootUrl,user);
+
+    setName(' ');
+    setEmail(' ');
+    setPassword(' ');
+    console.log('====================================');
+    console.log(data);
+    console.log('====================================');
+
   }
   return (
     <div className='App-header'>

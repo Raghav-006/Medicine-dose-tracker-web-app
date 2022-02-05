@@ -8,7 +8,7 @@ const path = require('path');
 const hbs = require('hbs');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-require('./backend/DBConnect');
+require('./database/DBConnect');
 const viewPartials = path.join(__dirname, 'templates/partials');
 const viewPath = path.join(__dirname, 'templates/views');
 
@@ -20,9 +20,9 @@ const apiRouteReg = require('./routes/api/registerApi');
 const app = express();
 
 // view engine setup
-app.set('views', viewPath);
+/*app.set('views', viewPath);
 app.set('view engine', 'hbs');
-hbs.registerPartials(viewPartials);
+hbs.registerPartials(viewPartials);*/
 
 app.set('trust proxy', 1);
 app.use(
@@ -31,6 +31,7 @@ app.use(
     max: 60,
   })
 );
+
 
 app.use(logger('dev'));
 

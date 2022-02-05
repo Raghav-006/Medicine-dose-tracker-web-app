@@ -1,5 +1,5 @@
 var jwt = require('jsonwebtoken');
-var Users = require('../backend/models/UsersModel');
+var Users = require('../database/models/UsersModel');
 
 const hasAuthorization = async (req,res, next)=>{
     try{

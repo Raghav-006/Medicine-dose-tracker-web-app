@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Users = require('../backend/models/UsersModel');
+const Users = require('../database/models/UsersModel');
 
 
 /* GET home page. */
@@ -33,7 +33,7 @@ router.post('/',async function(req,res){
       users
     })
   } catch (error) {
-    res.status(400).json("Error")
+    res.status(400).json("Error" + error)
   }
 })
 

@@ -9,7 +9,6 @@ try {
         log(chalk.magenta(`connecting to database: ${uri}`))
     });
     mongoose.connect(uri, {
-        //mongoose.connect(PROCESS.ENV.ATLAS_URI,{
         useUnifiedTopology: true,
         useNewUrlParser: true,
         family: 4

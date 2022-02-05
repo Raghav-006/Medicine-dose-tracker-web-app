@@ -1,9 +1,9 @@
 var express = require('express');
-var Users = require('../../backend/models/UsersModel');
+var Users = require('../../database/models/UsersModel');
 var chalk = require('chalk');
 var router = express.Router();
 var log = console.log;
-var errorHandler = require('../../backend/helpers/dbErrorHendler');
+var errorHandler = require('../../database/helpers/dbErrorHendler');
 
 router.post('/registerUser', async (req, res, next)=>{
   

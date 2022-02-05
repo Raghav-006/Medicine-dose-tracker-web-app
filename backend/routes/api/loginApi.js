@@ -1,5 +1,5 @@
 var express = require('express');
-var Users = require('../../backend/models/UsersModel');
+var Users = require('../../database/models/UsersModel');
 var router = express.Router();
 
 router.post('/login', async (req, res, next)=>{
