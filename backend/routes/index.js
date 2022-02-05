@@ -11,17 +11,9 @@ router.get('/', function(req, res, next) {
     layout: 'home',
     head: 'Login'
   });*/
-  res.json({"local":"Mavhungu","t":req,body})
+  //res.json({"local":"Mavhungu","t":req,body})
 });
-router.get('/register', function(req, res, next) {
-  /*res.render('register', {
-    title: 'Express',
-    layout: 'home',
-    head: 'Login'
-  });*/
-  res.json({})
-});
-router.post('/',async function(req,res){
+router.post('/registeruser', async(req, res, next)=>{
   let userData = req.body;
   let name = userData.name.trim().toLowerCase();
   let email = userData.email.trim().toLowerCase();
@@ -33,7 +25,30 @@ router.post('/',async function(req,res){
       users
     })
   } catch (error) {
-    res.status(400).json("Error" + error)
+    res.status(400).json({
+      error: "Error" + error
+    })
+  }
+});
+
+router.post('/login', async(req,res,next)=>{
+  let userData = req.body;
+  console.log(userData)
+  let email = userData.email.trim().toLowerCase();
+  let password = userData.password.trim().toLowerCase();
+  try{
+    let user = await Users.findByCredentials(email,password);
+    let token = await user.generateAuthToken();
+    let tt = await user.getPublicProfile();
+
+    res.cookie('t', token, {
+      expire: new Date() + 9999
+    });
+    return res.status(200).json({user});
+  }catch(error){
+    res.status(400).json({
+      error: "Unable to get user's data "+ error
+    });
   }
 })
 

@@ -7,11 +7,11 @@ const Login = ()=>{
     const [email,setEmail] = useState(' ');
     const [password,setPassword] = useState(' ');
     
-    const handleSubmit = async (e)=>{
+    const handleLoginSubmit = async (e)=>{
       e.preventDefault();
       if (!email || !password) return;
       const user = { email, password };
-      const {data} = await axios.post('http://localhost:3010',user);
+      const {data} = await axios.post('/login',user);
   
       setEmail(' ');
       setPassword(' ');
@@ -23,7 +23,7 @@ const Login = ()=>{
 
     return (
         <div className='App-headerss'>
-            <form className='form' onSubmit={handleSubmit}>
+            <form className='form' onSubmit={handleLoginSubmit}>
                 <h4>login form</h4>
                 <div className='form-row'>
                 <label htmlFor='email' className='form-label'>
