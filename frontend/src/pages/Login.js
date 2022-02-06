@@ -1,17 +1,22 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import {Navigate} from "react-router-dom";
 import '../Form.css';
 
 const Login = ()=>{
 
     const [email,setEmail] = useState(' ');
     const [password,setPassword] = useState(' ');
+    const [navigate, setNavigate] = useState(false);
     
     const handleLoginSubmit = async (e)=>{
       e.preventDefault();
       if (!email || !password) return;
       const user = { email, password };
       const {data} = await axios.post('/login',user);
+      
+        axios.defaults.headers.common['Authorization'] = `Bearer ${data['token']}`;
+        setNavigate(true);
   
       setEmail(' ');
       setPassword(' ');
@@ -20,9 +25,12 @@ const Login = ()=>{
       console.log('====================================');
   
     }
+    if (navigate) {
+        return <Navigate to="/"/>;
+    }
 
     return (
-        <div className='App-headerss'>
+        <div className='App-headers'>
             <form className='form' onSubmit={handleLoginSubmit}>
                 <h4>login form</h4>
                 <div className='form-row'>

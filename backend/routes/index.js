@@ -50,6 +50,19 @@ router.post('/login', async(req,res,next)=>{
       error: "Unable to get user's data "+ error
     });
   }
+});
+router.get('/user', async(req, res)=>{
+  let t = res.body;
+  console.log(t);
+  let user = Users.find({});
+  try {
+    res.status(200).json({user})
+  } catch (error) {
+    res.status(400).json({error: "Something went wrong"})
+  }
+})
+router.post('/logout', async(req, res)=>{
+  res.status(200).json({})
 })
 
 

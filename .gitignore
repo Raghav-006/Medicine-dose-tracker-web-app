@@ -165,3 +165,6 @@ public/
 # VScode 
 .vscode
 
+# Docker
+docker-compose.yaml
+
