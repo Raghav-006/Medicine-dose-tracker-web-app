@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Users = require('../database/models/UsersModel');
+var {hasAuthorization,signout} = require('../middleware/auth');
 
 
 /* GET home page. */
@@ -50,7 +51,19 @@ router.post('/login', async(req,res,next)=>{
       error: "Unable to get user's data "+ error
     });
   }
-})
+});
+
+router.get('/signout',hasAuthorization, signout, async (req, res, next)=>{
+  try{
+    req.user.tokens = [];
+    await req.user.save();
+    res.redirect("/");
+  }catch(err){
+    res.status(400).json({
+      error: errorHandler.getErrorMessage(err)
+    });
+  }
+});
 
 
 module.exports = router;

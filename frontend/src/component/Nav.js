@@ -15,7 +15,11 @@ const Nav = () =>{
                     <div className="navbar-nav">
                         <Link className="nav-link active" aria-current="page" to="/users">Home</Link>
                     </div>
+                    <div className="navbar-nav">
+                        <Link className="nav-link active" aria-current="page" to="/signout">Out</Link>
+                    </div>
                 </div>
+                
             </div>
         </nav>
     </div>

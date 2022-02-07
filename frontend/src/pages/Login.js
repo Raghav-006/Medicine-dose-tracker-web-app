@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import {useNavigate} from 'react-router-dom';
 import '../Form.css';
+const rootUrl = 'http://localhost:3010';
 
 const Login = ()=>{
 
@@ -13,7 +14,7 @@ const Login = ()=>{
       e.preventDefault();
       if (!email || !password) return;
       const user = { email, password };
-      const {data} = await axios.post('login',user);
+      const {data} = await axios.post(`${rootUrl}/login`,user);
   
       setEmail(' ');
       setPassword(' ');

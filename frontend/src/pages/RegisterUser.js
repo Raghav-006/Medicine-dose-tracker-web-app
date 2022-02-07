@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import {useNavigate} from 'react-router-dom';
 import '../Form.css';
+const rootUrl = 'http://localhost:3010';
 
 const RegisterUser = () =>{
 
@@ -15,7 +16,7 @@ const RegisterUser = () =>{
       e.preventDefault();
       if (!name || !email || !password) return;
       const user = { name, email, password };
-      const {data} = await axios.post('registeruser',user);
+      const {data} = await axios.post(`${rootUrl}/registeruser`,user);
   
       setName(' ');
       setEmail(' ');
