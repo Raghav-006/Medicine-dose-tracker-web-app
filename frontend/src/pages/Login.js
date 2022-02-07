@@ -1,24 +1,26 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import {useNavigate} from 'react-router-dom';
 import '../Form.css';
 
 const Login = ()=>{
 
     const [email,setEmail] = useState(' ');
     const [password,setPassword] = useState(' ');
+    const navigate = useNavigate();
     
     const handleLoginSubmit = async (e)=>{
       e.preventDefault();
       if (!email || !password) return;
       const user = { email, password };
-      const {data} = await axios.post('/login',user);
+      const {data} = await axios.post('login',user);
   
       setEmail(' ');
       setPassword(' ');
       console.log('====================================');
       console.log(data);
       console.log('====================================');
-  
+      return navigate("/dashboard")
     }
 
     return (

@@ -15,7 +15,7 @@ const RegisterUser = () =>{
       e.preventDefault();
       if (!name || !email || !password) return;
       const user = { name, email, password };
-      const {data} = await axios.post('/registeruser',user);
+      const {data} = await axios.post('registeruser',user);
   
       setName(' ');
       setEmail(' ');
