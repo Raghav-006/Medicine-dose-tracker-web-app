@@ -15,6 +15,10 @@ const usersRouter = require('./routes/users');
 
 const app = express();
 
+// view engine setup
+//app.set('view engine', 'hbs');
+
+
 app.set('trust proxy', 1);
 app.use(
   rateLimiter({

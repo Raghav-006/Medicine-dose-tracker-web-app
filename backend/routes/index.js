@@ -1,20 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const Users = require('../database/models/UsersModel');
-var {hasAuthorization,signout} = require('../middleware/auth');
+const {hasAuthorization,signout} = require('../middleware/auth');
 
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  const t = req.body
-  /*res.render('login', {
-    title: 'Express',
-    layout: 'home',
-    head: 'Login'
-  });*/
-  //res.json({"local":"Mavhungu","t":req,body})
+router.get('/', function(req, res) {
+
 });
-router.post('/registeruser', async(req, res, next)=>{
+router.post('/registeruser', async(req, res)=>{
   let userData = req.body;
   let name = userData.name.trim().toLowerCase();
   let email = userData.email.trim().toLowerCase();
@@ -32,7 +26,7 @@ router.post('/registeruser', async(req, res, next)=>{
   }
 });
 
-router.post('/login', async(req,res,next)=>{
+router.post('/login', async(req,res)=>{
   let userData = req.body;
   console.log(userData)
   let email = userData.email.trim().toLowerCase();
@@ -53,7 +47,7 @@ router.post('/login', async(req,res,next)=>{
   }
 });
 
-router.get('/signout',hasAuthorization, signout, async (req, res, next)=>{
+router.get('/signout',hasAuthorization, signout, async (req, res)=>{
   try{
     req.user.tokens = [];
     await req.user.save();

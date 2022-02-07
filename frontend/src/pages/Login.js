@@ -14,21 +14,16 @@ const Login = ()=>{
       e.preventDefault();
       if (!email || !password) return;
       const user = { email, password };
-      const {data} = await axios.post('/login',user);
-      
-        axios.defaults.headers.common['Authorization'] = `Bearer ${data['token']}`;
-        setNavigate(true);
       const {data} = await axios.post(`${rootUrl}/login`,user);
   
       setEmail(' ');
       setPassword(' ');
       console.log('====================================');
       console.log(data);
+      console.log(data.user.tokens);
       console.log('====================================');
+      //axios.defaults.headers= `${data.token}
       return navigate("/dashboard")
-    }
-    if (navigate) {
-        return <Navigate to="/"/>;
     }
 
     return (
@@ -65,7 +60,7 @@ const Login = ()=>{
             </form>
             <div className='container'>
                 <a href='/register' type='button' className='btn logout-btn'>
-                    Register
+                    <cite>Register</cite>
                 </a>
             </div>
         </div>
