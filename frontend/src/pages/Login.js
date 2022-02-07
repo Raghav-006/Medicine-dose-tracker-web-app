@@ -1,13 +1,14 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import {Navigate} from "react-router-dom";
+import {useNavigate} from 'react-router-dom';
 import '../Form.css';
+const rootUrl = 'http://localhost:3010';
 
 const Login = ()=>{
 
     const [email,setEmail] = useState(' ');
     const [password,setPassword] = useState(' ');
-    const [navigate, setNavigate] = useState(false);
+    const navigate = useNavigate();
     
     const handleLoginSubmit = async (e)=>{
       e.preventDefault();
@@ -17,13 +18,14 @@ const Login = ()=>{
       
         axios.defaults.headers.common['Authorization'] = `Bearer ${data['token']}`;
         setNavigate(true);
+      const {data} = await axios.post(`${rootUrl}/login`,user);
   
       setEmail(' ');
       setPassword(' ');
       console.log('====================================');
       console.log(data);
       console.log('====================================');
-  
+      return navigate("/dashboard")
     }
     if (navigate) {
         return <Navigate to="/"/>;

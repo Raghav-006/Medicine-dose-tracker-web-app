@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Users = require('../database/models/UsersModel');
+var {hasAuthorization,signout} = require('../middleware/auth');
 
 
 /* GET home page. */
@@ -51,19 +52,18 @@ router.post('/login', async(req,res,next)=>{
     });
   }
 });
-router.get('/user', async(req, res)=>{
-  let t = res.body;
-  console.log(t);
-  let user = Users.find({});
-  try {
-    res.status(200).json({user})
-  } catch (error) {
-    res.status(400).json({error: "Something went wrong"})
+
+router.get('/signout',hasAuthorization, signout, async (req, res, next)=>{
+  try{
+    req.user.tokens = [];
+    await req.user.save();
+    res.redirect("/");
+  }catch(err){
+    res.status(400).json({
+      error: errorHandler.getErrorMessage(err)
+    });
   }
-})
-router.post('/logout', async(req, res)=>{
-  res.status(200).json({})
-})
+});
 
 
 module.exports = router;

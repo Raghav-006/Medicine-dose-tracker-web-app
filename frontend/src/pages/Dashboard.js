@@ -1,13 +1,12 @@
-import React from 'react';
-import Nav from '../component/Nav';
+import React, { Component } from 'react';
+import Wrapper from '../component/Wrapper';
 
-function Dashboard() {
-  return (
-    <div>
-        <Nav/>
-        <p>Dashboard</p>
-    </div>
-  );
+export default class Dashboard extends Component {
+  render() {
+    return (
+      <Wrapper>
+        Dashboard
+      </Wrapper>
+    )
+  }
 }
-
-export default Dashboard;
