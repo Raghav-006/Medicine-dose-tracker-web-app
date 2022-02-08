@@ -12,7 +12,7 @@ router.route('/registeruser').post(userCtrl.register);
 
 router.route('/login').post(userCtrl.login);
 
-router.route('/signout').get(hasAuthorization, signout,userCtrl.logout);
+router.route('/signout').get(userCtrl.logout);
 
 
 module.exports = router;

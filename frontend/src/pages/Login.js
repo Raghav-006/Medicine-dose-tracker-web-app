@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import {useNavigate} from 'react-router-dom';
 import '../Form.css';
-const rootUrl = 'http://localhost:3010';
+const rootUrl = 'http://localhost:3010/';
 
 const Login = ()=>{
 
@@ -14,15 +14,18 @@ const Login = ()=>{
       e.preventDefault();
       if (!email || !password) return;
       const user = { email, password };
-      const {data} = await axios.post(`${rootUrl}/login`,user);
+      //const {data} = 
+      await axios.post(`${rootUrl}login`,user);
   
       setEmail(' ');
       setPassword(' ');
       console.log('====================================');
-      console.log(data);
-      console.log(data.user.tokens);
+      //console.log(data);
+      //console.log(data.user.tokens);
       console.log('====================================');
-      //axios.defaults.headers= `${data.token}
+      //const token = 
+      //axios.defaults.headers= `${data.token}`
+      //console.log(token);
       return navigate("/dashboard")
     }
 

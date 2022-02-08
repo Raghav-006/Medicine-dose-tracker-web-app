@@ -3,7 +3,7 @@ const Users = require('../database/models/UsersModel');
 
 const login = async (req, res) => {
     let userData = req.body;
-  console.log(userData)
+  
   let email = userData.email.trim().toLowerCase();
   let password = userData.password.trim().toLowerCase();
   try{
@@ -31,7 +31,7 @@ const register = async (req, res) => {
   try {
     await users.save()
     res.status(200).json({
-      users
+      message: "Succesfully saved date"
     })
   } catch (error) {
     res.status(400).json({
@@ -42,12 +42,14 @@ const register = async (req, res) => {
 
 const logout = async (req, res)=>{
     try{
-      req.user.tokens = [];
-      await req.user.save();
-      res.redirect("/");
+      //req.user.tokens = [];
+      //await req.user.save();
+      res.status(200).json({
+        notofy:"Success"
+      });
     }catch(err){
       res.status(400).json({
-        error: errorHandler.getErrorMessage(err)
+        error: "Error occurs"+ err
       });
     }
   }

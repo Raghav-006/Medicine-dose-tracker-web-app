@@ -15,10 +15,10 @@ const Nav = () =>{
             }
         )();
     }, []);
-    //console.log(products)
 
-   const onLogout = () =>{
-        console.log('Loged out')
+   const onLogout = async () =>{
+    const response = await axios.get(`${rootUrl}signout`);
+    console.log(response.data);
    }
 
   return (
