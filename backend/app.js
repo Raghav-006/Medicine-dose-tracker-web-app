@@ -5,7 +5,6 @@ const xss = require('xss-clean');
 const rateLimiter = require('express-rate-limit');
 const mongoSanitize = require('express-mongo-sanitize')
 const path = require('path');
-const hbs = require('hbs');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 require('./database/DBConnect');
@@ -14,10 +13,6 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
 const app = express();
-
-// view engine setup
-//app.set('view engine', 'hbs');
-
 
 app.set('trust proxy', 1);
 app.use(
