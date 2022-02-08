@@ -15,7 +15,11 @@ const Nav = () =>{
             }
         )();
     }, []);
-    console.log(products)
+    //console.log(products)
+
+   const onLogout = () =>{
+        console.log('Loged out')
+   }
 
   return (
     <div>
@@ -27,7 +31,7 @@ const Nav = () =>{
             <input className="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search" />
             <div className="navbar-nav">
                 <div className="nav-item text-nowrap">
-                <Link to="/logout" className="nav-link px-3">Sign out</Link>
+                <Link className="nav-link px-3" onClick={()=>onLogout()} to="/">Sign out</Link>
                 </div>
             </div>
         </header>
