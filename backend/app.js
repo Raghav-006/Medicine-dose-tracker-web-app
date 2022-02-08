@@ -30,12 +30,7 @@ app.use(
 
 app.use(logger('dev'));
 
-/*if(process.env.NODE_ENV=='development'){
-  app.use(cors({origin:`${process.env.CLIENT_URL}`}));
-}*/
-
 app.use(cors());
-
 app.use(xss());
 app.use(mongoSanitize());
 app.use(cookieParser());
