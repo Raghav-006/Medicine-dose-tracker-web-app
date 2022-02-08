@@ -2,8 +2,7 @@ const Users = require('../database/models/UsersModel');
 
 
 const login = async (req, res) => {
-    let userData = req.body;
-  
+  let userData = req.body;
   let email = userData.email.trim().toLowerCase();
   let password = userData.password.trim().toLowerCase();
   try{
@@ -12,7 +11,11 @@ const login = async (req, res) => {
     let tt = await user.getPublicProfile();
 
     res.cookie('t', token, {
-      expire: new Date() + 9999
+      expire: new Date(Date.now() + 2 * 604800000),
+      //path: "/",
+      //samesite: 'none',
+      //secure: true
+      //expire: new Date() + 9999,
     });
     return res.status(200).json({user});
   }catch(error){
@@ -23,7 +26,7 @@ const login = async (req, res) => {
 }
 
 const register = async (req, res) => {
-    let userData = req.body;
+  let userData = req.body;
   let name = userData.name.trim().toLowerCase();
   let email = userData.email.trim().toLowerCase();
   let password = userData.password.trim().toLowerCase();
@@ -40,22 +43,22 @@ const register = async (req, res) => {
   }
 }
 
-const logout = async (req, res)=>{
-    try{
-      //req.user.tokens = [];
-      //await req.user.save();
-      res.status(200).json({
-        notofy:"Success"
-      });
-    }catch(err){
-      res.status(400).json({
-        error: "Error occurs"+ err
-      });
-    }
+const logout = async function(req, res){
+  try{
+    req.user.tokens = [];
+    await req.user.save();
+    res.status(200).json({
+      notofy:"Success"
+    });
+  }catch(err){
+    res.status(400).json({
+      error: "Error occurs"+ err
+    });
   }
+}
 
 module.exports={
     login,
     register,
     logout
-}
+  }

@@ -8,11 +8,23 @@ const {hasAuthorization,signout} = require('../middleware/auth');
 router.route('/')
 .get();
 
-router.route('/registeruser').post(userCtrl.register);
+router.route('/registeruser',hasAuthorization,).post(userCtrl.register);
 
-router.route('/login').post(userCtrl.login);
+router.route('/login',hasAuthorization).post(userCtrl.login);
 
-router.route('/signout').get(userCtrl.logout);
+router.get('/signout',hasAuthorization,signout, async function(req, res){
+    try{
+      req.user.tokens = [];
+      await req.user.save();
+      res.status(200).json({
+        notofy:"Success"
+      });
+    }catch(err){
+      res.status(400).json({
+        error: "Error occurs"+ err
+      });
+    }
+});
 
 
 module.exports = router;

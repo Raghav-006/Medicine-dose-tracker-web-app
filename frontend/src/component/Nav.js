@@ -9,17 +9,20 @@ const Nav = () =>{
     useEffect(() => {
         (
             async () => {
-                const {data} = await axios.get(`${rootUrl}users`);
-
-                setProducts(data);
+                const response = await axios.get(`${rootUrl}users`,{withCredentials: true,});
+                setProducts(response.data);
+                //console.log(response.data);
             }
         )();
     }, []);
+    console.log(products);
+    //console.log(products.names.name);
 
-   const onLogout = async () =>{
-    const response = await axios.get(`${rootUrl}signout`);
-    console.log(response.data);
-   }
+    const onLogout = async () =>{
+        const {data} = 
+        await axios.get(`${rootUrl}signout`,{withCredentials: true});
+        console.log(data);
+    }
 
   return (
     <div>
@@ -31,7 +34,10 @@ const Nav = () =>{
             <input className="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search" />
             <div className="navbar-nav">
                 <div className="nav-item text-nowrap">
-                <Link className="nav-link px-3" onClick={()=>onLogout()} to="/">Sign out</Link>
+                    <Link className="nav-link px-3" onClick={onLogout} to="/">{'products.names'}</Link>
+                </div>
+                <div className="nav-item text-nowrap">
+                    <Link className="nav-link px-3" onClick={onLogout} to="/">Sign out</Link>
                 </div>
             </div>
         </header>

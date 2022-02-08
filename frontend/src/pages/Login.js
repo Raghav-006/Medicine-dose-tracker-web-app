@@ -14,14 +14,16 @@ const Login = ()=>{
       e.preventDefault();
       if (!email || !password) return;
       const user = { email, password };
-      //const {data} = 
-      await axios.post(`${rootUrl}login`,user);
+      const {data} = 
+      await axios.post(`${rootUrl}login`,user,{
+        withCredentials: true,
+      });
   
       setEmail(' ');
       setPassword(' ');
       console.log('====================================');
       //console.log(data);
-      //console.log(data.user.tokens);
+      console.log(data.user.tokens);
       console.log('====================================');
       //const token = 
       //axios.defaults.headers= `${data.token}`
