@@ -2,7 +2,7 @@ import React from 'react';
 import { Link} from 'react-router-dom';
 import {toast } from 'react-toastify';
 import axios from 'axios';
-import styles from '../Styles/Nav.module.css';
+//import styles from '../Styles/Nav.module.css';
 
 const Nav = ({user}) =>{
     const logout = async () => {
