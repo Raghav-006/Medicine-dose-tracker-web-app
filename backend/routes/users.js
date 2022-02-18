@@ -4,11 +4,14 @@ const Users = require('../database/models/UsersModel');
 const {hasAuthorization,signout} = require('../middleware/auth');
 
 /* GET users listing. */
-router.get('/', async(req, res)=>{
+router.get('/',hasAuthorization, async function(req, res){
   try {
-    let names = await Users.find({});
+    let user = req.user;
+    console.log(user)
+    let names = await Users.findOne({id:user._id});
     res.status(200).json({
-      names
+      names,
+      //user
     })
   } catch (error) {
     res.status(400).json({

@@ -13,16 +13,19 @@ const hasAuthorization = async (req,res, next)=>{
         next()
 
     }catch(e){
-        res.status(401).send({error: 'UnauthorizedError: Please Authenticates'})
+        res.status(401).json({error: 'UnauthorizedError: Please Authenticates'})
     }
 };
+
 const signout = async (req, res, next)=>{
-try{
-    res.clearCookie("t");
-    next()
-}catch(e){
-    res.status(500).send()
-}
+    try{
+        res.clearCookie("t");
+        next()
+    }catch(e){
+        res.status(500).json({
+            eoor: "cookie not deleted"
+        })
+    }
 };
 
 module.exports = {hasAuthorization, signout};

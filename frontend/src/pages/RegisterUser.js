@@ -11,7 +11,6 @@ const RegisterUser = () =>{
     const [password,setPassword] = useState(' ');
     let navigate = useNavigate();
 
-    
     const handleSubmit = async (e)=>{
       e.preventDefault();
       if (!name || !email || !password) return;

@@ -5,7 +5,6 @@ const xss = require('xss-clean');
 const rateLimiter = require('express-rate-limit');
 const mongoSanitize = require('express-mongo-sanitize')
 const path = require('path');
-const hbs = require('hbs');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 require('./database/DBConnect');
@@ -14,10 +13,6 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
 const app = express();
-
-// view engine setup
-//app.set('view engine', 'hbs');
-
 
 app.set('trust proxy', 1);
 app.use(
@@ -29,16 +24,26 @@ app.use(
 
 app.use(logger('dev'));
 
-app.use(cors({
-  origin:['http://localhost:3000'],
-  credentials: true
+app.use(cors(  {
+  origin: 'http://localhost:3000',
+  optionsSuccessStatus: 200,
+  credentials: true, // some legacy browsers (IE11, various SmartTVs) choke on 204
 }));
+app.use(function(req, res, next) {
+  res.header('Content-Type', 'application/json;charset=UTF-8')
+  res.header('Access-Control-Allow-Credentials', true)
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  )
+  next()
+});
 app.use(xss());
 app.use(mongoSanitize());
+app.use(cookieParser());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
