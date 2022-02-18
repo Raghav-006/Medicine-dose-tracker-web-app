@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Outlet } from 'react-router-dom';
 import Wrapper from '../component/Wrapper'
 import './Dashboard.css';
 
@@ -35,6 +36,7 @@ export default class Users extends Component {
             </tbody>
             </table>
         </div>
+        <Outlet />
       </Wrapper>
     )
   }

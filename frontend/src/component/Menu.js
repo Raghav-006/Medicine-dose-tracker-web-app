@@ -14,6 +14,12 @@ export default function Menu() {
             </Link>
           </li>
           <li className="nav-item">
+            <Link to="/medicine" className="nav-link">
+              <span data-feather="file"></span>
+              Medicine
+            </Link>
+          </li>
+          <li className="nav-item">
             <Link to="/users" className="nav-link">
               <span data-feather="file"></span>
               Orders
