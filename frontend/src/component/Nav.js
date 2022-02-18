@@ -1,10 +1,15 @@
 import React from 'react';
 import { Link} from 'react-router-dom';
 import axios from 'axios';
+import styles from '../Styles/Nav.module.css';
 
 const Nav = ({user}) =>{
     const logout = async () => {
         await axios.post('logout', {}, {withCredentials: true});
+    }
+
+    const nav_user={
+        color:'ghostwhite',
     }
 
   return (
@@ -14,12 +19,12 @@ const Nav = ({user}) =>{
             <button className="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>
-            <ul className="nav mb-2 mb-lg-0">
+            <ul className="nav mb-2 mb-lg-0" style={nav_user}>
                 <li className="nav-item">
-                    <Link className="nav-link px-3" to='/profile'>{user.name}</Link>
+                    <Link className="nav-link px-3" style={nav_user} to='/profile'>{user.name}</Link>
                 </li>
                 <li className="nav-item">
-                    <Link onClick={logout} to="/" className="nav-link px-3">Sign out</Link>
+                    <Link onClick={logout} to="/" className="nav-link px-3" style={nav_user}>Sign out</Link>
                 </li>
             </ul>
         </header>
