@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link} from 'react-router-dom';
-import {toast } from 'react-toastify';
 import axios from 'axios';
-//import styles from '../Styles/Nav.module.css';
 
 const Nav = ({user}) =>{
     const logout = async () => {
@@ -12,7 +10,6 @@ const Nav = ({user}) =>{
     const nav_user={
         color:'ghostwhite',
     }
-    const notify = () => toast.success("Wow so easy!");
 
   return (
     <div>
@@ -28,9 +25,6 @@ const Nav = ({user}) =>{
                     </li>
                     <li className="nav-item">
                         <Link onClick={logout} to="/" className="nav-link px-3" style={nav_user}>Sign out</Link>
-                    </li>
-                    <li className="nav-item">
-                        <button onClick={notify}>Notify!</button>
                     </li>
                 </ul>
             </div>
