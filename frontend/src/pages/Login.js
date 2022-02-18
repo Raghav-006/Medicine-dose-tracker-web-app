@@ -1,8 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import {useNavigate} from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 import '../Form.css';
 //const rootUrl = 'http://localhost:3010';
 
@@ -25,13 +24,11 @@ const Login = ()=>{
 
       if(data.message === 'success') {return navigate('/dashboard')}
       if(data.message === 'invalid credntials'){
-         return toast.warning('invalid credntials')
+         return toast.error('Invalid credntials')
       } 
       if(data.message ==='user not found'){
-       return toast.warning('user not found')
-      } //return navigate('/')
-      
-      //return navigate("/dashboard")
+       return toast.error('User not found')
+      }
     }
 
     return (
@@ -71,7 +68,6 @@ const Login = ()=>{
                     <cite>Register</cite>
                 </a>
             </div>
-            <ToastContainer/>
         </div>
     )
 }
