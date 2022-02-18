@@ -6,20 +6,20 @@ export const Home = () => {
     const [name, setName] = useState('');
     const [navigate, setNavigate] = useState(false);
 
-    {/*useEffect(() => {
+    useEffect(() => {
         (async () => {
             try {
-                const {data} = await axios.get('/user');
+                const {data} = await axios.get('/user',{withCredentials: true});
 
                 setName(data.name);
             } catch (e) {
                 setNavigate(true);
             }
         })();
-    }, []);*/}
+    }, []);
 
     const logout = async () => {
-        await axios.post('/logout', {},);
+        await axios.post('/logout', {},{withCredentials:true});
 
         setNavigate(true);
     }

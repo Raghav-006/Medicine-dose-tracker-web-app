@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 var chalk = require('chalk');
 var log = console.log;
 
-const uri = process.env.ATLAS_URI || 'mongodb://localhost:27017/medication';
+const uri = process.env.ATLAS_URI || 'mongodb://localhost:27017/medication-data';
 
 try {
     mongoose.connection.on('connecting', () => {
