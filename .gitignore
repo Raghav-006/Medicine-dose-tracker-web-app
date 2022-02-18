@@ -166,5 +166,8 @@ public/
 .vscode
 
 # Docker
-docker-compose.yaml
+docker-compose.
+
+#backend
+backend/
 
