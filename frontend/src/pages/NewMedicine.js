@@ -36,7 +36,7 @@ export default function NewMedicine() {
             </div>
             <div className="col-md-4">
               <label for="validationCustomUsername" className="form-label">Frequency</label>
-                <input type="text" className="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" onChange={(e)=>setFrequency(e.target.vakue)} required />
+                <input type="text" className="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" onChange={(e)=>setFrequency(e.target.value)} required />
                 <div className="valid-feedback">
                   Please choose a username.
               </div>
