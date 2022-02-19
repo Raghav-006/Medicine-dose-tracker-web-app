@@ -64,7 +64,7 @@ const Login = ()=>{
                 </button>
             </form>
             <div className='container'>
-                <a href='/register' type='button' className='btn logout-btn'>
+                <a href='/register' type='button' className='btn logout-btn' data-aos="fade-zoom-in" data-aos-offset="200" data-aos-easing="ease-in-sine" data-aos-duration="600">
                     <cite>Register</cite>
                 </a>
             </div>

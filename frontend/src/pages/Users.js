@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import { toast } from 'react-toastify';
 import Wrapper from '../component/Wrapper'
 import './Dashboard.css';
@@ -23,7 +24,15 @@ const Users = ()=> {
                 <td>random</td>
                 <td>data</td>
                 <td>placeholder</td>
-                <td>text</td>
+                <td>
+                    <div className="btn-group mr-2">
+                        <Link to={`/admin/products/${p.id}/edit`}
+                                className="btn btn-sm btn-outline-secondary">Edit</Link>
+                        <a href="#" className="btn btn-sm btn-outline-secondary"
+                            onClick={() => del(p.id)}
+                        >Delete</a>
+                    </div>
+                </td>
                 </tr>
                 <tr>
                 </tr>
