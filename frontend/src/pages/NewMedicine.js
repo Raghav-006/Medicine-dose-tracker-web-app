@@ -6,12 +6,14 @@ export default function NewMedicine() {
   const [name,setName]= useState('')
   const [dosage,setDosage]= useState('')
   const [frequency,setFrequency]= useState('')
+
   const Meds = async (e)=>{
-    e.preventDefault()
+    e.preventDefault();
     if (!name || !dosage || !frequency) return;
       const medicine = { name, dosage, frequency };
-    //await axios.post('',medicine,{withCredentials:true})
+      const {data} = await axios.post('medicine',medicine,{withCredentials:true})
     console.log(medicine)
+    console.log(data)
 
   }
   return (
@@ -20,7 +22,7 @@ export default function NewMedicine() {
         <h1 className='h2'>Enter new forms</h1>
       </div>
       <div className='formss'>
-          <form className="row g-3 needs-validation" onSubmit={Meds}>
+          <form className="row g-3" onSubmit={Meds}>
             <div className="col-md-4">
               <label htmlFor="validationCustom01" className="form-label">Medicine name</label>
               <input type="text" className="form-control" id="validationCustom01" value={name} onChange={(e)=>setName(e.target.value)} required />
@@ -44,7 +46,7 @@ export default function NewMedicine() {
             </div>*/}
             <div className="col-auto">
               <label className="form-label" htmlFor="autoSizingSelect">Frequency</label>
-              <select className="form-select" id="autoSizingSelect" onSelect={(e)=>setFrequency(e.target.value)}>
+              <select className="form-select" id="autoSizingSelect" value={frequency}  onChange={(e)=>setFrequency(e.target.value)}>
                 <option muted>Choose...</option>
                 <option value="1">One</option>
                 <option value="2">Two</option>

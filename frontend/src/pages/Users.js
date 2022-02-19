@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import { toast } from 'react-toastify';
+//import { toast } from 'react-toastify';
 import Wrapper from '../component/Wrapper'
 import './Dashboard.css';
 
@@ -26,11 +26,8 @@ const Users = ()=> {
                 <td>placeholder</td>
                 <td>
                     <div className="btn-group mr-2">
-                        <Link to={`/admin/products/edit`}
-                                className="btn btn-sm btn-outline-secondary">Edit</Link>
-                        <a href="#" className="btn btn-sm btn-outline-secondary"
-                            
-                        >Delete</a>
+                        <Link to={`/admin/products/edit`} className="btn btn-sm btn-outline-secondary">Edit</Link>
+                        <Link to={'/delete'} className="btn btn-sm btn-outline-secondary">Delete</Link>
                     </div>
                 </td>
                 </tr>
