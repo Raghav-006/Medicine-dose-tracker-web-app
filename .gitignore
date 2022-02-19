@@ -170,9 +170,6 @@ public/
 # Docker
 docker-compose.
 
-#Backend
-backend/
-backend
 
 
 
