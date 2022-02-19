@@ -1,11 +1,16 @@
 import React,{useState} from 'react';
 import Wrapper from '../component/Wrapper';
+import axios from 'axios'
 
 export default function NewMedicine() {
-  const []= useState('')
-  const []= useState('')
-  const Meds = (e)=>{
+  const [name,setName]= useState('')
+  const [dosage,setDosage]= useState('')
+  const [frequency,setFrequency]= useState('')
+  const Meds = async (e)=>{
     e.preventDefault()
+    if (!name || !dosage || !frequency) return;
+      const medicine = { name, dosage, frequency };
+    await axios.post('',medicine,{withCredentials:true})
   }
   return (
     <Wrapper>
