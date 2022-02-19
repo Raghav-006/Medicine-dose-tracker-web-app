@@ -1,19 +1,26 @@
 import React,{useState} from 'react';
 import Wrapper from '../component/Wrapper';
-import axios from 'axios'
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 export default function NewMedicine() {
   const [name,setName]= useState('')
-  const [dosage,setDosage]= useState('')
-  const [frequency,setFrequency]= useState('')
+  const [dosage,setDosage]= useState(0)
+  const [frequency,setFrequency]= useState(0)
 
   const Meds = async (e)=>{
     e.preventDefault();
     if (!name || !dosage || !frequency) return;
       const medicine = { name, dosage, frequency };
-      const {data} = await axios.post('medicine',medicine,{withCredentials:true})
+      const {data} = await axios.post('medicine',medicine,{withCredentials:true});
+      if(data.msg === 'tttt'){ toast.success("success data")}
     console.log(medicine)
     console.log(data)
+
+    setName('');
+    setDosage(0);
+    //setFrequency();
+
 
   }
   return (
@@ -32,29 +39,20 @@ export default function NewMedicine() {
             </div>
             <div className="col-auto">
               <label htmlFor="validationCustom02" className="form-label">Dosage</label>
-              <input type="text" className="form-control" id="validationCustom02" value={dosage} onChange={(e)=>setDosage(e.target.value)} required />
+              <input type="number" className="form-control" id="validationCustom02" value={dosage} onChange={(e)=>setDosage(e.target.value)} required />
               <div className="valid-feedback">
                 Looks good!
               </div>
             </div>
-            {/*<div className="col-md-4">
-              <label htmlFor="validationCustomUsername" className="form-label">Frequency</label>
-                <input type="text" className="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" onChange={(e)=>setFrequency(e.target.value)} required />
-                <div className="valid-feedback">
-                  Please choose a username.
-              </div>
-            </div>*/}
             <div className="col-auto">
               <label className="form-label" htmlFor="autoSizingSelect">Frequency</label>
-              <select className="form-select" id="autoSizingSelect" value={frequency}  onChange={(e)=>setFrequency(e.target.value)}>
-                <option muted>Choose...</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
+              <input type={'number'} className="form-control" id="autoSizingSelect" value={frequency}  onChange={(e)=>setFrequency(e.target.value)} required />
+              <div className="valid-feedback">
+                Looks good!
+              </div>
             </div>
             <div className="col-12">
-              <button className="btn btn-primary" type="submit">Submit form</button>
+              <button className="btn btn-primary" type="submit">Save</button>
             </div>
           </form>
         </div>

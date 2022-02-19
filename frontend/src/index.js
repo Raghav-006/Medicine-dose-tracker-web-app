@@ -26,7 +26,6 @@ ReactDOM.render(
         draggable
         pauseOnHover
         theme="colored"
-        transition='slid'
       />
     </BrowserRouter>
     
