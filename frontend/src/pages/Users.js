@@ -1,10 +1,9 @@
-import React, { Component } from 'react'
-import { Outlet } from 'react-router-dom';
+import React from 'react'
+import { toast } from 'react-toastify';
 import Wrapper from '../component/Wrapper'
 import './Dashboard.css';
 
-export default class Users extends Component {
-  render() {
+const Users = ()=> {
     return (
       <Wrapper>
         <div className="table-responsive">
@@ -27,17 +26,12 @@ export default class Users extends Component {
                 <td>text</td>
                 </tr>
                 <tr>
-                <td>1,002</td>
-                <td>placeholder</td>
-                <td>irrelevant</td>
-                <td>visual</td>
-                <td>layout</td>
                 </tr>
             </tbody>
             </table>
         </div>
-        <Outlet />
       </Wrapper>
     )
-  }
 }
+
+export default Users
