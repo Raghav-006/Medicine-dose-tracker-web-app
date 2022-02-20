@@ -45,7 +45,7 @@ export default function NewMedicine() {
               </div>
             </div>
             <div className="col-auto">
-              <label className="form-label" htmlFor="autoSizingSelect">Frequency</label>
+              <label className="form-label" htmlFor="autoSizingSelect">Frequency / day</label>
               <input type={'number'} className="form-control" id="autoSizingSelect" value={frequency}  onChange={(e)=>setFrequency(e.target.value)} required />
               <div className="valid-feedback">
                 Looks good!

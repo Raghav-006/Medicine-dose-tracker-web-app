@@ -27,7 +27,7 @@ const RegisterUser = () =>{
       return navigate("/")
     }
     return (
-        <div className='App-headers'>
+        <div className='App-headers' id="intro">
             <form className='form' onSubmit={handleSubmit}>
                 <h4>Register form</h4>
                 <div className='form-row'>
