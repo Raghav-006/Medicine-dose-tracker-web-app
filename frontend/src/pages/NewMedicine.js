@@ -2,10 +2,10 @@ import React,{useState} from 'react';
 import Wrapper from '../component/Wrapper';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import {useForm} from 'react-hook-form'
+//import {useForm} from 'react-hook-form'
 
 export default function NewMedicine() {
-  const {register,handleSubmit,reset,formState:{errors}} = useForm();
+  //const {register,handleSubmit,reset,formState:{errors}} = useForm();
   const [name,setName]= useState('')
   const [dosage,setDosage]= useState(0)
   const [frequency,setFrequency]= useState(0)
@@ -13,14 +13,13 @@ export default function NewMedicine() {
   const Meds = async (e)=>{
     e.preventDefault();
     if (!name || !dosage || !frequency) return;
-      const medicine = { name, dosage, frequency };
-      const {data} = await axios.post('medicine',medicine,{withCredentials:true});
-      if(data.msg === 'tttt'){ toast.success("success data")}
+    const medicine = { name, dosage, frequency };
     console.log(medicine)
-    console.log(data)
-
-    setName('');
-    setDosage(0);
+      //const {data} = await axios.post('addmedicine',medicine,{withCredentials:true});
+      const {data} = await axios.post('addmedicine',medicine,{withCredentials:true});
+      //if(data.msg === 'tttt'){ toast.success("success data")}
+      
+      //console.log(data)
     
   }
   return (
