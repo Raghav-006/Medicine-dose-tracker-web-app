@@ -2,8 +2,10 @@ import React,{useState} from 'react';
 import Wrapper from '../component/Wrapper';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import {useForm} from 'react-hook-form'
 
 export default function NewMedicine() {
+  const {register,handleSubmit,reset,formState:{errors}} = useForm();
   const [name,setName]= useState('')
   const [dosage,setDosage]= useState(0)
   const [frequency,setFrequency]= useState(0)
@@ -19,9 +21,7 @@ export default function NewMedicine() {
 
     setName('');
     setDosage(0);
-    //setFrequency();
-
-
+    
   }
   return (
     <Wrapper>
