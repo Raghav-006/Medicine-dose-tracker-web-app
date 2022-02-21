@@ -5,13 +5,16 @@ import {useNavigate} from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const Try =()=> {
-    const [checked,setChecked] = useState(false)
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const [checked,setChecked] = useState(false);
+    const { register, 
+        handleSubmit, 
+        reset,
+        formState: { errors } } = useForm();
     const navigate = useNavigate();
 
-    const onSubmit = async(datas) =>{
+    const onSubmit = async(datas, e) =>{
         console.log(datas);
-
+        e.target.reset();
         let email = datas.email;
         let password = datas.password;
 
@@ -29,6 +32,7 @@ const Try =()=> {
       if(data.message ==='user not found'){
        return toast.error('User not found')
       }
+
     } 
 
     const handleChange = ()=>{
@@ -52,7 +56,7 @@ const Try =()=> {
                                 <div className="form-outline mb-4">
                                     {errors.password && <span style={{color:'red'}}>Password is required</span>}
                                     {errors.password && errors.password.type === "minLength" && (<p className="errorMsg">Password should be at-least 6 characters. </p>)}
-                                    <input type="password" id="form1Example2" className="form-control" {...register("password", { required: true, })} />
+                                    <input type="password" id="form1Example2" className="form-control" {...register("password", { required: true, minLength: 6 })} />
                                     <label className="form-label" htmlFor="form1Example2">Password</label>
                                 </div>
                                 <div className="row mb-4">
@@ -70,6 +74,12 @@ const Try =()=> {
                                 </div>
                                
                                 <button type="submit" className="btn btn-primary btn-block">Sign in</button>
+                                <input
+                                    style={{ display: "block", marginTop: 20 }}
+                                    type="button"
+                                    className="d-none"
+                                    onClick={() => reset()}
+                                />
                             </form>
                         </div>
                     </div>
