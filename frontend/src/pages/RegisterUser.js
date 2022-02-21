@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate,Link} from 'react-router-dom';
 import '../Form.css';
 //const rootUrl = 'http://localhost:3010';
 
@@ -27,53 +27,59 @@ const RegisterUser = () =>{
       return navigate("/")
     }
     return (
-        <div className='App-headers' id="intro">
-            <form className='form' onSubmit={handleSubmit}>
-                <h4>Register form</h4>
-                <div className='form-row'>
-                <label htmlFor='name' className='form-label'>
-                    Name
-                </label>
-                <input
-                    type='text'
-                    className='form-input email-input'
-                    name='name'
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                />
+        <div id="intro" className="bg-images shadow-2-strong" style={{height: '100vh'}}>
+            <div className="mask d-flex align-items-center h-100 tt">
+                <div className="container">
+                    <div className="row justify-content-center">
+                        <div className="col-md-5">
+                            <form className='form' onSubmit={handleSubmit}>
+                                <h4>Register form</h4>
+                                <div className='form-row'>
+                                <label htmlFor='name' className='form-label'>
+                                    Name
+                                </label>
+                                <input
+                                    type='text'
+                                    className='form-input email-input'
+                                    name='name'
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                />
+                                </div>
+                                <div className='form-row'>
+                                <label htmlFor='email' className='form-label'>
+                                    Email
+                                </label>
+                                <input
+                                    type='email'
+                                    className='form-input email-input'
+                                    name='email'
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                />
+                                </div>
+                                <div className='form-row'>
+                                <label htmlFor='password' className='form-label'>
+                                    Password
+                                </label>
+                                <input
+                                    type='password'
+                                    name='password'
+                                    className='form-input password-input'
+                                    placeholder='Enter password'
+                                    onChange={(e) => setPassword(e.target.value)}
+                                />
+                                </div>
+                                <button type='submit' className='btn btn-block submit-btn'>
+                                    submit
+                                </button>
+                                    <div className='col text-center mt-4'>
+                                        <label>Already have account? <Link to='/' type='button' className='fw-bold'>Login</Link></label>
+                                    </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-                <div className='form-row'>
-                <label htmlFor='email' className='form-label'>
-                    Email
-                </label>
-                <input
-                    type='email'
-                    className='form-input email-input'
-                    name='email'
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
-                </div>
-                <div className='form-row'>
-                <label htmlFor='password' className='form-label'>
-                    Password
-                </label>
-                <input
-                    type='password'
-                    name='password'
-                    className='form-input password-input'
-                    placeholder='Enter password'
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                </div>
-                <button type='submit' className='btn btn-block submit-btn'>
-                    submit
-                </button>
-            </form>
-            <div className='container'>
-                <a href='/' type='button' className='btn logout-btn'>
-                    Login
-                </a>
             </div>
         </div>
     )
