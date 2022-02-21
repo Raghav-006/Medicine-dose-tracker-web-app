@@ -14,18 +14,14 @@ export default function NewMedicine() {
     e.preventDefault();
     if (!name || !dosage || !frequency) return;
     const medicine = { name, dosage, frequency };
-    console.log(medicine)
-      //const {data} = await axios.post('addmedicine',medicine,{withCredentials:true});
       const {data} = await axios.post('addmedicine',medicine,{withCredentials:true});
-      //if(data.msg === 'tttt'){ toast.success("success data")}
-      
-      //console.log(data)
+      if(data.msg === 'success'){ toast.success("success data")}
     
   }
   return (
     <Wrapper>
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 className='h2'>Enter new forms</h1>
+        <h1 className='h2 text-muted'>Enter new forms</h1>
       </div>
       <div className='formss'>
           <form className="row g-3" onSubmit={Meds}>
