@@ -1,7 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import { BarChart2, Camera, Home, Layers, PlusCircle } from 'react-feather';
-//import {FaPenAlt, FaPencilAlt} from 'react-icons/fa';
+import { BarChart2, User, Home, Layers, PlusCircle } from 'react-feather';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPills } from '@fortawesome/free-solid-svg-icons'
 
@@ -37,9 +36,9 @@ export default function Menu() {
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/users" className="nav-link">
-              <span><Camera className="feather"/></span>
-              Orders
+            <Link to="/profile" className="nav-link">
+              <span><User className="feather"/></span>
+              Profile
             </Link>
           </li>
           {/*<li className="nav-item">
