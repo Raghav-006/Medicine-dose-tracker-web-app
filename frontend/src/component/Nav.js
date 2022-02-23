@@ -2,8 +2,10 @@ import React from 'react';
 import { Link} from 'react-router-dom';
 import {User} from 'react-feather'
 import axios from 'axios';
+import AccountMenu from '../pages/AccountMenu'
 
 const Nav = () =>{
+    
     const logout = async () => {
         await axios.post('logout', {}, {withCredentials: true});
     }
@@ -23,7 +25,7 @@ const Nav = () =>{
             </div>*/}
             <div className="navbar-nav">
                 <div className="nav-item text-nowrap">
-                <Link onClick={logout} to="/" className="nav-link px-3"><User /></Link>
+                    <AccountMenu className="nav-link px-3" logout={logout}/>
                 </div>
             </div>
         </header>

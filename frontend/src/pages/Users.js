@@ -1,10 +1,10 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-//import { toast } from 'react-toastify';
 import Wrapper from '../component/Wrapper'
 import './Dashboard.css';
 
 const Users = ()=> {
+
     return (
       <Wrapper>
         <div className="table-responsive">
