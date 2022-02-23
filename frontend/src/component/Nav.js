@@ -1,13 +1,14 @@
 import React from 'react';
-import { Link} from 'react-router-dom';
+import { Link,useNavigate} from 'react-router-dom';
 import {User} from 'react-feather'
 import axios from 'axios';
 import AccountMenu from '../pages/AccountMenu'
 
 const Nav = () =>{
-    
+    const navigate = useNavigate()
     const logout = async () => {
         await axios.post('logout', {}, {withCredentials: true});
+        navigate('/')
     }
 
   return (

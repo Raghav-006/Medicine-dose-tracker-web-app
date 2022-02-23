@@ -6,14 +6,14 @@ import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Tooltip from '@mui/material/Tooltip';
-
 import {User, UserPlus,Settings,LogOut} from 'react-feather'
+import axios from 'axios';
 
 /*import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
-import Logout from '@mui/icons-material/Logout';*/
+import Logout from '@mui/icons-material/Logout';
+import Typography from '@mui/material/Typography';
+import Tooltip from '@mui/material/Tooltip';*/
 
 export default function AccountMenu({logout}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
