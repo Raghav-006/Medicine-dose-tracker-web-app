@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState, useEffect} from 'react';
 import {useForm} from 'react-hook-form'
 import Wrapper from '../component/Wrapper'
 import axios from 'axios'
@@ -6,6 +6,7 @@ import {toast} from 'react-toastify'
 
 export default function Profile() {
   const {register,handleSubmit,reset, formState:{errors}}= useForm()
+  const [profile,setProfile] = useState('')
 
   const onSubmit = async(data,e)=>{
     console.log(data)
@@ -15,6 +16,14 @@ export default function Profile() {
     }
     e.target.reset();
   }
+  useEffect(() => {
+    return async() => {
+      const {data} = await axios.get('profile',{withCredentials:true})
+      if(data.msg != 'nothing found'){
+        setProfile(data)
+      }
+    };
+  }, [input])
   return (
     <Wrapper>
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
