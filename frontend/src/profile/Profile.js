@@ -35,31 +35,31 @@ export default function Profile() {
                 <div className="row">
                   <div className="col">
                     <div className='form-outline mb-4'>
-                      <input type={'text'} placeholder="First Name" {...register("name",{required:true})} className={'form-control'} />
+                      <input type={'text'} placeholder="First Name" value={profile.name} {...register("name",{required:true})} className={'form-control'} />
                       {errors.name && <span>This field is required</span>}
                     </div>
                   </div>
                   <div className="col">
                     <div className='form-outline mb-4'>
-                      <input type={"text"} placeholder={'Last Name'} {...register("email", {required:true})} className={'form-control'} />
+                      <input type={"text"} placeholder={'Last Name'} value={profile.surname} {...register("email", {required:true})} className={'form-control'} />
                       {errors.email && <span>This field is required</span>}
                     </div>
                   </div>
                   <div className="col-12 mb-4">
                     <label htmlFor="inputAddress" className="form-label">Address</label>
-                    <input type="text" className="form-control" id="inputAddress" placeholder="190 Schieding Street" {...register("address",{required:true})} />
+                    <input type="text" className="form-control" id="inputAddress" value={profile.address} placeholder="190 Schieding Street" {...register("address",{required:true})} />
                     {errors.address && <span>This field is required</span>}
                   </div>
                 </div>
                 <div className='row'>
                   <div className="col-md-6 mb-4">
                     <label htmlFor="inputCity" className="form-label">City</label>
-                    <input type="text" className="form-control" placeholder='Tswane' id="inputCity" {...register('city',{required:true})}/>
+                    <input type="text" className="form-control" placeholder='Tswane' value={profile.city} id="inputCity" {...register('city',{required:true})}/>
                     {errors.city && <span>This field is required</span>}
                   </div>
                   <div className="col-md-4 mb-4">
                     <label htmlFor="inputState" className="form-label">State</label>
-                    <select id="inputState" className="form-select" {...register("gender",{required: true})}>
+                    <select id="inputState" className="form-select" value={profile.gender} {...register("gender",{required: true})}>
                       <option value='' className="text-muted">Choose...</option>
                       <option value=''>...</option>
                       <option value="female">female</option>
@@ -70,7 +70,7 @@ export default function Profile() {
                   </div>
                   <div className="col-md-2 mb-4">
                     <label htmlFor="inputZip" className="form-label">Zip</label>
-                    <input type="text" className="form-control" placeholder='0002' id="inputZip" {...register('Zipcode',{required:true})}/>
+                    <input type="text" className="form-control" value={profile.zipcode} placeholder='0002' id="inputZip" {...register('Zipcode',{required:true})}/>
                     {errors.Zipcode && <span>Zip code is required</span>}
                   </div>
                 </div>
