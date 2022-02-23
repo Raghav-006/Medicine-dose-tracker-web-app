@@ -1,12 +1,18 @@
 import React from 'react';
 import {useForm} from 'react-hook-form'
 import Wrapper from '../component/Wrapper'
+import axios from 'axios'
+import {toast} from 'react-toastify'
 
 export default function Profile() {
   const {register,handleSubmit,reset, formState:{errors}}= useForm()
 
-  const onSubmit = (data,e)=>{
+  const onSubmit = async(data,e)=>{
     console.log(data)
+    const profile =  await axios.post('profile',data,{withCredentials:true})
+    if(profile.msg=== 'success'){
+      toast.success(profile.msg)
+    }
     e.target.reset();
   }
   return (
