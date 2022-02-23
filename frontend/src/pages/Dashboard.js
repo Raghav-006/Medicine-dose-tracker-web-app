@@ -1,8 +1,6 @@
 import React from 'react';
 import Wrapper from '../component/Wrapper';
 import './Dashboard.css';
-import Chart from 'chart.js/auto';
-import { getRelativePosition } from 'chart.js/helpers';
 import {Line} from 'react-chartjs-2';
 
 const Dashboard =()=> {
