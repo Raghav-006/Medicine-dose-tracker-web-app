@@ -31,19 +31,19 @@ export default function Profile() {
                     </div>
                   </div>
                   <div className="col-12 mb-4">
-                    <label for="inputAddress" className="form-label">Address</label>
+                    <label htmlFor="inputAddress" className="form-label">Address</label>
                     <input type="text" className="form-control" id="inputAddress" placeholder="1234 Main St" {...register("address",{required:true})} />
                     {errors.address && <span>This field is required</span>}
                   </div>
                 </div>
                 <div className='row'>
                   <div className="col-md-6 mb-4">
-                    <label for="inputCity" className="form-label">City</label>
+                    <label htmlFor="inputCity" className="form-label">City</label>
                     <input type="text" className="form-control" id="inputCity" {...register('city',{required:true})}/>
                     {errors.city && <span>This field is required</span>}
                   </div>
                   <div className="col-md-4 mb-4">
-                    <label for="inputState" className="form-label">State</label>
+                    <label htmlFor="inputState" className="form-label">State</label>
                     <select id="inputState" className="form-select" {...register("gender",{required: true})}>
                       <option value='' className="text-muted">Choose...</option>
                       <option value=''>...</option>
@@ -54,7 +54,7 @@ export default function Profile() {
                       {errors.gender && <span>This field is required</span>}
                   </div>
                   <div className="col-md-2 mb-4">
-                    <label for="inputZip" className="form-label">Zip</label>
+                    <label htmlFor="inputZip" className="form-label">Zip</label>
                     <input type="text" className="form-control" id="inputZip" {...register('Zipcode',{required:true})}/>
                     {errors.Zipcode && <span>Zip code is required</span>}
                   </div>
