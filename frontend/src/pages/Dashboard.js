@@ -44,8 +44,8 @@ const ctx = 'myChart';*/}
         const canvasPosition = getRelativePosition(e, chart);
   
         // Substitute the appropriate scale IDs
-        const dataX = chart.scales.x.getValueForPixel(canvasPosition.x);
-        const dataY = chart.scales.y.getValueForPixel(canvasPosition.y);
+        //const dataX = chart.scales.x.getValueForPixel(canvasPosition.x);
+        //const dataY = chart.scales.y.getValueForPixel(canvasPosition.y);
       }
     }
   });
