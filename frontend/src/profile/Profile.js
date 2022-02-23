@@ -19,7 +19,7 @@ export default function Profile() {
   useEffect(() => {
     return async() => {
       const {data} = await axios.get('profile',{withCredentials:true})
-      if(data.msg != 'nothing found'){
+      if(data.msg !== 'nothing found'){
         setProfile(data)
       }
     };
