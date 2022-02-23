@@ -6,9 +6,9 @@ import { getRelativePosition } from 'chart.js/helpers';
 
 const Dashboard =()=> {
   const ctx = document.getElementById('myChart');
-  const ctx = document.getElementById('myChart').getContext('2d');
+  {/*const ctx = document.getElementById('myChart').getContext('2d');
   const ctx = $('#myChart');
-  const ctx = 'myChart';
+const ctx = 'myChart';*/}
 
   const myChart = new Chart(ctx, {
     type: 'line',
