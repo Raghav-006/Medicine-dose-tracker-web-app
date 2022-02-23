@@ -27,21 +27,21 @@ export default function NewMedicine() {
           <form className="row g-3" onSubmit={Meds}>
             <div className="col-md-4">
               <label htmlFor="validationCustom01" className="form-label">Medicine name</label>
-              <input type="text" className="form-control" min={0} max={4} id="validationCustom01" value={name} onChange={(e)=>setName(e.target.value)} required />
+              <input type="text" className="form-control" id="validationCustom01" value={name} onChange={(e)=>setName(e.target.value)} required />
               <div className="valid-feedback">
                 Looks good!
               </div>
             </div>
             <div className="col-auto">
               <label htmlFor="validationCustom02" className="form-label">Dosage</label>
-              <input type="number" className="form-control" min={0} max={3} id="validationCustom02" value={dosage} onChange={(e)=>setDosage(e.target.value)} required />
+              <input type="number" className="form-control" min={0} max={4} id="validationCustom02" value={dosage} onChange={(e)=>setDosage(e.target.value)} required />
               <div className="valid-feedback">
                 Looks good!
               </div>
             </div>
             <div className="col-auto">
               <label className="form-label" htmlFor="autoSizingSelect">Frequency / day</label>
-              <input type={'number'} className="form-control" id="autoSizingSelect" value={frequency}  onChange={(e)=>setFrequency(e.target.value)} required />
+              <input type={'number'} className="form-control" min={0} max={3} id="autoSizingSelect" value={frequency}  onChange={(e)=>setFrequency(e.target.value)} required />
               <div className="valid-feedback">
                 Looks good!
               </div>
