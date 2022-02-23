@@ -19,20 +19,19 @@ const Try =()=> {
         let password = datas.password;
 
         //if (!data.email || !data.password) return;
-      const user = { email, password };
-      console.log(user)
-      const {data} = await axios.post('login',user,{withCredentials:true});
+        const user = { email, password };
+        console.log(user)
+        const {data} = await axios.post('login',user,{withCredentials:true});
 
-      axios.defaults.headers.common['Authorization'] = `Bearer ${data['token']}`;
-        
-      if(data.message === 'success') {return navigate('/dashboard')}
-      if(data.message === 'invalid credntials'){
-         return toast.error('Invalid credntials')
-      } 
-      if(data.message ==='user not found'){
-       return toast.error('User not found')
-      }
-
+        axios.defaults.headers.common['Authorization'] = `Bearer ${data['token']}`;
+            
+        if(data.message === 'success') {return navigate('/dashboard')}
+        if(data.message === 'invalid credntials'){
+            return toast.error('Invalid credntials')
+        } 
+        if(data.message ==='user not found'){
+        return toast.error('User not found')
+        }
     } 
 
     const handleChange = ()=>{
