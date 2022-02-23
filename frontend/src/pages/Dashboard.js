@@ -37,7 +37,7 @@ const Dashboard =()=> {
             </button>
           </div>
       </div>
-        <div>
+        <div className={'my-4 w-100'}>
           <Line
             data={state}
             options={{
