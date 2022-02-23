@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link,useNavigate} from 'react-router-dom';
-import {User} from 'react-feather'
+//import {User} from 'react-feather'
 import axios from 'axios';
 import AccountMenu from '../pages/AccountMenu'
 

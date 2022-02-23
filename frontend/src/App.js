@@ -10,6 +10,7 @@ import Reports from './pages/Reports'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Try from "./pages/try";
+import Profile from "./profile/Profile";
 
 function App() {
   AOS.init({
@@ -27,6 +28,7 @@ function App() {
         <Route path="users" element={<Users/>}/>
         <Route path="medicine" element={<NewMedicine/>}/>
         <Route path="reports" element={<Reports/>}/>
+        <Route path="profile" element={<Profile/>}/>
           <Route path="*" element={<NoMatch />} />
       </Routes>
     </>

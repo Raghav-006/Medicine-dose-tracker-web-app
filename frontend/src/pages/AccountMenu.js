@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useNavigate} from 'react-router-dom'
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
@@ -7,7 +8,6 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import {User, UserPlus,Settings,LogOut} from 'react-feather'
-import axios from 'axios';
 
 /*import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
@@ -16,6 +16,7 @@ import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';*/
 
 export default function AccountMenu({logout}) {
+  const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -74,7 +75,7 @@ export default function AccountMenu({logout}) {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem>
+        <MenuItem onClick={()=>navigate('/profile')}>
           <Avatar /> Profile
         </MenuItem>
         <MenuItem>
