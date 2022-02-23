@@ -3,56 +3,24 @@ import Wrapper from '../component/Wrapper';
 import './Dashboard.css';
 import Chart from 'chart.js/auto';
 import { getRelativePosition } from 'chart.js/helpers';
+import {Line} from 'react-chartjs-2';
 
 const Dashboard =()=> {
-  const ctx = document.getElementById('myChart');
-  {/*const ctx = document.getElementById('myChart').getContext('2d');
-  const ctx = $('#myChart');
-const ctx = 'myChart';*/}
-
-const myChart = new Chart(ctx, {
-  type: 'line',
-  data: {
-    labels: [
-      'Sunday',
-      'Monday',
-      'Tuesday',
-      'Wednesday',
-      'Thursday',
-      'Friday',
-      'Saturday'
-    ],
-    datasets: [{
-      data: [
-        15339,
-        21345,
-        18483,
-        24003,
-        23489,
-        24092,
-        12034
-      ],
-      lineTension: 0,
-      backgroundColor: 'transparent',
-      borderColor: '#007bff',
-      borderWidth: 4,
-      pointBackgroundColor: '#007bff'
-    }]
-  },
-  options: {
-    scales: {
-      yAxes: [{
-        ticks: {
-          beginAtZero: false
-        }
-      }]
-    },
-    legend: {
-      display: false
-    }
+  const state = {
+    labels: ['January', 'February', 'March',
+             'April', 'May'],
+    datasets: [
+      {
+        label: 'Rainfall',
+        fill: false,
+        lineTension: 0.5,
+        backgroundColor: 'rgba(75,192,192,1)',
+        borderColor: 'rgba(0,0,0,1)',
+        borderWidth: 2,
+        data: [65, 59, 80, 81, 56]
+      }
+    ]
   }
-})
-();
 
   return (
     <Wrapper>
@@ -69,7 +37,22 @@ const myChart = new Chart(ctx, {
             </button>
           </div>
       </div>
-      <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+        <div>
+          <Line
+            data={state}
+            options={{
+              title:{
+                display:true,
+                text:'Average Rainfall per month',
+                fontSize:20
+              },
+              legend:{
+                display:true,
+                position:'right'
+              }
+            }}
+          />
+        </div>
     </Wrapper>
   )
 }
