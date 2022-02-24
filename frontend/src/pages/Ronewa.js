@@ -16,9 +16,9 @@ const state = {
     },
     {
       label: 'Mavhungu',
-      data: [65, 59, 80, 56, 56, 60, 70],
-      lineTension: 0.5,
-      backgroundColor: 'transparent',
+      data: [65, 59, 80, 70, 65, 80, 70],
+      lineTension: 0,
+      backgroundColor: 'rgba(75,192,192,1)',
       borderColor: '#007bff',
       borderWidth: 4,
       pointBackgroundColor: '#007bff'
