@@ -35,13 +35,15 @@ export default function Profile() {
                 <div className="row">
                   <div className="col">
                     <div className='form-outline mb-4'>
-                      <input type={'text'} placeholder="First Name" value={profile.name} {...register("name",{required:true})} className={'form-control'} />
+                      <label htmlFor="FirstName" className="form-label">First Name</label>
+                      <input type={'text'} id='FirstName' placeholder="First Name" value={profile.name} {...register("name",{required:true})} className={'form-control'} />
                       {errors.name && <span>This field is required</span>}
                     </div>
                   </div>
                   <div className="col">
                     <div className='form-outline mb-4'>
-                      <input type={"text"} placeholder={'Last Name'} value={profile.surname} {...register("email", {required:true})} className={'form-control'} />
+                      <label htmlFor="LastName" className="form-label">Last Name</label>
+                      <input type={"text"} id='LastName' placeholder={'Last Name'} value={profile.surname} {...register("email", {required:true})} className={'form-control'} />
                       {errors.email && <span>This field is required</span>}
                     </div>
                   </div>
