@@ -17,9 +17,9 @@ const state = {
       label: 'Unregistered Medication',
       data: [70, 64, 80, 70, 65, 80, 70],
       lineTension: 0,
-      backgroundColor: 'rgba(75,192,192,1)',
+      backgroundColor: 'rgba(75,192,192,3)',
       borderColor: '#007bff',
-      borderWidth: 4,
+      borderWidth: 2,
       pointBackgroundColor: '#007bff'
     }
   ]
