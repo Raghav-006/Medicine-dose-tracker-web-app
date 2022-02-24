@@ -9,12 +9,6 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import {User, UserPlus,Settings,LogOut} from 'react-feather'
 
-/*import PersonAdd from '@mui/icons-material/PersonAdd';
-import Settings from '@mui/icons-material/Settings';
-import Logout from '@mui/icons-material/Logout';
-import Typography from '@mui/material/Typography';
-import Tooltip from '@mui/material/Tooltip';*/
-
 export default function AccountMenu({logout}) {
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
