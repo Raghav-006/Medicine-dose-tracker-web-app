@@ -4,7 +4,9 @@ import {Line} from 'react-chartjs-2';
 
 const state = {
   labels: ['January', 'February', 'March','April', 'May','June','Jully'],
-  datasets: [{
+  //labels: ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
+  datasets: [
+    {
       label: 'Regitered Medicine',
       fill: false,
       lineTension: 0.5,
@@ -12,7 +14,17 @@ const state = {
       borderColor: 'rgba(0,0,0,1)',
       borderWidth: 2,
       data: [65, 59, 80, 81, 56,60,70]
-    }]
+    },
+    {
+      label: 'Mavhungu',
+      data: [339,345,483,003,489,242,034],
+      lineTension: 0,
+      backgroundColor: 'transparent',
+      borderColor: '#007bff',
+      borderWidth: 4,
+      pointBackgroundColor: '#007bff'
+    }
+  ]
 }
 
 export default class Ronewa extends React.Component {
