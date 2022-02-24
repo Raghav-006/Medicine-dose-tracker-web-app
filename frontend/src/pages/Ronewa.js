@@ -17,7 +17,7 @@ const state = {
     },
     {
       label: 'Mavhungu',
-      data: [39, 45, 83, 03, 89, 42, 34],
+      data: [39, 45, 80, 03, 89, 42, 34],
       lineTension: 0.5,
       backgroundColor: 'transparent',
       borderColor: '#007bff',
