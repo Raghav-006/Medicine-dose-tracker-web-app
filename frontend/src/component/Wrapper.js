@@ -20,10 +20,6 @@ const Wrapper =(props)=> {
       )();
   }, []);
 
-  /*if(redirect){
-    navigate('/dashboard')
-  }*/
- 
   return (
     <>
       <Nav user={user}/>

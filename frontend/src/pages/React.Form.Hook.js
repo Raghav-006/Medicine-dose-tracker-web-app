@@ -25,12 +25,14 @@ const Try =()=> {
 
         axios.defaults.headers.common['Authorization'] = `Bearer ${data['token']}`;
             
-        if(data.message === 'success') {return navigate('/dashboard')}
+        if(data.message === 'success') {
+            return navigate('/dashboard')
+        }
         if(data.message === 'invalid credntials'){
             return toast.error('Invalid credntials')
         } 
         if(data.message ==='user not found'){
-        return toast.error('User not found')
+            return toast.error('User not found')
         }
     } 
 

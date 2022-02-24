@@ -23,7 +23,7 @@ const Dashboard =()=> {
           </div>
       </div>
 
-      <Ronewa className="my-4 w-100" style={{width:"900",height:"380"}} />
+      <Ronewa className="my-4 w-100" style={{width:"900",height:"180"}} />
     </Wrapper>
   )
 }
