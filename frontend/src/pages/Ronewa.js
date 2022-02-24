@@ -3,7 +3,6 @@ import {Line} from 'react-chartjs-2';
 
 const state = {
   labels: ['January', 'February', 'March','April', 'May','June','Jully'],
-  //labels: ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
   datasets: [
     {
       label: 'Regitered Medicine',
@@ -12,11 +11,11 @@ const state = {
       backgroundColor: 'rgba(75,192,192,1)',
       borderColor: 'rgba(0,0,0,1)',
       borderWidth: 2,
-      data: [65, 59, 80, 81, 56, 60, 70]
+      data: [65, 59, 80, 81, 65, 60, 70]
     },
     {
-      label: 'Mavhungu',
-      data: [65, 59, 80, 70, 65, 80, 70],
+      label: 'Unregistered Medication',
+      data: [70, 64, 80, 70, 65, 80, 70],
       lineTension: 0,
       backgroundColor: 'rgba(75,192,192,1)',
       borderColor: '#007bff',
