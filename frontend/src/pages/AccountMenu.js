@@ -70,10 +70,16 @@ export default function AccountMenu({logout}) {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         <MenuItem onClick={()=>navigate('/profile')}>
-          <Avatar /> Profile
+          <ListItemIcon>
+            <User  fontSize="small"/>
+          </ListItemIcon>
+          Profile
         </MenuItem>
         <MenuItem>
-          <Avatar /> My account
+          <ListItemIcon>
+            <User fontSize="small" />
+          </ListItemIcon>
+          My account
         </MenuItem>
         <Divider />
         <MenuItem>
