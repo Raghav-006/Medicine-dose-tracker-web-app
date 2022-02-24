@@ -9,7 +9,7 @@ import NewMedicine from "./pages/NewMedicine";
 import Reports from './pages/Reports'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import Try from "./pages/try";
+import Try from "./pages/React.Form.Hook";
 import Profile from "./profile/Profile";
 
 function App() {
