@@ -54,8 +54,6 @@ const Dashboard =()=> {
                     </tbody>
             </table>
         </div>
-
-
     </Wrapper>
   )
 }
