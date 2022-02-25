@@ -15,7 +15,7 @@ const state = {
     },
     {
       label: 'Unregistered Medication',
-      data: [70, 64, 80, 70, 65, 80, 70],
+      data: [70, 64, 80, 70, 65, 80, 60],
       lineTension: 0,
       backgroundColor: 'rgba(75,192,192,3)',
       borderColor: '#007bff',
@@ -25,7 +25,7 @@ const state = {
   ]
 }
 
-export default class Ronewa extends React.Component {
+export default class Graph extends React.Component {
   render() {
     return (
       <div>
