@@ -2,7 +2,7 @@ import React,{useEffect, useState} from 'react'
 import {Link} from 'react-router-dom'
 import Wrapper from '../component/Wrapper';
 import axios from 'axios'
-
+import {toast} from 'react-toastify'
 
 const Reports = ()=>{
   const [medications,setMedicines]= useState([]);
@@ -16,12 +16,30 @@ const Reports = ()=>{
     })();
   }, []);
 
-  console.log(medications)
+  const del = async (id) => {
+    if (window.confirm('Are you sure you want to delete this?')) {
+      const  {data} = await axios.delete(`deletemedicine/${id}`,{withCredentials:true});
+
+      setMedicines(medications.filter((medication) => medication._id !== id));
+      if(data.msg === 'success'){
+        toast.success(data.msg)
+      }
+    }
+}
+
+
   return (
     <Wrapper>
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 className='h2 text-muted'>Medication</h1>
       </div>
+
+      <div className="pt-3 pb-2 mb-3 border-bottom">
+        <div className="btn-toolbar mb-2 mb-md-0">
+            <Link to='/admin/products/create' className="btn btn-sm btn-outline-secondary">Add</Link>
+        </div>
+      </div>
+
       <div className="table-responsive">
         <table className="table table-striped table-sm">
           <thead>
@@ -38,14 +56,16 @@ const Reports = ()=>{
                 (medication)=>{
                   return (
                     <tr key={medication._id}>
-                      <td>{medication.id}</td>
+                      <td><input type='checkbox'/></td>
                       <td>{medication.name}</td>
                       <td>{medication.dosage}</td>
                       <td>{medication.frequency}</td>
                       <td>
                         <div className="btn-group mr-2">
                           <Link to={`/admin/products/${medication._id}/edit`} className="btn btn-sm btn-outline-secondary">Edit</Link>
-                          <Link to="#!" className="btn btn-sm btn-outline-secondary">Delete</Link>
+                          <div className='ml-5' style={{marginLeft: '5px'}}>
+                            <Link to="#!" className="btn btn-sm btn-outline-secondary" onClick={()=>del(medication._id)}>Delete</Link>
+                          </div>
                         </div>
                       </td>
                     </tr>

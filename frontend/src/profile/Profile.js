@@ -49,6 +49,13 @@ export default function Profile() {
                       {errors.email && <span>This field is required</span>}
                     </div>
                   </div>
+                  <div className="row">
+                    <div className='col-auto mb-4'>
+                      <label className="form-label" htmlFor="cellphone">CellPhone Number</label>
+                      <input type="cell" className="form-control" id="cellphone" value={profile.cellphone} {...register("cellphone",{required:true})} />
+                    </div>
+                  </div>
+
                   <div className="col-12 mb-4">
                     <label htmlFor="inputAddress" className="form-label">Address</label>
                     <input type="text" className="form-control" id="inputAddress" value={profile.address} placeholder="190 Schieding Street" {...register("address",{required:true})} />
