@@ -36,7 +36,7 @@ const Reports = ()=>{
 
       <div className="pt-3 pb-2 mb-3 border-bottom">
         <div className="btn-toolbar mb-2 mb-md-0">
-            <Link to='/admin/products/create' className="btn btn-sm btn-outline-secondary">Add</Link>
+            <Link to='#!' className="btn btn-sm btn-outline-secondary">Add</Link>
         </div>
       </div>
 
