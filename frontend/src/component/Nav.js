@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link,useNavigate} from 'react-router-dom';
-//import {User} from 'react-feather'
 import axios from 'axios';
 import AccountMenu from '../pages/AccountMenu'
 
@@ -19,11 +18,6 @@ const Nav = () =>{
                 <span className="navbar-toggler-icon"></span>
             </button>
             <input className="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"/>
-            {/*<div className='navbar-nav'>
-                <div className="nav-item text-nowrap">
-                    <Link onClick={logout} to="/" className="nav-link px-3" style={nav_user}>Sign out</Link>
-                </div>
-            </div>*/}
             <div className="navbar-nav">
                 <div className="nav-item text-nowrap">
                     <AccountMenu className="nav-link px-3" logout={logout}/>

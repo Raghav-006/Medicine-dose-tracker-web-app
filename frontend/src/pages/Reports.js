@@ -6,14 +6,14 @@ import {toast} from 'react-toastify'
 
 const Reports = ()=>{
   const [medications,setMedicines]= useState([]);
-
   useEffect(() => {
-      (
-        async () => {
-        const {data} = await axios.get('reports',{withCredentials:true});
-        const datas = data.medication;
-          setMedicines(datas)
-    })();
+    (
+      async () => {
+      const {data} = await axios.get('reports',{withCredentials:true});
+      const datas = data.medication;
+        setMedicines(datas)
+      }
+    )();
   }, []);
 
   const del = async (id) => {
@@ -25,8 +25,7 @@ const Reports = ()=>{
         toast.success(data.msg)
       }
     }
-}
-
+  }
 
   return (
     <Wrapper>

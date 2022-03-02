@@ -3,13 +3,9 @@ import Wrapper from '../component/Wrapper';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import momentTimeZone from 'moment-timezone';
-import TextField from '@mui/material/TextField';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import Stack from '@mui/material/Stack';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import TimePicker from '@mui/lab/TimePicker';
-//import moment from 'moment';
-//import {useForm} from 'react-hook-form'
+import DatePicker from "react-datepicker"; 
+import "./medicine.css";
+import "react-datepicker/dist/react-datepicker.css"
 
 export default function NewMedicine() {
   //const {register,handleSubmit,reset,formState:{errors}} = useForm();
@@ -17,8 +13,56 @@ export default function NewMedicine() {
   const [dosage,setDosage]= useState(0)
   const [frequency,setFrequency]= useState(0)
   const [timeZone,setTimeZone] = useState('')
-  const [value, setValue] = useState(new Date('2022-03-01T00:00:00.000Z'))
-  const [notification,setNotification] = useState()
+  const [notification,setNotification] = useState(new Date())
+  
+  const [values, setValues] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+  });
+
+  const [submitted, setSubmitted] = useState(false);
+  const [valid, setValid] = useState(false);
+  const [selectedDate, setselectedDate] = useState(null);
+
+  const handleFirstNameInputChange = (event) => {
+    setValues({...values, firstName: event.target.value})
+  }
+
+  const handleLastNameInputChange = (event) => {
+    setValues({...values, lastName: event.target.value})
+  }
+
+  const handleEmailInputChange = (event) => {
+    setValues({...values, email: event.target.value})
+  }
+
+  const dateFormatAux = (date) => {
+    var d = new Date(date),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
+
+    if (month.length < 2)
+      month = '0' + month;
+    if (day.length < 2) 
+      day = '0' + day;
+    
+    return [year, month, day].join('-');
+  }
+
+  const dateFormat = (date) => {
+
+    console.log(new Date(date));
+
+    let formatYearMonthDay = dateFormatAux(date);
+    //console.log(formatYearMonthDay);
+
+    let formatISO8601 = new Date(date).toISOString();
+    //console.log(formatISO8601);
+
+    return [formatYearMonthDay, formatISO8601];
+  }
   
   const getTimeZones = function() {
     return momentTimeZone.tz.names();
@@ -27,46 +71,64 @@ export default function NewMedicine() {
 
   const Meds = async (e)=>{
     e.preventDefault();
+
+    let birthDateYMD, birthDateISO8601;
+    
+        if (selectedDate != null)
+          [birthDateYMD, birthDateISO8601] = dateFormat(selectedDate);
+    
+        if(values.firstName && values.lastName && values.email)
+          setValid(true)
+        setSubmitted(true);
+    
+        let formData = {
+          firstName: values.firstName,
+          lastName: values.lastName,
+          email: values.email,
+          birthDate: selectedDate,
+          birthDateFmtYMD: birthDateYMD,
+          birthDateFmtISO8601: birthDateISO8601,
+        };
+    
+        //console.log(formData);
+
     if (!name || !dosage || !frequency) return;
-    const medicine = { name, dosage, frequency, timeZone, value, notification };
+    const medicine = { name, dosage, frequency, timeZone, birthDateISO8601, notification };
       const {data} = await axios.post('addmedicine',medicine,{withCredentials:true});
       console.log(data)
       if(data.msg === 'success'){ toast.success("success data")}
-    
   }
+
   return (
     <Wrapper>
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 className='h2 text-muted'>Enter new forms</h1>
       </div>
-      <div className='formss'>
+      <div className='form-containers'>
           <form className="row g-3" onSubmit={Meds}>
+          {submitted && valid ? <div className="success-message">Success! Thank you for registering</div> : null }
             <div className="col-md-4">
-              <label htmlFor="validationCustom01" className="form-label">Medicine name</label>
-              <input type="text" className="form-control" id="validationCustom01" value={name} onChange={(e)=>setName(e.target.value)} required />
+              <label htmlFor="validationCustom01" className="form-labe" hidden={true}>Medicine name</label>
+              <input type="text" className="form-control" id="validationCustom01" placeholder="Medicine Name" value={name} onChange={(e)=>setName(e.target.value)} required />
+            </div>
+            <div className="col-auto">
+              <label htmlFor="validationCustom02" className="form-labe" hidden={true}>Dosage</label>
+              <input type="number" className="form-field" min={0} max={4} id="validationCustom02" value={dosage} onChange={(e)=>setDosage(e.target.value)} required />
               <div className="valid-feedback">
                 Looks good!
               </div>
             </div>
             <div className="col-auto">
-              <label htmlFor="validationCustom02" className="form-label">Dosage</label>
-              <input type="number" className="form-control" min={0} max={4} id="validationCustom02" value={dosage} onChange={(e)=>setDosage(e.target.value)} required />
+              <label className="form-label" htmlFor="autoSizingSelect" hidden={true}>Frequency / day</label>
+              <input type={'number'} className="form-field" min={0} max={3} id="autoSizingSelect" value={frequency}  onChange={(e)=>setFrequency(e.target.value)} required />
               <div className="valid-feedback">
                 Looks good!
               </div>
             </div>
-            <div className="col-auto">
-              <label className="form-label" htmlFor="autoSizingSelect">Frequency / day</label>
-              <input type={'number'} className="form-control" min={0} max={3} id="autoSizingSelect" value={frequency}  onChange={(e)=>setFrequency(e.target.value)} required />
-              <div className="valid-feedback">
-                Looks good!
-              </div>
-            </div>
-
 
             <div className='col-auto'>
-              <label htmlFor="inputState" className="form-label">State</label>
-                <select id="inputState" className="form-select" name="time" onChange={(e)=>setTimeZone(e.target.value)}>
+              <label htmlFor="inputState" className="form-label" hidden={true}>State</label>
+                <select id="inputState" className="form-field" name="time" onChange={(e)=>setTimeZone(e.target.value)}>
                   {
                     timeZones.map((timeZone, i)=>{
                       return <option value={timeZone} key={i}>{timeZone}</option>
@@ -75,25 +137,66 @@ export default function NewMedicine() {
                 </select>
             </div>
             <div className='col-auto'>
-              <label htmlFor='' className='form-label'>Notifications</label>
-              <input type={'text'} id='' className='form-control' onChange={(e)=>setNotification(e.target.value)} />
+              <label htmlFor='' className='form-label' hidden={true}>Notifications</label>
+              <select name='notification' className="form-field" onChange={(e)=>setNotification(e.target.value)}>
+                <option value='' diasbled='true'>Select a time</option> 
+                <option  value='15'> 15 Minutes</option>
+                <option  value='30'> 30 Minutes</option>
+                <option  value='45'> 45 Minutes</option>
+                <option  value='60'> 60 Minutes</option>
+              </select>
             </div>
 
             <div className='col-auto'>
-              <label className='form-label' htmlFor=''></label>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <Stack spacing={3}>
-                    <TimePicker
-                      label="Notification"
-                      className='form-control'
-                      value={value}
-                      onChange={setValue}
-                      renderInput={(params) => <TextField {...params} />}
-                    />
-                  </Stack>
-                </LocalizationProvider>
+            <input
+              onChange={handleFirstNameInputChange}
+              value={values.firstName}
+              id="first-name"
+              className="form-field"
+              type="text"
+              placeholder="First Name"
+              name="firstName"
+            />
+            { submitted && !values.firstName ? <span id="first-name-error">Please enter a first name</span> : null}
             </div>
+            <div className='col-md-12'>
+            <input
+              onChange={handleLastNameInputChange}
+              value={values.lastName}
+              id="last-name"
+              className="form-field"
+              type="text"
+              placeholder="Last Name"
+              name="lastName"
+            />
+            { submitted && !values.lastName ? <span id="last-name-error">Please enter a last name</span> : null}
+            </div>
+            <input
+              onChange={handleEmailInputChange}
+              value={values.email}
+              id="email"
+              className="form-field"
+              type="text"
+              placeholder="Email"
+              name="email"
+            />
+            { submitted && !values.email ? <span id="email-error">Please enter an email address</span> : null }
+            <DatePicker 
+              selected={selectedDate} 
+              onChange={date => setselectedDate(date)}
+              showTimeSelect
+              dateFormat="dd/MM/yyyy"
+              className="form-field"
+              id="birthDate"
+              placeholderText="Birthdate"
+              //minDate={new Date()}
+            />
+            { submitted && !selectedDate ? <span id="email-error">Please enter an birthdate</span> : null }
 
+            {/*<button className="form-field" type="submit">
+              Register
+            </button>*/}
+            
             <div className="col-12">
               <button className="btn btn-primary" type="submit">Save</button>
             </div>
