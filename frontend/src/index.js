@@ -30,7 +30,6 @@ ReactDOM.render(
         theme="colored"
       />
     </BrowserRouter>
-    
   </React.StrictMode>,
   document.getElementById('root')
 );

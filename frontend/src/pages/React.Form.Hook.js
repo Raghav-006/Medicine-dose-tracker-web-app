@@ -6,10 +6,7 @@ import { toast } from 'react-toastify';
 
 const Try =()=> {
     const [checked,setChecked] = useState(false);
-    const { register, 
-        handleSubmit, 
-        reset,
-        formState: { errors } } = useForm();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const navigate = useNavigate();
 
     const onSubmit = async(datas, e) =>{
@@ -73,7 +70,6 @@ const Try =()=> {
                                             <a href="#!">Forgot password?</a>
                                         </div>
                                 </div>
-                               
                                 <button type="submit" className="btn btn-primary btn-block">Sign in</button>
                                 <input
                                     style={{ display: "block", marginTop: 20 }}

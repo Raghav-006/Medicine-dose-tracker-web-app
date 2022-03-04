@@ -3,9 +3,12 @@ import {Link} from 'react-router-dom'
 import Wrapper from '../component/Wrapper';
 import axios from 'axios'
 import {toast} from 'react-toastify'
+import AddMedicineModal from './modal/addMedicine.Modal';
 
 const Reports = ()=>{
   const [medications,setMedicines]= useState([]);
+  const [modalShow, setModalShow] = useState(false)
+
   useEffect(() => {
     (
       async () => {
@@ -25,7 +28,7 @@ const Reports = ()=>{
         toast.success(data.msg)
       }
     }
-  }
+  };
 
   return (
     <Wrapper>
@@ -35,8 +38,10 @@ const Reports = ()=>{
 
       <div className="pt-3 pb-2 mb-3 border-bottom">
         <div className="btn-toolbar mb-2 mb-md-0">
-            <Link to='#!' className="btn btn-sm btn-outline-secondary">Add</Link>
+          <button type='button' className="btn btn-sm btn-outline-secondary" onClick={() => setModalShow(true)}>Add</button>
         </div>
+
+        <AddMedicineModal show={modalShow} onHide={() => setModalShow(false)}/>
       </div>
 
       <div className="table-responsive">
@@ -47,6 +52,7 @@ const Reports = ()=>{
               <th scope="col">Mdedication Name</th>
               <th scope="col">Dosage </th>
               <th scope="col">frequency / day</th>
+              <th scope="col">Notification Time</th>
               <th scope="col">Action</th>
               </tr>
           </thead>
@@ -59,6 +65,7 @@ const Reports = ()=>{
                       <td>{medication.name}</td>
                       <td>{medication.dosage}</td>
                       <td>{medication.frequency}</td>
+                      <td>{medication.notification} min</td>
                       <td>
                         <div className="btn-group mr-2">
                           <Link to={`/admin/products/${medication._id}/edit`} className="btn btn-sm btn-outline-secondary">Edit</Link>

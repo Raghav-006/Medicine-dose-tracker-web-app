@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import { BarChart2, Users, Home, Layers, PlusCircle } from 'react-feather';
+import { BarChart2, Users, Film, Home, Layers, PlusCircle } from 'react-feather';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPills } from '@fortawesome/free-solid-svg-icons'
 
@@ -39,6 +39,12 @@ export default function Menu() {
               <Link to="/profile" className="nav-link">
                 <span><Users className="feather"/></span>
                 Profile
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/theatre" className="nav-link">
+                <span><Film className="feather"/></span>
+                Theatre
               </Link>
             </li>
           </ul>

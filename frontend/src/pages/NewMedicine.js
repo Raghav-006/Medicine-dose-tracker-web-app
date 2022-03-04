@@ -7,8 +7,9 @@ import DatePicker from "react-datepicker";
 import "./medicine.css";
 import "react-datepicker/dist/react-datepicker.css"
 
+
 export default function NewMedicine() {
-  //const {register,handleSubmit,reset,formState:{errors}} = useForm();
+
   const [name,setName]= useState('')
   const [dosage,setDosage]= useState(0)
   const [frequency,setFrequency]= useState(0)
@@ -90,7 +91,8 @@ export default function NewMedicine() {
           birthDateFmtISO8601: birthDateISO8601,
         };
     
-        //console.log(formData);
+        console.log(formData);
+        console.log(`Selected dates are: ${selectedDate}`)
 
     if (!name || !dosage || !frequency) return;
     const medicine = { name, dosage, frequency, timeZone, birthDateISO8601, notification };
@@ -140,10 +142,10 @@ export default function NewMedicine() {
               <label htmlFor='' className='form-label' hidden={true}>Notifications</label>
               <select name='notification' className="form-field" onChange={(e)=>setNotification(e.target.value)}>
                 <option value='' diasbled='true'>Select a time</option> 
-                <option  value='15'> 15 Minutes</option>
-                <option  value='30'> 30 Minutes</option>
-                <option  value='45'> 45 Minutes</option>
-                <option  value='60'> 60 Minutes</option>
+                <option value='15'> 15 Minutes</option>
+                <option value='30'> 30 Minutes</option>
+                <option value='45'> 45 Minutes</option>
+                <option value='60'> 60 Minutes</option>
               </select>
             </div>
 
@@ -192,10 +194,6 @@ export default function NewMedicine() {
               //minDate={new Date()}
             />
             { submitted && !selectedDate ? <span id="email-error">Please enter an birthdate</span> : null }
-
-            {/*<button className="form-field" type="submit">
-              Register
-            </button>*/}
             
             <div className="col-12">
               <button className="btn btn-primary" type="submit">Save</button>
