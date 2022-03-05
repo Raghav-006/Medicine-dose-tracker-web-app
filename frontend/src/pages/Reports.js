@@ -1,5 +1,5 @@
 import React,{useEffect, useState} from 'react'
-import {Link} from 'react-router-dom'
+import {Link, NavLink} from 'react-router-dom'
 import Wrapper from '../component/Wrapper';
 import axios from 'axios'
 import {toast} from 'react-toastify'
@@ -47,7 +47,7 @@ const Reports = ()=>{
       <div className="table-responsive">
         <table className="table table-striped table-sm">
           <thead>
-              <tr>
+              <tr className="justify-content-center text-center">
               <th scope="col">#</th>
               <th scope="col">Mdedication Name</th>
               <th scope="col">Dosage </th>
@@ -60,15 +60,15 @@ const Reports = ()=>{
               {medications.map(
                 (medication)=>{
                   return (
-                    <tr key={medication._id}>
+                    <tr key={medication._id} className="justify-content-center text-center">
                       <td><input type='checkbox'/></td>
                       <td>{medication.name}</td>
                       <td>{medication.dosage}</td>
                       <td>{medication.frequency}</td>
-                      <td>{medication.notification} min</td>
-                      <td>
-                        <div className="btn-group mr-2">
-                          <Link to={`/admin/products/${medication._id}/edit`} className="btn btn-sm btn-outline-secondary">Edit</Link>
+                      <td className="justify-content-center text-center">{medication.notification} min</td>
+                      <td className="justify-content-center text-center">
+                        <div className="btn-group">
+                          <NavLink to={`/admin/products/${medication._id}/edit`} className="btn btn-sm btn-outline-secondary">Edit</NavLink>
                           <div className='ml-5' style={{marginLeft: '5px'}}>
                             <Link to="#!" className="btn btn-sm btn-outline-secondary" onClick={()=>del(medication._id)}>Delete</Link>
                           </div>
