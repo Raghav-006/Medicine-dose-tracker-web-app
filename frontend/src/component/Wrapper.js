@@ -18,7 +18,7 @@ const Wrapper =(props)=> {
           if(!data.name){navigate('/')}
         }
       )();
-  }, []);
+  }, [navigate]);
 
   return (
     <>
