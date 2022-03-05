@@ -26,7 +26,7 @@ export default function NewMedicine() {
   const [valid, setValid] = useState(false);
   const [selectedDate, setselectedDate] = useState(null);
 
-  const handleFirstNameInputChange = (event) => {
+  /*const handleFirstNameInputChange = (event) => {
     setValues({...values, firstName: event.target.value})
   }
 
@@ -36,7 +36,7 @@ export default function NewMedicine() {
 
   const handleEmailInputChange = (event) => {
     setValues({...values, email: event.target.value})
-  }
+  }*/
 
   const dateFormatAux = (date) => {
     var d = new Date(date),
@@ -83,9 +83,7 @@ export default function NewMedicine() {
         setSubmitted(true);
     
         let formData = {
-          firstName: values.firstName,
-          lastName: values.lastName,
-          email: values.email,
+          
           birthDate: selectedDate,
           birthDateFmtYMD: birthDateYMD,
           birthDateFmtISO8601: birthDateISO8601,
@@ -108,19 +106,19 @@ export default function NewMedicine() {
       </div>
       <div className='form-containers'>
           <form className="row g-3" onSubmit={Meds}>
-          {submitted && valid ? <div className="success-message">Success! Thank you for registering</div> : null }
-            <div className="col-md-4">
+            {submitted && valid ? <div className="success-message">Success! Thank you for registering</div> : null }
+            <div className="col-md-6">
               <label htmlFor="validationCustom01" className="form-labe" hidden={true}>Medicine name</label>
               <input type="text" className="form-control" id="validationCustom01" placeholder="Medicine Name" value={name} onChange={(e)=>setName(e.target.value)} required />
             </div>
-            <div className="col-auto">
+            <div className="col-md-3">
               <label htmlFor="validationCustom02" className="form-labe" hidden={true}>Dosage</label>
               <input type="number" className="form-field" min={0} max={4} id="validationCustom02" value={dosage} onChange={(e)=>setDosage(e.target.value)} required />
               <div className="valid-feedback">
                 Looks good!
               </div>
             </div>
-            <div className="col-auto">
+            <div className="col-md-3">
               <label className="form-label" htmlFor="autoSizingSelect" hidden={true}>Frequency / day</label>
               <input type={'number'} className="form-field" min={0} max={3} id="autoSizingSelect" value={frequency}  onChange={(e)=>setFrequency(e.target.value)} required />
               <div className="valid-feedback">
@@ -150,51 +148,19 @@ export default function NewMedicine() {
             </div>
 
             <div className='col-auto'>
-            <input
-              onChange={handleFirstNameInputChange}
-              value={values.firstName}
-              id="first-name"
-              className="form-field"
-              type="text"
-              placeholder="First Name"
-              name="firstName"
-            />
-            { submitted && !values.firstName ? <span id="first-name-error">Please enter a first name</span> : null}
+              <DatePicker 
+                selected={selectedDate} 
+                onChange={date => setselectedDate(date)}
+                showTimeSelect
+                dateFormat="dd/MM/yyyy"
+                className="form-field"
+                id="birthDate"
+                placeholderText="Notification Date"
+                //minDate={new Date()}
+              />
+              { submitted && !selectedDate ? <span id="email-error">Please enter an birthdate</span> : null }
             </div>
-            <div className='col-md-12'>
-            <input
-              onChange={handleLastNameInputChange}
-              value={values.lastName}
-              id="last-name"
-              className="form-field"
-              type="text"
-              placeholder="Last Name"
-              name="lastName"
-            />
-            { submitted && !values.lastName ? <span id="last-name-error">Please enter a last name</span> : null}
-            </div>
-            <input
-              onChange={handleEmailInputChange}
-              value={values.email}
-              id="email"
-              className="form-field"
-              type="text"
-              placeholder="Email"
-              name="email"
-            />
-            { submitted && !values.email ? <span id="email-error">Please enter an email address</span> : null }
-            <DatePicker 
-              selected={selectedDate} 
-              onChange={date => setselectedDate(date)}
-              showTimeSelect
-              dateFormat="dd/MM/yyyy"
-              className="form-field"
-              id="birthDate"
-              placeholderText="Birthdate"
-              //minDate={new Date()}
-            />
-            { submitted && !selectedDate ? <span id="email-error">Please enter an birthdate</span> : null }
-            
+
             <div className="col-12">
               <button className="btn btn-primary" type="submit">Save</button>
             </div>
