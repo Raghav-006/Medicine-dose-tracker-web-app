@@ -5,6 +5,7 @@ import RegisterUser from './pages/RegisterUser';
 import NoMatch from "./pages/NoMatch";
 import Dashboard from "./pages/Dashboard";
 import Users from "./pages/Users";
+import Repor from "./pages/Repor"
 import NewMedicine from "./pages/NewMedicine";
 import Reports from './pages/Reports'
 //import Theatre from './component/Theatre'
@@ -14,6 +15,7 @@ import Try from "./pages/React.Form.Hook";
 import Profile from "./profile/Profile";
 //import studio from "@theatre/studio"
 import ScaleLoader from 'react-spinners/ScaleLoader'
+import Mavhungu from "./pages/Mavhungu";
 
 function App() {
   const [loader,setLoader]= useState(false)
@@ -47,9 +49,15 @@ useEffect(() => {
         <Route path='dashboard' element={<Dashboard/>}/>
         <Route path="users" element={<Users/>}/>
         <Route path="medicine" element={<NewMedicine/>}/>
-        <Route path="reports" element={<Reports/>}/>
+
+          <Route path="reports">
+            <Route index element={<Reports />} />
+            <Route path="report" element={<Mavhungu/>} />
+            <Route path=":report/edit" element={<Repor/>} />
+          </Route>
+
         <Route path="profile" element={<Profile/>}/>
-          <Route path="*" element={<NoMatch />} />
+        <Route path="*" element={<NoMatch />} />
       </Routes>
     }
     </>

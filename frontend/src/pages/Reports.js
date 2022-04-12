@@ -1,5 +1,5 @@
 import React,{useEffect, useState} from 'react'
-import {Link, NavLink} from 'react-router-dom'
+import {Link } from 'react-router-dom'
 import Wrapper from '../component/Wrapper';
 import axios from 'axios'
 import {toast} from 'react-toastify'
@@ -12,7 +12,7 @@ const Reports = ()=>{
   useEffect(() => {
     (
       async () => {
-      const {data} = await axios.get('reports',{withCredentials:true});
+      const {data} = await axios.get('reports',{withCredentials:true}); 
       const datas = data.medication;
         setMedicines(datas)
       }
@@ -29,6 +29,10 @@ const Reports = ()=>{
       }
     }
   };
+
+  const edits = async (id)=>{
+   // await axios.get(`reports/${id}/edit`,{withCredentials:true})
+  }
 
   return (
     <Wrapper>
@@ -68,10 +72,14 @@ const Reports = ()=>{
                       <td className="justify-content-center text-center">{medication.notification} min</td>
                       <td className="justify-content-center text-center">
                         <div className="btn-group">
-                          <NavLink to={`/admin/products/${medication._id}/edit`} className="btn btn-sm btn-outline-secondary">Edit</NavLink>
+                          {/*<a href={`/reports/${medication._id}/edit`} rel="noreffere" className="btn btn-sm btn-outline-secondary">Edit</a>*/}
+                          <a href='#!' rel="noreffere" className="btn btn-sm btn-outline-secondary" onClick={()=>edits(medication._id)}>Edit</a>
                           <div className='ml-5' style={{marginLeft: '5px'}}>
-                            <Link to="#!" className="btn btn-sm btn-outline-secondary" onClick={()=>del(medication._id)}>Delete</Link>
+                            <a href="#!" rel="noreffere" className="btn btn-sm btn-outline-secondary" onClick={()=>del(medication._id)}>Delete</a>
                           </div>
+                            <div className='ml-5' style={{marginLeft: '5px'}}>
+                              <Link to={`/reports/report`}  className="btn btn-sm btn-outline-secondary">check report</Link>
+                            </div>
                         </div>
                       </td>
                     </tr>
