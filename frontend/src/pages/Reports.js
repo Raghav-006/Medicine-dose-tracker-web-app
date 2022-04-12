@@ -31,7 +31,8 @@ const Reports = ()=>{
   };
 
   const edits = async (id)=>{
-   // await axios.get(`reports/${id}/edit`,{withCredentials:true})
+    const {data} = await axios.get(`reports/${id}/edit`,{withCredentials:true});
+    console.log(data)
   }
 
   return (
