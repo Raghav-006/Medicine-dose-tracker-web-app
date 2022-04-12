@@ -6,7 +6,6 @@ body {
     sans-serif;
 
 }
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -17,14 +16,24 @@ code {
 
 #intro {
   background-image: url(https://mdbootstrap.com/img/new/fluid/city/008.jpg);
+  /*background-image: url(./images/south_africa.jpg);*/
 }
 /* Height for devices larger than 576px */
-
 .tt{
   background-color: rgba(0, 0, 0, 0.8);
 }
-
 .navbar .nav-link {
   color: #fff !important;
+}
+.preloader {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 999999;
+  background-color: #ffffff;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 

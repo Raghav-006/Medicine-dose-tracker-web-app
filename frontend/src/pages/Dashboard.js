@@ -1,7 +1,7 @@
 import React from 'react';
 import Wrapper from '../component/Wrapper';
 import {Calendar} from 'react-feather';
-import {Link} from 'react-router-dom'
+//import {Link} from 'react-router-dom'
 import './Dashboard.css';
 import Graph from './Graph'
 
@@ -25,7 +25,7 @@ const Dashboard =()=> {
       </div>
       <Graph className="my-4 w-100" style={{width:"900",height:"180"}} />
 
-      <div className="table-responsive">
+      {/*<div className="table-responsive">
             <table className="table table-striped table-sm">
                 <thead>
                     <tr>
@@ -53,7 +53,7 @@ const Dashboard =()=> {
                         </tr>
                     </tbody>
             </table>
-        </div>
+        </div>*/}
     </Wrapper>
   )
 }
