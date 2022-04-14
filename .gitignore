@@ -165,4 +165,5 @@ fabric.properties
 public/
 
 # VScode 
+.vscode/
 .vscode
