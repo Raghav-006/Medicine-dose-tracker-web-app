@@ -48,7 +48,7 @@ app.locals.moment = require('moment')
 
 app.use('/api',indexRouter);
 //app.use('/api/medicine',userRouter)
-app.use('/',rRouter)
+//app.use('/',rRouter)
 
 if(process.env.NODE_ENV ==='production'){
   app.use(express.static('frontend/build'));
