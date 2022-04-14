@@ -4,10 +4,13 @@ import Wrapper from '../component/Wrapper';
 import axios from 'axios'
 import {toast} from 'react-toastify'
 import AddMedicineModal from './modal/addMedicine.Modal';
+import EditMedicineModal from './modal/editMedicine.Modal';
 
 const Reports = ()=>{
-  const [medications,setMedicines]= useState([]);
-  const [modalShow, setModalShow] = useState(false)
+  const [medications,setMedicines] = useState([]);
+  const [modalShow, setModalShow] = useState(false);
+  const [modalShows, setModalShows] = useState(false);
+  const [editMeds,setEditMeds] = useState({})
 
   useEffect(() => {
     (
@@ -30,9 +33,13 @@ const Reports = ()=>{
     }
   };
 
-  const edits = async (id)=>{
+  const edi = async (id)=>{
+    setModalShows(true);
     const {data} = await axios.get(`reports/${id}/edit`,{withCredentials:true});
-    console.log(data)
+    const meds = data.meds;
+    setEditMeds(meds)
+    console.log(meds);
+    console.log(data);
   }
 
   return (
@@ -45,8 +52,8 @@ const Reports = ()=>{
         <div className="btn-toolbar mb-2 mb-md-0">
           <button type='button' className="btn btn-sm btn-outline-secondary" onClick={() => setModalShow(true)}>Add</button>
         </div>
-
         <AddMedicineModal show={modalShow} onHide={() => setModalShow(false)}/>
+        <EditMedicineModal show={modalShows} onHide={() => setModalShows(false)} editmeds={editMeds}/>
       </div>
 
       <div className="table-responsive">
@@ -74,12 +81,12 @@ const Reports = ()=>{
                       <td className="justify-content-center text-center">
                         <div className="btn-group">
                           {/*<a href={`/reports/${medication._id}/edit`} rel="noreffere" className="btn btn-sm btn-outline-secondary">Edit</a>*/}
-                          <a href='#!' rel="noreffere" className="btn btn-sm btn-outline-secondary" onClick={()=>edits(medication._id)}>Edit</a>
+                          <a href='#!' rel="noreffere" className="btn btn-sm btn-outline-secondary" onClick={()=>edi(medication._id)}>Edits</a>
                           <div className='ml-5' style={{marginLeft: '5px'}}>
                             <a href="#!" rel="noreffere" className="btn btn-sm btn-outline-secondary" onClick={()=>del(medication._id)}>Delete</a>
                           </div>
                             <div className='ml-5' style={{marginLeft: '5px'}}>
-                              <Link to={`/reports/report`}  className="btn btn-sm btn-outline-secondary">check report</Link>
+                              <Link to={`/reports/report`}  className="btn btn-sm btn-outline-secondary">Download</Link>
                             </div>
                         </div>
                       </td>

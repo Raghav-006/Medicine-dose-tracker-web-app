@@ -4,7 +4,7 @@ import {useForm} from 'react-hook-form'
 
 export default function AddMedicineModal(props) {
 
-    const {register, handleSubmit, reset, formState: { errors }} = useForm();
+    const {register, handleSubmit, reset, formState: { errors }} = useForm(); 
 
     const savemodal = async (data, e)=>{
         //e.preventDefault();
@@ -38,8 +38,8 @@ export default function AddMedicineModal(props) {
                                 <option value='60'> 60 Minutes</option>
                             </select>
                         </div>
-                        <input className={'form-control'} {...register('name',{required:true})} />
-                        {errors.name && <span style={{color:'red'}}>Password is required</span>}
+                        {/*<input className={'form-control'} {...register('name',{required:true})} />
+                        {errors.name && <span style={{color:'red'}}>Password is required</span>}*/}
                     </Modal.Body>
                         <Modal.Footer>
                             <Button onClick={props.onHide}>Close</Button>
