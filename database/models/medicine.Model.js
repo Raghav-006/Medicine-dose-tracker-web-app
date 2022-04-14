@@ -60,10 +60,10 @@ medicineSchema.statics.sendNotifications = function(callback) {
     */
     function sendNotifications(medicines) {
         const client = new Twilio(cfg.twilioAccountSid, cfg.twilioAuthToken);
-        console.log('Mavhungu RGB')
+        //console.log('Mavhungu RGB')
         medicines.forEach(function(medicine) {
             // Create options to send the message
-            console.log('Ronewa Mavhungu')
+            //console.log('Ronewa Mavhungu')
             const options = {
                 to: `+27786671901`,
                 from: cfg.twilioPhoneNumber,
@@ -89,9 +89,9 @@ medicineSchema.statics.sendNotifications = function(callback) {
 
         // Don't wait on success/failure, just indicate all messages have been
         // queued for delivery
-        if (callback) {
-          callback.call();
-        }
+       /* if (callback) {
+            callback.call();
+        }*/
     }
 
     const Medicine = mongoose.model('medicine',medicineSchema);
