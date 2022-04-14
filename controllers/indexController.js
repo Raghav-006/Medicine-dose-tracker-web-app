@@ -1,6 +1,7 @@
 const User = require('../database/models/userModel');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const sendWelcomeEmail = require('../emails/account')
 
 const register = async (req, res)=>{
     const salt = await bcrypt.genSalt(10);
@@ -12,6 +13,7 @@ const register = async (req, res)=>{
     });
     const result = await user.save()
     const {password,...data} = await result.toJSON();
+    sendWelcomeEmail(data.email);
     res.json(data)
 };
 
