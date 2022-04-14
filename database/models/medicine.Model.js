@@ -79,8 +79,7 @@ medicineSchema.statics.sendNotifications = function(callback) {
                     console.error(err);
                 } else {
                     // Log the last few digits of a phone number
-                    let masked = medicine.phoneNumber.substr(0,
-                        medicine.phoneNumber.length - 5);
+                    let masked = medicine.phoneNumber.substr(0, medicine.phoneNumber.length - 5);
                     masked += '*****';
                     console.log(`Message sent to ${masked}`);
                 }
