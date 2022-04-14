@@ -16,7 +16,7 @@ export default function NewMedicine() {
   const [timeZone,setTimeZone] = useState('')
   const [notification,setNotification] = useState(new Date())
   
-  const [values, setValues] = useState({
+  const [values, ] = useState({
     firstName: "",
     lastName: "",
     email: "",
