@@ -45,16 +45,17 @@ app.use(flash({ sessionKeyName: 'flashMessage' }));
 app.use(express.json());
 app.locals.moment = require('moment')
 
-if(process.env.NODE_ENV ==='production'){
-  app.use(express.static('../frontend/build'));
-  app.get('*',(req,res)=>{
-    res.sendFile(path.resolve(__dirname,'../frontend','build','index.html'));
-  });
-}
 
 app.use('/api',indexRouter);
 //app.use('/api/medicine',userRouter)
 app.use('/',rRouter)
+
+if(process.env.NODE_ENV ==='production'){
+  app.use(express.static('frontend/build'));
+  app.get('*',(req,res)=>{
+    res.sendFile(path.resolve(__dirname,'frontend','build','index.html'));
+  });
+}
 
 const start = ()=>{
   app.listen(port, () => {
