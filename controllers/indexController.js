@@ -54,6 +54,7 @@ const users = async function(req, res){
     }
 };
 
+
 const logout = async (req, res)=>{
     res.cookie('jwt','',{maxAge:0})
     res.json({
