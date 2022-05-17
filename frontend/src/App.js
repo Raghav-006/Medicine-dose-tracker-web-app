@@ -17,6 +17,14 @@ import Profile from "./profile/Profile";
 import ScaleLoader from 'react-spinners/ScaleLoader'
 import Mavhungu from "./pages/Mavhungu";
 
+import { css } from "@emotion/react";
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
+
 function App() {
   const [loader,setLoader]= useState(false)
   AOS.init({
@@ -37,8 +45,8 @@ useEffect(() => {
     <>
     {
       loader ?
-        <div style={styles.preloader}>
-          <ScaleLoader size={30} color={'#F37A24'} loading={loader} />
+        <div style={style}>
+          <ScaleLoader size={30} color={'#F37A24'} css={override} loading={loader} />
         </div>
       :
       <Routes>
@@ -66,14 +74,17 @@ useEffect(() => {
 
 export default App;
 
-const styles ={
+/*const styles ={
   preloader:{
     position: 'fixed',
-    left: '0px',
-    top: '0px',
+    left: '50%',
+    top: '50%',
     width: '100%',
     height: '100%',
     zIndex: '999999',
-    backgroundPosition: 'center center'
+    backgroundPosition: 'center center',
+    transform: "translate(-50%, -50%)"
   }
-}
+}*/
+
+const style = { position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)" };
