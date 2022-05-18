@@ -5,6 +5,11 @@ const Twilio = require('twilio');
 const {sendWelcomeEmail} = require('../../emails/account')
 
 const medicineSchema = new mongoose.Schema({
+    id:{
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'User'
+    },
     name:{
         type: String,
         required: true,

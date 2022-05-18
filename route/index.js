@@ -2,6 +2,7 @@ const express = require('express');
 const {AllMedicine,addMedicine,editMedicine,deleteMedicine} = require('../controllers/usersController');
 const {login, register,users,logout} = require('../controllers/indexController');
 const {getProfile,addProfile} = require('../controllers/usersProfile.Controller');
+const {hasAuthorization} = require('../middleware/auth.js');
 const router = express.Router();
 router.route('/register')
 .post(register);
@@ -13,11 +14,11 @@ router.route('/user')
 .get(users);
 
 router.route('/addmedicine')
-.get(AllMedicine)
-.post(addMedicine)
+.get(hasAuthorization,AllMedicine)
+.post(hasAuthorization,addMedicine)
 
 router.route('/reports')
-.get(AllMedicine)
+.get(hasAuthorization,AllMedicine)
 
 router.route('/reports/:id/edit')
 .get(editMedicine)

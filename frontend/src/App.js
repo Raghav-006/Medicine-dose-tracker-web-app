@@ -57,7 +57,7 @@ useEffect(() => {
         <Route path='dashboard' element={<Dashboard/>}/>
         <Route path="users" element={<Users/>}/>
         <Route path="medicine" element={<NewMedicine/>}/>
-
+        
           <Route path="reports">
             <Route index element={<Reports />} />
             <Route path="report" element={<Mavhungu/>} />

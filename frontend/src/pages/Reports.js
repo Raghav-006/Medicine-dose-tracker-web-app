@@ -11,12 +11,16 @@ const Reports = ()=>{
   const [modalShow, setModalShow] = useState(false);
   const [modalShows, setModalShows] = useState(false);
   const [editMeds,setEditMeds] = useState({})
+  const [loader,setLoader]= useState(false)
 
   useEffect(() => {
     (
       async () => {
-      const {data} = await axios.get('reports',{withCredentials:true}); 
+      const {data} = await axios.get('reports',{withCredentials:true});
       const datas = data.medication;
+      if(datas.length === 0){
+        return setLoader(true)
+      }
         setMedicines(datas)
       }
     )();
@@ -38,8 +42,6 @@ const Reports = ()=>{
     const {data} = await axios.get(`reports/${id}/edit`,{withCredentials:true});
     const meds = data.meds;
     setEditMeds(meds)
-    console.log(meds);
-    console.log(data);
   }
 
   return (
@@ -55,7 +57,14 @@ const Reports = ()=>{
         <AddMedicineModal show={modalShow} onHide={() => setModalShow(false)}/>
         <EditMedicineModal show={modalShows} onHide={() => setModalShows(false)} editmeds={editMeds}/>
       </div>
-
+        {
+          loader ?
+          <div className="table-responsive">
+            <div className="table table-striped table-sm">
+              <p>Mavhungu Ronewa</p>
+            </div>
+          </div>
+        :
       <div className="table-responsive">
         <table className="table table-striped table-sm">
           <thead>
@@ -97,8 +106,9 @@ const Reports = ()=>{
             </tbody>
         </table>
       </div>
+      }
     </Wrapper>
   )
 }
 
-export default Reports
+export default Reports;

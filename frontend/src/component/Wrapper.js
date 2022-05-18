@@ -14,7 +14,6 @@ const Wrapper =(props)=> {
         async () => {
           const {data} = await axios.get('user',{withCredentials:true});
           setUser(data);
-          
           if(!data.name){navigate('/')}
         }
       )();
@@ -22,14 +21,14 @@ const Wrapper =(props)=> {
 
   return (
     <>
-      <Nav user={user}/>
+      <Nav/>
         <div className="container-fluid">
-        <div className="row">
+          <div className="row">
             <Menu/>
-              <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                {props.children}
+              <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4" user={user}>
+                {props.children} 
               </main>
-        </div>
+          </div>
         </div>
     </>
   )

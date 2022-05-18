@@ -1,5 +1,4 @@
-const mongoose = require('mongoose')
-
+const mongoose = require('mongoose');
 try {
     mongoose.connect(process.env.ATLAS_URI,{
         useUniFiedTopology: true,
@@ -9,4 +8,4 @@ try {
     })
 } catch (error) {
     console.log('unable to connect')
-}
+};

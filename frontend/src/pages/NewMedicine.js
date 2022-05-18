@@ -2,10 +2,12 @@ import React,{useState} from 'react';
 import Wrapper from '../component/Wrapper';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+//import { useSelector } from 'react'
 import momentTimeZone from 'moment-timezone';
 import DatePicker from "react-datepicker"; 
 import "./medicine.css";
 import "react-datepicker/dist/react-datepicker.css"
+
 
 
 export default function NewMedicine() {
@@ -26,18 +28,6 @@ export default function NewMedicine() {
   const [valid, setValid] = useState(false);
   const [selectedDate, setselectedDate] = useState(null);
 
-  /*const handleFirstNameInputChange = (event) => {
-    setValues({...values, firstName: event.target.value})
-  }
-
-  const handleLastNameInputChange = (event) => {
-    setValues({...values, lastName: event.target.value})
-  }
-
-  const handleEmailInputChange = (event) => {
-    setValues({...values, email: event.target.value})
-  }*/
-
   const dateFormatAux = (date) => {
     var d = new Date(date),
       month = '' + (d.getMonth() + 1),
@@ -53,15 +43,10 @@ export default function NewMedicine() {
   }
 
   const dateFormat = (date) => {
-
-    console.log(new Date(date));
-
     let formatYearMonthDay = dateFormatAux(date);
     //console.log(formatYearMonthDay);
-
     let formatISO8601 = new Date(date).toISOString();
     //console.log(formatISO8601);
-
     return [formatYearMonthDay, formatISO8601];
   }
   
@@ -69,33 +54,26 @@ export default function NewMedicine() {
     return momentTimeZone.tz.names();
   };
   const timeZones = getTimeZones()
-
   const Meds = async (e)=>{
     e.preventDefault();
-
     let birthDateYMD, birthDateISO8601;
-    
-        if (selectedDate != null)
-          [birthDateYMD, birthDateISO8601] = dateFormat(selectedDate);
-    
-        if(values.firstName && values.lastName && values.email)
-          setValid(true)
-        setSubmitted(true);
-    
-        let formData = {
-          
-          birthDate: selectedDate,
-          birthDateFmtYMD: birthDateYMD,
-          birthDateFmtISO8601: birthDateISO8601,
-        };
-    
-        console.log(formData);
-        console.log(`Selected dates are: ${selectedDate}`)
+      if (selectedDate != null)
+        [birthDateYMD, birthDateISO8601] = dateFormat(selectedDate);
+      if(values.firstName && values.lastName && values.email)
+        setValid(true)
+      setSubmitted(true);
+      let formData = {
+        birthDate: selectedDate,
+        birthDateFmtYMD: birthDateYMD,
+        birthDateFmtISO8601: birthDateISO8601,
+      };
+      console.log(formData);
+      //console.log(`Selected dates are: ${selectedDate}`)
 
     if (!name || !dosage || !frequency) return;
     const medicine = { name, dosage, frequency, timeZone, birthDateISO8601, notification };
       const {data} = await axios.post('addmedicine',medicine,{withCredentials:true});
-      console.log(data)
+      //console.log(data)
       if(data.msg === 'success'){ toast.success("success data")}
   }
 

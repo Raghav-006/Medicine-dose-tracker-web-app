@@ -48,6 +48,7 @@ const users = async function(req, res){
         }
         const user = await User.findOne({_id:claim._id})
         const {password,...data}= await user.toJSON()
+
         res.json(data)
     } catch (error) {
         res.json({message: "Unauthenticated"})

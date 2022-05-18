@@ -1,8 +1,9 @@
 const Medicine = require('../database/models/medicine.Model');
 const moment = require('moment');
 
-const AllMedicine = async(req,res)=>{
-    const medication = await Medicine.find({})
+const AllMedicine = async function(req,res){
+    let id = req.user._id;
+    const medication = await Medicine.find({id})
     if(!medication){
         await req.flash('info', 'Flash is back!');
         return res.json({
@@ -13,9 +14,11 @@ const AllMedicine = async(req,res)=>{
     res.json({medication})
 };
 
-const addMedicine = async (req,res)=>{
+const addMedicine = async function(req,res){
+    let id = req.user._id;
     const data = req.body;
     const medicine = new Medicine({
+        id: id,
         name: data.name,
         dosage: data.dosage,
         frequency: data.frequency,
