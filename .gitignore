@@ -167,3 +167,5 @@ public/
 # VScode 
 .vscode/
 .vscode
+
+server/
