@@ -29,6 +29,9 @@
   padding: 15px;
   color: white;
 }
+.form-label{
+  font-family: "Roboto", sans-serif;
+}
 
 .form-field {
   margin: 10px 0 10px 0;
@@ -37,6 +40,7 @@
   border: 0;
   font-family: "Roboto", sans-serif;
   border-radius: .25rem;
+  background: #f2f2f2;
 }
 .form-control{
   margin: 10px 0 6px 0;
