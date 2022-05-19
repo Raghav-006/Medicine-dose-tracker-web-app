@@ -1,27 +1,41 @@
-import React,{useEffect, useState} from 'react'
-import {Link } from 'react-router-dom'
+import React,{useEffect, useState} from 'react';
+import {Link } from 'react-router-dom';
 import Wrapper from '../component/Wrapper';
-import axios from 'axios'
-import {toast} from 'react-toastify'
+import axios from 'axios';
+import {toast} from 'react-toastify';
 import AddMedicineModal from './modal/addMedicine.Modal';
 import EditMedicineModal from './modal/editMedicine.Modal';
+import ScaleLoader from 'react-spinners/ScaleLoader';
+import { css } from "@emotion/react";
 
-const Reports = ()=>{
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
+
+const Reports = () => {
+
   const [medications,setMedicines] = useState([]);
   const [modalShow, setModalShow] = useState(false);
   const [modalShows, setModalShows] = useState(false);
-  const [editMeds,setEditMeds] = useState({})
-  const [loader,setLoader]= useState(false)
+  const [editMeds,setEditMeds] = useState({});
+  const [loader,setLoader] = useState(false);
+  const [nodata, setNodata] = useState(false);
 
   useEffect(() => {
     (
       async () => {
-      const {data} = await axios.get('reports',{withCredentials:true});
-      const datas = data.medication;
-      if(datas.length === 0){
-        return setLoader(true)
-      }
-        setMedicines(datas)
+        setLoader(true);
+        const {data} = await axios.get('reports',{withCredentials:true});
+        setTimeout(() => {
+          setLoader(false)
+        },3000);
+        const datas = data.medication;
+          if(datas.length === 0){
+            setNodata(true)
+          };
+            setMedicines(datas)
       }
     )();
   }, []);
@@ -29,7 +43,6 @@ const Reports = ()=>{
   const del = async (id) => {
     if (window.confirm('Are you sure you want to delete this?')) {
       const  {data} = await axios.delete(`deletemedicine/${id}`,{withCredentials:true});
-
       setMedicines(medications.filter((medication) => medication._id !== id));
       if(data.msg === 'success'){
         toast.success(data.msg)
@@ -42,73 +55,94 @@ const Reports = ()=>{
     const {data} = await axios.get(`reports/${id}/edit`,{withCredentials:true});
     const meds = data.meds;
     setEditMeds(meds)
-  }
+  };
 
   return (
     <Wrapper>
-      <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 className='h2 text-muted'>Medication</h1>
-      </div>
-
-      <div className="pt-3 pb-2 mb-3 border-bottom">
-        <div className="btn-toolbar mb-2 mb-md-0">
-          <button type='button' className="btn btn-sm btn-outline-secondary" onClick={() => setModalShow(true)}>Add</button>
-        </div>
-        <AddMedicineModal show={modalShow} onHide={() => setModalShow(false)}/>
-        <EditMedicineModal show={modalShows} onHide={() => setModalShows(false)} editmeds={editMeds}/>
-      </div>
-        {
-          loader ?
-          <div className="table-responsive">
-            <div className="table table-striped table-sm">
-              <p>Mavhungu Ronewa</p>
-            </div>
+      {
+        loader ?
+          <div style={style}>
+            <ScaleLoader size={30} color={'#F37A24'} css={override} loading={loader} />
           </div>
-        :
-      <div className="table-responsive">
-        <table className="table table-striped table-sm">
-          <thead>
-              <tr className="justify-content-center text-center">
-              <th scope="col">#</th>
-              <th scope="col">Mdedication Name</th>
-              <th scope="col">Dosage </th>
-              <th scope="col">frequency / day</th>
-              <th scope="col">Notification Time</th>
-              <th scope="col">Action</th>
-              </tr>
-          </thead>
-            <tbody>
-              {medications.map(
-                (medication)=>{
-                  return (
-                    <tr key={medication._id} className="justify-content-center text-center">
-                      <td><input type='checkbox'/></td>
-                      <td>{medication.name}</td>
-                      <td>{medication.dosage}</td>
-                      <td>{medication.frequency}</td>
-                      <td className="justify-content-center text-center">{medication.notification} min</td>
-                      <td className="justify-content-center text-center">
-                        <div className="btn-group">
-                          {/*<a href={`/reports/${medication._id}/edit`} rel="noreffere" className="btn btn-sm btn-outline-secondary">Edit</a>*/}
-                          <a href='#!' rel="noreffere" className="btn btn-sm btn-outline-secondary" onClick={()=>edi(medication._id)}>Edits</a>
-                          <div className='ml-5' style={{marginLeft: '5px'}}>
-                            <a href="#!" rel="noreffere" className="btn btn-sm btn-outline-secondary" onClick={()=>del(medication._id)}>Delete</a>
-                          </div>
-                            <div className='ml-5' style={{marginLeft: '5px'}}>
-                              <Link to={`/reports/report`}  className="btn btn-sm btn-outline-secondary">Download</Link>
-                            </div>
-                        </div>
-                      </td>
-                    </tr>
-                  )
-                })
-              }
-            </tbody>
-        </table>
-      </div>
+        :(
+          nodata ?
+            <div>
+              <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+              <h1 className='h2 text-muted'>Medication</h1>
+            </div>
+          
+            <div className="pt-3 pb-2 mb-3 border-bottom">
+              <div className="btn-toolbar mb-2 mb-md-0">
+                <button type='button' className="btn btn-sm btn-outline-secondary" onClick={() => setModalShow(true)}>Add</button>
+              </div>
+              <AddMedicineModal show={modalShow} onHide={() => setModalShow(false)}/>
+            </div>
+              <div className="table-responsive">
+                  <div className="table table-striped table-sm">
+                    <p>Mavhungu Ronewa</p>
+                  </div>
+              </div>
+          </div>
+          :
+        <div>
+          <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 className='h2 text-muted'>Medication</h1>
+          </div>
+            <div className="pt-3 pb-2 mb-3 border-bottom">
+              <div className="btn-toolbar mb-2 mb-md-0">
+                <button type='button' className="btn btn-sm btn-outline-secondary" onClick={() => setModalShow(true)}>Add</button>
+              </div>
+              <AddMedicineModal show={modalShow} onHide={() => setModalShow(false)}/>
+              <EditMedicineModal show={modalShows} onHide={() => setModalShows(false)} editmeds={editMeds}/>
+            </div>
+              <div className="table-responsive">
+                <table className="table table-striped table-sm">
+                  <thead>
+                      <tr className="justify-content-center text-center">
+                      <th scope="col">#</th>
+                      <th scope="col">Mdedication Name</th>
+                      <th scope="col">Dosage </th>
+                      <th scope="col">frequency / day</th>
+                      <th scope="col">Notification Time</th>
+                      <th scope="col">Action</th>
+                      </tr>
+                  </thead>
+                    <tbody>
+                      {medications.map(
+                        (medication)=>{
+                          return (
+                            <tr key={medication._id} className="justify-content-center text-center">
+                              <td><input type='checkbox'/></td>
+                              <td>{medication.name}</td>
+                              <td>{medication.dosage}</td>
+                              <td>{medication.frequency}</td>
+                              <td className="justify-content-center text-center">{medication.notification} min</td>
+                              <td className="justify-content-center text-center">
+                                <div className="btn-group">
+                                  {/*<a href={`/reports/${medication._id}/edit`} rel="noreffere" className="btn btn-sm btn-outline-secondary">Edit</a>*/}
+                                  <a href='#!' rel="noreffere" className="btn btn-sm btn-outline-secondary" onClick={()=>edi(medication._id)}>Edits</a>
+                                  <div className='ml-5' style={{marginLeft: '5px'}}>
+                                    <a href="#!" rel="noreffere" className="btn btn-sm btn-outline-secondary" onClick={()=>del(medication._id)}>Delete</a>
+                                  </div>
+                                    <div className='ml-5' style={{marginLeft: '5px'}}>
+                                      <Link to={`/reports/report`}  className="btn btn-sm btn-outline-secondary">Download</Link>
+                                    </div>
+                                </div>
+                              </td>
+                            </tr>
+                          )
+                        })
+                      }
+                    </tbody>
+                </table>
+              </div>
+          </div>
+        )
       }
     </Wrapper>
   )
 }
 
 export default Reports;
+
+const style = { position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)" };

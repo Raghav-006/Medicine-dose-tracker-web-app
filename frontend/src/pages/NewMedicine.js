@@ -86,10 +86,10 @@ export default function NewMedicine() {
               <label htmlFor="validationCustom01" className="form-label">Medicine name</label>
               <input type="text" className="form-control" id="validationCustom01" placeholder="Medicine Name" value={name} onChange={(e)=>setName(e.target.value)} required />
             </div>
-            <div className="col-md-6">
+            {/*<div className="col-md-6">
               <label htmlFor="validationCustom01" className="form-label">Medicine names</label>
               <input type="text" className="form-control" id="validationCustom01" placeholder="Medicine Name" value={names} onChange={(e)=>setNames(e.target.value)} required />
-            </div>
+            </div>*/}
             
             <div className="row g-3">
               <div className="col-md-1 mb-1">
@@ -106,7 +106,6 @@ export default function NewMedicine() {
                   Looks good!
                 </div>
               </div>
-
 
               <div className='col-auto'>
               <label htmlFor="inputState" className="form-label">State</label>
@@ -143,8 +142,6 @@ export default function NewMedicine() {
               />
               { submitted && !selectedDate ? <span id="email-error">Please enter an birthdate</span> : null }
             </div>
-
-
 
             </div>
 

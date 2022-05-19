@@ -12,8 +12,7 @@ const medicineSchema = new mongoose.Schema({
     },
     name:{
         type: String,
-        required: true,
-        unique: true
+        required: [true, 'Medicine name must\'t be empty']
     },
     dosage:{
         type: 'Number',
