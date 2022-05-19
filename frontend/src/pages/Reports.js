@@ -5,7 +5,7 @@ import axios from 'axios';
 import {toast} from 'react-toastify';
 import AddMedicineModal from './modal/addMedicine.Modal';
 import EditMedicineModal from './modal/editMedicine.Modal';
-import ScaleLoader from 'react-spinners/ScaleLoader';
+import PuffLoader from 'react-spinners/PuffLoader';
 import { css } from "@emotion/react";
 
 const override = css`
@@ -62,7 +62,7 @@ const Reports = () => {
       {
         loader ?
           <div style={style}>
-            <ScaleLoader size={30} color={'#F37A24'} css={override} loading={loader} />
+            <PuffLoader size={40} color={'#F37A24'} css={override} loading={loader} />
           </div>
         :(
           nodata ?
