@@ -2,13 +2,10 @@ import React,{useState} from 'react';
 import Wrapper from '../component/Wrapper';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-//import { useSelector } from 'react'
 import momentTimeZone from 'moment-timezone';
 import DatePicker from "react-datepicker"; 
 import "./medicine.css";
 import "react-datepicker/dist/react-datepicker.css"
-
-
 
 export default function NewMedicine() {
 

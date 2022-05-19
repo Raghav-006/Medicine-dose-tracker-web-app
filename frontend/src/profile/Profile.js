@@ -52,7 +52,7 @@ export default function Profile() {
                   <div className="row">
                     <div className='col-auto mb-4'>
                       <label className="form-label" htmlFor="cellphone">CellPhone Number</label>
-                      <input type="cell" className="form-control" id="cellphone" value={profile.cellphone} {...register("cellphone",{required:true})} />
+                      <input type="cell" className="form-control" placeholder={'Cellphone Number'} id="cellphone" value={profile.cellphone} {...register("cellphone",{required:true})} />
                     </div>
                   </div>
 
@@ -70,7 +70,7 @@ export default function Profile() {
                   </div>
                   <div className="col-md-4 mb-4">
                     <label htmlFor="inputState" className="form-label">State</label>
-                    <select id="inputState" className="form-select" value={profile.gender} {...register("gender",{required: true})}>
+                    <select id="inputState" className="form-select form-select-lg" value={profile.gender} {...register("gender",{required: true})}>
                       <option value='' className="text-muted">Choose...</option>
                       <option value=''>...</option>
                       <option value="female">female</option>
@@ -93,4 +93,19 @@ export default function Profile() {
         </div>
     </Wrapper>
   );
-}
+};
+
+/*const select = 
+  margin: 50px;
+  width: 150px;
+  padding: 5px 35px 5px 5px;
+  font-size: 16px;
+  border: 1px solid #CCC;
+  height: 34px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: url(https://stackoverflow.com/favicon.ico) 96% / 15% no-repeat #EEE;
+;*/
+
+

@@ -21,7 +21,7 @@ const Wrapper =(props)=> {
 
   return (
     <>
-      <Nav/>
+      <Nav user={user}/>
         <div className="container-fluid">
           <div className="row">
             <Menu/>
