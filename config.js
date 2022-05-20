@@ -5,7 +5,7 @@ require('dotenv').config();
 const cfg = {};
 
 cfg.port = process.env.PORT || 3000;
-cfg.secret = process.env.APP_SECRET || 'keyboard cat';
+cfg.secret = process.env.APP_SECRET || 'medicine tracker';
 cfg.twilioAccountSid = process.env.TWILIO_ACCOUNT_SID;
 cfg.twilioAuthToken = process.env.TWILIO_AUTH_TOKEN;
 cfg.twilioPhoneNumber = process.env.TWILIO_PHONE_NUMBER;
