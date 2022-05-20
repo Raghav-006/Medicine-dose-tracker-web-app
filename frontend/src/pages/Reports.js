@@ -122,7 +122,7 @@ const Reports = () => {
                                   {/*<a href={`/reports/${medication._id}/edit`} rel="noreffere" className="btn btn-sm btn-outline-secondary">Edit</a>*/}
                                   <a href='#!' rel="noreffere" className="btn btn-sm btn-outline-secondary" onClick={()=>edi(medication._id)}>Edits</a>
                                   <div className='ml-5' style={{marginLeft: '5px'}}>
-                                    <a href="#!" rel="noreffere" className="btn btn-sm btn-outline-secondary" onClick={()=>del(medication._id)}>Delete</a>
+                                    <a href="#!" rel="noreffere" className="btn btn-sm btn-outline-danger" onClick={()=>del(medication._id)}>Delete</a>
                                   </div>
                                     <div className='ml-5' style={{marginLeft: '5px'}}>
                                       <Link to={`/reports/report`}  className="btn btn-sm btn-outline-secondary">Download</Link>
