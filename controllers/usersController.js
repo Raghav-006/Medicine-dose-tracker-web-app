@@ -3,7 +3,8 @@ const moment = require('moment');
 
 const AllMedicine = async function(req,res){
     let id = req.user._id;
-    const medication = await Medicine.find({id})
+    const medication = await Medicine.find({id});
+    
     if(!medication){
         await req.flash('info', 'Flash is back!');
         return res.json({
