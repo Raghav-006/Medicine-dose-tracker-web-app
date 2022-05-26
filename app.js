@@ -3,8 +3,8 @@ const express = require('express')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const xss = require('xss-clean')
-const { flash } = require('express-flash-message');
-const session = require('express-session');
+const { flash } = require('express-flash-message')
+//const session = require('express-session');
 const mongoSanitize = require('express-mongo-sanitize')
 const port = process.env.PORT || 8000
 
@@ -28,17 +28,17 @@ app.use(cors({
 }));
 
 // express-session
-app.use(
+/*app.use(
   session({
     secret: 'secret',
     resave: false,
     saveUninitialized: true,
     cookie: {
       maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
-      // secure: true, // becareful set this option, check here: https://www.npmjs.com/package/express-session#cookiesecure. In local, if you set this to true, you won't receive flash as you are using `http` in local, but http is not secure
+      // secure: true,
     },
   })
-);
+);*/
 
 // apply express-flash-message middleware
 app.use(flash({ sessionKeyName: 'flashMessage' }));
