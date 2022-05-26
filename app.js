@@ -1,9 +1,11 @@
 const path = require('path')
 const express = require('express')
+const http = require('http')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const xss = require('xss-clean')
 const { flash } = require('express-flash-message')
+const { Server } = require("socket.io")
 //const session = require('express-session');
 const mongoSanitize = require('express-mongo-sanitize')
 const port = process.env.PORT || 8000
@@ -17,6 +19,8 @@ const rRouter = require('./route/r')
 const scheduler = require('./schedule');
 
 const app = express()
+const server = http.createServer(app)
+const io = new Server(server)
 
 app.use(xss())
 app.use(mongoSanitize())
@@ -41,7 +45,7 @@ app.use(cors({
 );*/
 
 // apply express-flash-message middleware
-app.use(flash({ sessionKeyName: 'flashMessage' }));
+//app.use(flash({ sessionKeyName: 'flashMessage' }));
 
 app.use(express.json());
 app.locals.moment = require('moment')
@@ -50,6 +54,13 @@ app.locals.moment = require('moment')
 app.use('/api',indexRouter);
 //app.use('/api/medicine',userRouter)
 //app.use('/',rRouter)
+
+io.on('connection', (socket) => {
+  console.log('a user connected');
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+  });
+});
 
 if(process.env.NODE_ENV ==='production'){
   app.use(express.static('frontend/build'));

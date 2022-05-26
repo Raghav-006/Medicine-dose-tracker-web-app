@@ -6,12 +6,12 @@ const AllMedicine = async function(req,res){
     const medication = await Medicine.find({id});
     
     if(!medication){
-        await req.flash('info', 'Flash is back!');
+        //await req.flash('info', 'Flash is back!');
         return res.json({
             data: 'No record has been found'
         })
     }
-    await req.flash('info', 'Flash is successful!');
+    //await req.flash('info', 'Flash is successful!');
     res.json({medication})
 };
 
@@ -28,9 +28,9 @@ const addMedicine = async function(req,res){
         time: moment(req.body.birthDateISO8601, 'YYYY-MM-DD hh:mma')
     })
     const result = await medicine.save()
-    if(result){
+    /*if(result){
         await req.flash('info','successfully saved');
-    }
+    }*/
     const me = await result.toJSON()
     res.json({me, msg: 'success'})
 };
