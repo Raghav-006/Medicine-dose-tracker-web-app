@@ -1,4 +1,5 @@
 const express = require('express');
+const { body, validationResult } = require('express-validator');
 const {AllMedicine,addMedicine,editMedicine,deleteMedicine} = require('../controllers/usersController');
 const {login, register,users,logout} = require('../controllers/indexController');
 const {getProfile,addProfile} = require('../controllers/usersProfile.Controller');

@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser')
 const xss = require('xss-clean')
 const { flash } = require('express-flash-message')
 const { Server } = require("socket.io")
+require('better-logging')(console)
 //const session = require('express-session');
 const mongoSanitize = require('express-mongo-sanitize')
 const port = process.env.PORT || 8000
@@ -26,10 +27,11 @@ app.use(xss())
 app.use(mongoSanitize())
 app.use(cookieParser())
 app.use(cors({
-    //origin: ['http://localhost:3000'],
-    origin: ['https://ronewa-medicine-tracker.herokuapp.com'],
+    origin: ['http://localhost:3000'],
+    //origin: ['https://ronewa-medicine-tracker.herokuapp.com'],
     credentials: true,
 }));
+
 
 // express-session
 /*app.use(
@@ -56,9 +58,9 @@ app.use('/api',indexRouter);
 //app.use('/',rRouter)
 
 io.on('connection', (socket) => {
-  console.log('a user connected');
+  console.info('a user connected');
   socket.on('disconnect', () => {
-    console.log('user disconnected');
+    console.warn('user disconnected');
   });
 });
 
@@ -71,7 +73,7 @@ if(process.env.NODE_ENV ==='production'){
 
 const start = ()=>{
   app.listen(port, () => {
-    console.log(`Medicine app listening on port ${port}`)
+    console.info(`Medicine app listening on port ${port}`)
   })
 }
 

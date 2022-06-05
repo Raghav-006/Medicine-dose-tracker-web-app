@@ -7,5 +7,5 @@ try {
         console.log('connected to the database medicationss')
     })
 } catch (error) {
-    console.log('unable to connect')
+    console.log('unable to connect') 
 };

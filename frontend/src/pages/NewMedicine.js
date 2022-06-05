@@ -99,7 +99,7 @@ export default function NewMedicine() {
                   Looks good!
                 </div>
               </div>
-              <div className="col-md-1 mb-1">
+              <div className="col-md-2 mb-1">
                 <label className="form-label" htmlFor="autoSizingSelect">Frequency / day</label>
                 <input type={'number'} className="form-field" min={0} max={3} id="autoSizingSelect" value={frequency}  onChange={(e)=>setFrequency(e.target.value)} required />
                 <div className="valid-feedback">
@@ -107,44 +107,42 @@ export default function NewMedicine() {
                 </div>
               </div>
 
-              <div className='col-auto'>
-              <label htmlFor="inputState" className="form-label">State</label>
-                <select id="inputState" className="form-field" name="time" onChange={(e)=>setTimeZone(e.target.value)} style={{background: '#f2f2f2'}}>
-                  {
-                    timeZones.map((timeZone, i)=>{
-                      return <option value={timeZone} key={i}>{timeZone}</option>
-                    })
-                  }
-                </select>
             </div>
-            <div className='col-auto'>
-              <label htmlFor='' className='form-label'>Notifications</label>
-              <select name='notification' className="form-field" onChange={(e)=>setNotification(e.target.value)} style={{background: '#f2f2f2'}}>
-                <option value='' diasbled='true'>Select a time</option> 
-                <option value='15'> 15 Minutes</option>
-                <option value='30'> 30 Minutes</option>
-                <option value='45'> 45 Minutes</option>
-                <option value='60'> 60 Minutes</option>
-              </select>
-            </div>
-
-            <div className='col-auto'>
-            <label htmlFor='notifyDate' className='form-label'>Notification Date</label>
-              <DatePicker 
-                selected={selectedDate} 
-                onChange={date => setselectedDate(date)}
-                showTimeSelect
-                dateFormat="dd/MM/yyyy"
-                className="form-field"
-                id="birthDate notifyDate"
-                placeholderText="Notification Date"
-                //minDate={new Date()}
-              />
-              { submitted && !selectedDate ? <span id="email-error">Please enter an birthdate</span> : null }
-            </div>
-
-            </div>
-
+              <div className='row g-3'>
+                <div className='col-auto'>
+                  <label htmlFor='' className='form-label'>Notifications</label>
+                  <select name='notification' className="form-field" onChange={(e)=>setNotification(e.target.value)} style={{background: '#f2f2f2'}}>
+                    <option value='' diasbled='true'>Select a time</option> 
+                    <option value='15'> 15 Minutes</option>
+                    <option value='30'> 30 Minutes</option>
+                    <option value='45'> 45 Minutes</option>
+                    <option value='60'> 60 Minutes</option>
+                  </select>
+                </div>
+                <div className='col-auto'>
+                  <label htmlFor="inputState" className="form-label">TimeZone</label>
+                    <select id="inputState" className="form-field" name="time" onChange={(e)=>setTimeZone(e.target.value)} style={{background: '#f2f2f2'}}>
+                      {
+                        timeZones.map((timeZone, i)=>{
+                          return <option value={timeZone} key={i}>{timeZone}</option>
+                        })
+                      }
+                    </select>
+                </div>
+                <div className='col-auto'>
+                  <label htmlFor='notifyDate' className='form-label'>Notification Date</label>
+                  <DatePicker 
+                    selected={selectedDate} 
+                    onChange={date => setselectedDate(date)}
+                    showTimeSelect
+                    dateFormat="dd/MM/yyyy"
+                    className="form-field"
+                    id="birthDate notifyDate"
+                    placeholderText="Notification Date"
+                  />
+                  { submitted && !selectedDate ? <span id="email-error">Please enter notification date</span> : null }
+                </div>
+              </div>
             {/*<div className='col-auto'>
               <label htmlFor="inputState" className="form-label">State</label>
                 <select id="inputState" className="form-field" name="time" onChange={(e)=>setTimeZone(e.target.value)} style={{background: '#f2f2f2'}}>

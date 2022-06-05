@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import { BarChart2, Users, Film, Home, Layers, PlusCircle } from 'react-feather';
+import { BarChart2, Users, Home } from 'react-feather'; //Layers, PlusCircle, Film,
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPills } from '@fortawesome/free-solid-svg-icons'
 

@@ -1,4 +1,5 @@
 const User = require('../database/models/userModel');
+const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const {sendWelcomeEmail} = require('../emails/account');
