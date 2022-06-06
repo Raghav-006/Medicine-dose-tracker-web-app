@@ -5,7 +5,13 @@ const jwt = require('jsonwebtoken');
 const {sendWelcomeEmail} = require('../emails/account');
 
 const register = async (req, res)=>{
+
     const salt = await bcrypt.genSalt(10);
+
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+        return res.status(400).json({ errors: errors.array()});
+    }
     const hashpassword = await bcrypt.hash(req.body.password,salt);
     const user = new User({
         name: req.body.name,
