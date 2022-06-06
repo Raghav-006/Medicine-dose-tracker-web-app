@@ -13,7 +13,7 @@ const register = async (req, res)=>{
         password: hashpassword
     });
     const result = await user.save()
-    sendWelcomeEmail(req.body.email);
+    sendWelcomeEmail(req.body.email,req.body.name);
     const {password,...data} = await result.toJSON();
     res.json(data)
 };
