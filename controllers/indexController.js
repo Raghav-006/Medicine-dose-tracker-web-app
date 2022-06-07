@@ -1,22 +1,23 @@
 const User = require('../database/models/userModel');
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
+const gravatar = require('gravatar');
 const jwt = require('jsonwebtoken');
 const {sendWelcomeEmail} = require('../emails/account');
 
 const register = async (req, res)=>{
-
     const salt = await bcrypt.genSalt(10);
-
     const errors = validationResult(req);
     if(!errors.isEmpty()){
         return res.status(400).json({ errors: errors.array()});
     }
     const hashpassword = await bcrypt.hash(req.body.password,salt);
+    const avatar = gravatar.url(req.bosy.email, {s: '100', r: 'x', d: 'retro'}, true)
     const user = new User({
         name: req.body.name,
         email: req.body.email,
-        password: hashpassword
+        password: hashpassword,
+        avatar: avatar
     });
     const result = await user.save()
     sendWelcomeEmail(req.body.email,req.body.name);
