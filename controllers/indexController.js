@@ -11,6 +11,10 @@ const register = async (req, res)=>{
     if(!errors.isEmpty()){
         return res.status(400).json({ errors: errors.array()});
     }
+    const checkUser = User.findOne({email:req.body.email});
+    if(checkUser){
+        return res.status(401).json({msg:"E-mail already in use"});
+    }
     const hashpassword = await bcrypt.hash(req.body.password,salt);
     const avatar = gravatar.url(req.bosy.email, {s: '100', r: 'x', d: 'retro'}, true)
     const user = new User({
