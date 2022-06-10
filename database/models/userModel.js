@@ -14,14 +14,13 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    avatar:{
+    avatars:{
         type: String
     },
     date:{
         type: Date,
         default: Date.now
     }
-})
-
+},{timestamps:true});
 
 module.exports = mongoose.model('User', userSchema)
