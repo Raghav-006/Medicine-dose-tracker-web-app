@@ -6,22 +6,23 @@ const jwt = require('jsonwebtoken');
 const {sendWelcomeEmail} = require('../emails/account');
 
 const register = async (req, res)=>{
+    const { name, email} = req.body;
     const salt = await bcrypt.genSalt(10);
     const errors = validationResult(req);
     if(!errors.isEmpty()){
         return res.status(400).json({ errors: errors.array()});
     }
-    const checkUser = User.findOne({email:req.body.email});
+    /*const checkUser = User.findOne({email:req.body.email});
     if(checkUser){
         return res.status(401).json({msg:"E-mail already in use"});
-    }
+    }*/
     const hashpassword = await bcrypt.hash(req.body.password,salt);
-    const avatar = gravatar.url(req.bosy.email, {s: '100', r: 'x', d: 'retro'}, true)
+    const avatars = gravatar.url(req.bosy.email, {s: '100', r: 'x', d: 'retro'}, true)
     const user = new User({
-        name: req.body.name,
-        email: req.body.email,
+        name: name,
+        email: email,
         password: hashpassword,
-        avatar: avatar
+        avatars: avatars
     });
     const result = await user.save()
     sendWelcomeEmail(req.body.email,req.body.name);
