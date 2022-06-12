@@ -56,12 +56,12 @@ app.use('/api',indexRouter);
 //app.use('/api/medicine',userRouter)
 //app.use('/',rRouter)
 
-io.on('connection', (socket) => {
+/*io.on('connection', (socket) => {
   console.info('a user connected');
   socket.on('disconnect', () => {
     console.warn('user disconnected');
   });
-});
+});*/
 
 if(process.env.NODE_ENV ==='production'){
   app.use(express.static('frontend/build'));

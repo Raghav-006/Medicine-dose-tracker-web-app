@@ -22,23 +22,27 @@ const Reports = () => {
   const [editMeds,setEditMeds] = useState({});
   const [loader,setLoader] = useState(false);
   const [nodata, setNodata] = useState(false);
+  const [lastPage, setLastPage] = useState(0);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     (
       async () => {
         setLoader(true);
-        const {data} = await axios.get('reports',{withCredentials:true});
+        const {data} = await axios.get(`reports?page=${page}`,{withCredentials:true});
+        console.log(data);
         setTimeout(() => {
           setLoader(false)
         },3000);
-        const datas = data.medication;
+        const datas = data.data;
           if(datas.length === 0){
             setNodata(true)
           };
-            setMedicines(datas)
+            setMedicines(datas);
+            setLastPage(data.meta.last_page);
       }
     )();
-  }, []);
+  }, [page]);
 
   const del = async (id) => {
     if (window.confirm('Are you sure you want to delete this?')) {
@@ -55,6 +59,17 @@ const Reports = () => {
     const {data} = await axios.get(`reports/${id}/edit`,{withCredentials:true});
     const meds = data.meds;
     setEditMeds(meds)
+  };
+
+  const prev = ()=>{
+    if(page > 1){
+      setPage(page - 1)
+    }
+  };
+  const next = ()=>{
+    if(page < lastPage){
+      setPage(page + 1)
+    }
   };
 
   return (
@@ -136,9 +151,22 @@ const Reports = () => {
                     </tbody>
                 </table>
               </div>
+
+              <nav>
+                <ul className='pagination'>
+                  <li className='page-item'>
+                    <a href='#' rel="noreffere" className='page-link' onClick={prev}>Previous</a>
+                  </li>
+                  <li className='page-item'>
+                    <a href='#' rel="noreffere" className='page-link' onClick={next}>Next</a>
+                  </li>
+                </ul>
+              </nav>
+
           </div>
         )
       }
+
     </Wrapper>
   )
 }

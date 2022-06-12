@@ -3,16 +3,30 @@ const moment = require('moment');
 
 const AllMedicine = async function(req,res){
     let id = req.user._id;
-    const medication = await Medicine.find({id});
-    
-    if(!medication){
-        //await req.flash('info', 'Flash is back!');
-        return res.json({
-            data: 'No record has been found'
+    let take = 1;
+    let page = req.query.page;
+    //const query = {id:req.user._id};
+    const skip = ((page - 1) * take);
+    const limit = 1;
+    try{
+        const [medication, countResult] = await Promise.all([
+            Medicine.find({id}).skip(skip).limit(limit),
+            Medicine.countDocuments({id})
+        ]);
+        if(!medication){
+            //await req.flash('info', 'Flash is back!');
+            return res.json({
+                data: 'No record has been found'
+            })
+        }
+        //await req.flash('info', 'Flash is successful!');
+        res.json({
+            data: medication,
+            meta: {countResult,page,last_page: Math.ceil(countResult / take)}
         })
+    }catch(error){
+        console.warn({error:error})
     }
-    //await req.flash('info', 'Flash is successful!');
-    res.json({medication})
 };
 
 const addMedicine = async function(req,res){

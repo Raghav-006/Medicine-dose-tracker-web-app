@@ -17,7 +17,7 @@ const register = async (req, res)=>{
         return res.status(401).json({msg:"E-mail already in use"});
     }*/
     const hashpassword = await bcrypt.hash(req.body.password,salt);
-    const avatars = gravatar.url(req.bosy.email, {s: '100', r: 'x', d: 'retro'}, true)
+    const avatars = gravatar.url(req.body.email, {s: '100', r: 'x', d: 'retro'}, true)
     const user = new User({
         name: name,
         email: email,
