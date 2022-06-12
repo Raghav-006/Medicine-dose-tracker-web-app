@@ -3,6 +3,7 @@ import {Link } from 'react-router-dom';
 import Wrapper from '../component/Wrapper';
 import axios from 'axios';
 import {toast} from 'react-toastify';
+import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
 import AddMedicineModal from './modal/addMedicine.Modal';
 import EditMedicineModal from './modal/editMedicine.Modal';
 import PuffLoader from 'react-spinners/PuffLoader';
@@ -94,7 +95,7 @@ const Reports = () => {
             </div>
               <div className="table-responsive">
                   <div className="table table-striped table-sm">
-                    <p>Mavhungu Ronewa</p>
+                    <p>No data has been found at the moment</p>
                   </div>
               </div>
           </div>
@@ -155,10 +156,10 @@ const Reports = () => {
               <nav>
                 <ul className='pagination'>
                   <li className='page-item'>
-                    <a href='#' rel="noreffere" className='page-link' onClick={prev}>Previous</a>
+                    <a href='#' rel="noreffere" className='page-link' onClick={prev}><FiChevronLeft /> Previous</a>
                   </li>
                   <li className='page-item'>
-                    <a href='#' rel="noreffere" className='page-link' onClick={next}>Next</a>
+                    <a href='#' rel="noreffere" className='page-link' onClick={next}>Next <FiChevronRight /></a>
                   </li>
                 </ul>
               </nav>

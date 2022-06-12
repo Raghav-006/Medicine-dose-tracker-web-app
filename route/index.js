@@ -1,6 +1,6 @@
 const express = require('express');
 const { body, validationResult } = require('express-validator');
-const {AllMedicine,addMedicine,editMedicine,deleteMedicine} = require('../controllers/usersController');
+const {AllMedicine,addMedicine,modalAddMedicine,editMedicine,deleteMedicine} = require('../controllers/usersController');
 const {login, register,users,logout} = require('../controllers/indexController');
 const {getProfile,addProfile} = require('../controllers/usersProfile.Controller');
 const {hasAuthorization} = require('../middleware/auth.js');
@@ -17,6 +17,9 @@ router.route('/user')
 router.route('/addmedicine')
 .get(hasAuthorization,AllMedicine)
 .post(hasAuthorization,addMedicine)
+
+router.route('/modaladdmedicine')
+.post(hasAuthorization,modalAddMedicine)
 
 router.route('/reports')
 .get(hasAuthorization,AllMedicine)

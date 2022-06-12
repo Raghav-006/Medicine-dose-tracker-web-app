@@ -13,7 +13,7 @@ export default function AddMedicineModal(props) {
         //e.preventDefault();
         //console.log(data)
         await e.target.reset();
-        const {data} = await axios.post('addmedicine',datas,{withCredentials:true});
+        const {data} = await axios.post('modaladdmedicine',datas,{withCredentials:true});
         await props.onHide(false);
 
         if(data.msg === 'success'){ toast.success("success data")}
@@ -25,12 +25,12 @@ export default function AddMedicineModal(props) {
         <div className='form-container'>
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter" className="row px-5">
-                Modal heading
+                    New Medicine Record
                 </Modal.Title>
             </Modal.Header>
                 <form className="bg-white rounded-5 shadow-5-strong p-5" onSubmit={handleSubmit(savemodal)}>
                     <Modal.Body>
-                        <input className='form-control' type='text' maxLength={20} {...register('medName',{required:true, maxLength: 20})} placeholder={'Medication name'} />
+                        <input className='form-control' type='text' maxLength={20} {...register('name',{required:true, maxLength: 20})} placeholder={'Medication name'} />
                         {errors.medName && <span style={{color:'red'}}>Medication name is required</span>}
                         
                         <div className='row g-3'>
@@ -46,7 +46,7 @@ export default function AddMedicineModal(props) {
                         <div className='row g-3'>
                             <div className='col-auto'>
                                 <label htmlFor='' className='form-label'>Notifications</label>
-                                <select className="form-control" {...register('Notification',{required:true})}>
+                                <select className="form-control" {...register('notification',{required:true})}>
                                     <option value='' muted={true} diasbled={'true'}>Select a time</option> 
                                     <option value='15'> 15 Minutes</option>
                                     <option value='30'> 30 Minutes</option>
@@ -56,12 +56,12 @@ export default function AddMedicineModal(props) {
                             </div>
                             <div className='col-auto'>
                                 <label htmlFor="inputState" className="form-label">TimeZone</label>
-                                <input className={'form-control'} defaultValue={selectedTimezone} {...register('timezone',{required:true})} />
+                                <input className={'form-control'} defaultValue={selectedTimezone} {...register('timeZone',{required:true})} />
                                 {errors.name && <span style={{color:'red'}}>Password is required</span>}
                             </div>
                             <div className="col-auto">
                             <label htmlFor='notifyDate' className='form-label'>Notification Date</label>
-                                <input type="datetime-local" className="form-control" id="nofifyDate" {...register('notifyDate',{required:true})} />
+                                <input type="datetime-local" className="form-control" id="nofifyDate" {...register('notifyTime',{required:true})} />
                             </div>
                         </div>
                         <div className='form-row'>

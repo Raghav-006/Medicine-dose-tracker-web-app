@@ -49,6 +49,26 @@ const addMedicine = async function(req,res){
     res.json({me, msg: 'success'})
 };
 
+const modalAddMedicine = async (req, res)=>{
+    let id = req.user._id;
+    const data = req.body;
+    const medicine = new Medicine({
+        id: id,
+        name: data.name,
+        dosage: data.dosage,
+        frequency: data.frequency,
+        notification: data.notification,
+        timeZone: data.timeZone,
+        time: data.notifyTime //moment(req.body.birthDateISO8601, 'YYYY-MM-DD hh:mma')
+    })
+    const result = await medicine.save()
+    /*if(result){
+        await req.flash('info','successfully saved');
+    }*/
+    const me = await result.toJSON()
+    res.json({me, msg: 'success'})
+}
+
 const editMedicine = async (req, res)=>{
     const {id: medsId} = req.params
     const meds = await Medicine.findOne({ _id: medsId })
@@ -67,4 +87,4 @@ const deleteMedicine = async (req, res)=>{
     res.json({msg: "success",meds})
 };
 
-module.exports={AllMedicine, addMedicine,editMedicine, deleteMedicine}
+module.exports={AllMedicine, addMedicine,modalAddMedicine,editMedicine, deleteMedicine}
