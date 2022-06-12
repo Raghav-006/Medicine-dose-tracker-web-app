@@ -2,10 +2,10 @@ const Medicine = require('../database/models/medicine.Model');
 const moment = require('moment');
 
 const AllMedicine = async function(req,res){
+    //const query = {id:req.user._id};
     let id = req.user._id;
     let take = 1;
     let page = req.query.page;
-    //const query = {id:req.user._id};
     const skip = ((page - 1) * take);
     const limit = 1;
     try{
