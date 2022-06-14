@@ -11,11 +11,9 @@ export default function AddMedicineModal(props) {
 
     const savemodal = async (datas, e)=>{
         //e.preventDefault();
-        //console.log(data)
         await e.target.reset();
         const {data} = await axios.post('modaladdmedicine',datas,{withCredentials:true});
         await props.onHide(false);
-
         if(data.msg === 'success'){ toast.success("success data")}
     }
 

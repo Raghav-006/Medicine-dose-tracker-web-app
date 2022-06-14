@@ -1,6 +1,8 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {Modal,Button} from 'react-bootstrap'
-import {useForm, Controller} from 'react-hook-form'
+import {useForm, Controller} from 'react-hook-form';
+import momentTimeZone from 'moment-timezone';
+import moment from 'moment'
 //import { TextField, Checkbox } from "@material-ui/core";
 
 export default function EditMedicineModal(props) {
@@ -10,12 +12,21 @@ export default function EditMedicineModal(props) {
     ronewa: props.editmeds.dosage
   }
 });
+
+const t = moment(props.editmeds.time).format('yyyy-MM-ddThh:mm');
+console.warn(t);
+
+const getTimeZones = function() {
+  return momentTimeZone.tz.names();
+};
+const timeZones = getTimeZones();
+
   const savemodal = async (data, e)=>{
     //e.preventDefault();
     console.log(data)
     await e.target.reset();
     await props.onHide(false)
-  }
+  };
 
   return (
     <>
@@ -52,20 +63,37 @@ export default function EditMedicineModal(props) {
                     render={({ field }) => <Checkbox {...field} />}
                   />*/}
                   <div className='form-row'>
-                  <Controller
-                  control={control}
-                  render={()=>
-                    <select className="form-control" {...register('Notification',{required:true})} >
-                      <option value={props.editmeds.notification}>{props.editmeds.notification} Minutes</option>
-                      <option value='15'> 15 Minutes</option>
-                      <option value='30'> 30 Minutes</option>
-                      <option value='45'> 45 Minutes</option>
-                      <option value='60'> 60 Minutes</option>
-                    </select>}
-                  />
+                    <Controller
+                      control={control}
+                        render={()=>
+                          <select className="form-control" {...register('Notification',{required:true})} >
+                            <option value={props.editmeds.notification}>{props.editmeds.notification} Minutes</option>
+                            <option value='15'> 15 Minutes</option>
+                            <option value='30'> 30 Minutes</option>
+                            <option value='45'> 45 Minutes</option>
+                            <option value='60'> 60 Minutes</option>
+                          </select>}
+                    />
                   </div>
                   {/*<input className={'form-control'} {...register('name',{required:true})} />*/}
                   {/*{errors.name && <span style={{color:'red'}}>Password is required</span>}*/}
+
+                    <div className='col-auto'>
+                      <label htmlFor="inputState" className="form-label">TimeZone</label>
+                        <select id="inputState" className="form-control" {...register('timeZones',{required:true})} style={{background: '#f2f2f2'}} >
+                          <option value={props.editmeds.timeZone}>{props.editmeds.timeZone}</option>
+                          {
+                            timeZones.map((timeZone, i)=>{
+                              return <option value={timeZone} key={i}>{timeZone}</option>
+                            })
+                          }
+                        </select>
+                    </div>
+                      <div className="col-auto">
+                        <label htmlFor='notifyDate' className='form-label'>Notification Date</label>
+                          <input type="datetime-local" className="form-control" defaultValue={props.editmeds.time} id="nofifyDate" {...register('notifyTime',{required:true})} />
+                      </div>
+
               </Modal.Body>
                 <Modal.Footer>
                     <Button onClick={props.onHide}>Close</Button>
