@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import {Modal,Button} from 'react-bootstrap'
 import {useForm} from 'react-hook-form'
 import TimezoneSelect from 'react-timezone-select'
-import axios from 'axios'
+import axios from 'axios'; 
 import { toast } from 'react-toastify';
 
 export default function AddMedicineModal(props) {
@@ -30,7 +30,6 @@ export default function AddMedicineModal(props) {
                     <Modal.Body>
                         <input className='form-control' type='text' maxLength={20} {...register('name',{required:true, maxLength: 20})} placeholder={'Medication name'} />
                         {errors.medName && <span style={{color:'red'}}>Medication name is required</span>}
-                        
                         <div className='row g-3'>
                             <div className='col-md-2'>
                                 <label htmlFor="validationDosage" className="form-label">Dosage</label>

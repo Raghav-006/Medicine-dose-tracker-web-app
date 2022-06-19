@@ -26,6 +26,8 @@ router.route('/reports')
 
 router.route('/reports/:id/edit')
 .get(editMedicine)
+router.route('/reports/report/:id/edit')
+.get(editMedicine)
 
 router.route('/deletemedicine/:id')
 .delete(deleteMedicine)

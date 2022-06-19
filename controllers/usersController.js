@@ -71,7 +71,7 @@ const modalAddMedicine = async (req, res)=>{
 
 const editMedicine = async (req, res)=>{
     const {id: medsId} = req.params
-    const meds = await Medicine.findOne({ _id: medsId })
+    const meds = await Medicine.findOne({_id:medsId})
     if (!meds) {
         return res.json({msg: 'failed'})
     }

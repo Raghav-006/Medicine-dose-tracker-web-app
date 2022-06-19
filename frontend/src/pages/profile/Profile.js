@@ -1,6 +1,6 @@
 import React,{useState, useEffect} from 'react';
 import {useForm} from 'react-hook-form'
-import Wrapper from '../component/Wrapper'
+import Wrapper from '../../component/Wrapper'
 import axios from 'axios'
 import {toast} from 'react-toastify'
 

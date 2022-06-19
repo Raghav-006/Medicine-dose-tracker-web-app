@@ -7,12 +7,12 @@ import Dashboard from "./pages/Dashboard";
 import Users from "./pages/Users";
 import Repor from "./pages/Repor"
 import NewMedicine from "./pages/NewMedicine";
-import Reports from './pages/Reports'
+import Reports from './pages/Reports';
 //import Theatre from './component/Theatre'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Try from "./pages/React.Form.Hook";
-import Profile from "./profile/Profile";
+import Profile from "./pages/profile/Profile"; 
 //import studio from "@theatre/studio"
 import ScaleLoader from 'react-spinners/ScaleLoader'
 import Mavhungu from "./pages/Mavhungu";
@@ -62,6 +62,7 @@ useEffect(() => {
             <Route index element={<Reports />} />
             <Route path="report" element={<Mavhungu/>} />
             <Route path=":report/edit" element={<Repor/>} />
+            <Route path=":report/:id/edit" element={<Repor/>} />
           </Route>
 
         <Route path="profile" element={<Profile/>}/>

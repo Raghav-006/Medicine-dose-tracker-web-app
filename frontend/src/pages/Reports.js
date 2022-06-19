@@ -5,7 +5,6 @@ import axios from 'axios';
 import {toast} from 'react-toastify';
 import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
 import AddMedicineModal from './modal/addMedicine.Modal';
-import EditMedicineModal from './modal/editMedicine.Modal';
 import PuffLoader from 'react-spinners/PuffLoader';
 import { css } from "@emotion/react";
 
@@ -19,8 +18,6 @@ const Reports = () => {
 
   const [medications,setMedicines] = useState([]);
   const [modalShow, setModalShow] = useState(false);
-  const [modalShows, setModalShows] = useState(false);
-  const [editMeds,setEditMeds] = useState({});
   const [loader,setLoader] = useState(false);
   const [nodata, setNodata] = useState(false);
   const [lastPage, setLastPage] = useState(0);
@@ -31,16 +28,16 @@ const Reports = () => {
       async () => {
         setLoader(true);
         const {data} = await axios.get(`reports?page=${page}`,{withCredentials:true});
-        console.log(data);
         setTimeout(() => {
           setLoader(false)
         },3000);
+        console.log(data);
         const datas = data.data;
           if(datas.length === 0){
             setNodata(true)
           };
-            setMedicines(datas);
-            setLastPage(data.meta.last_page);
+          setMedicines(datas);
+          setLastPage(data.meta.last_page);
       }
     )();
   }, [page]);
@@ -55,14 +52,15 @@ const Reports = () => {
     }
   };
 
-  const edi = async (id)=>{
+  /*const edi = async (id)=>{
     setModalShows(true);
     const {data} = await axios.get(`reports/${id}/edit`,{withCredentials:true});
     const meds = data.meds;
     setEditMeds(meds)
-  };
+  };*/
 
-  const prev = ()=>{
+  const prev = (e)=>{
+    e.preventDefault()
     if(page > 1){
       setPage(page - 1)
     }
@@ -94,9 +92,9 @@ const Reports = () => {
               <AddMedicineModal show={modalShow} onHide={() => setModalShow(false)}/>
             </div>
               <div className="table-responsive">
-                  <div className="table table-striped table-sm">
-                    <p>No data has been found at the moment</p>
-                  </div>
+                <div className="table table-striped table-sm">
+                  <p>No data has been found at the moment</p>
+                </div>
               </div>
           </div>
           :
@@ -109,7 +107,7 @@ const Reports = () => {
                 <button type='button' className="btn btn-sm btn-outline-secondary" onClick={() => setModalShow(true)}>Add</button>
               </div>
               <AddMedicineModal show={modalShow} onHide={() => setModalShow(false)}/>
-              <EditMedicineModal show={modalShows} onHide={() => setModalShows(false)} editmeds={editMeds}/>
+              {/*<EditMedicineModal show={modalShows} onHide={() => setModalShows(false)} editmeds={editMeds}/>*/}
             </div>
               <div className="table-responsive">
                 <table className="table table-striped table-sm">
@@ -135,14 +133,13 @@ const Reports = () => {
                               <td className="justify-content-center text-center">{medication.notification} min</td>
                               <td className="justify-content-center text-center">
                                 <div className="btn-group">
-                                  {/*<a href={`/reports/${medication._id}/edit`} rel="noreffere" className="btn btn-sm btn-outline-secondary">Edit</a>*/}
-                                  <a href='#!' rel="noreffere" className="btn btn-sm btn-outline-secondary" onClick={()=>edi(medication._id)}>Edits</a>
+                                  <Link to={`/reports/report/${medication._id}/edit`} className="btn btn-sm btn-outline-secondary">Edit</Link>
                                   <div className='ml-5' style={{marginLeft: '5px'}}>
                                     <a href="#!" rel="noreffere" className="btn btn-sm btn-outline-danger" onClick={()=>del(medication._id)}>Delete</a>
                                   </div>
-                                    <div className='ml-5' style={{marginLeft: '5px'}}>
-                                      <Link to={`/reports/report`}  className="btn btn-sm btn-outline-secondary">Download</Link>
-                                    </div>
+                                  <div className='ml-5' style={{marginLeft: '5px'}}>
+                                    <Link to={`/reports/report/${medication._id}/edit`} className="btn btn-sm btn-outline-secondary">Download</Link>
+                                  </div>
                                 </div>
                               </td>
                             </tr>
@@ -156,18 +153,16 @@ const Reports = () => {
               <nav>
                 <ul className='pagination'>
                   <li className='page-item'>
-                    <a href='#' rel="noreffere" className='page-link' onClick={prev}><FiChevronLeft /> Previous</a>
+                    <a href='#!' rel="noreffere" className='page-link' onClick={()=>prev()}><FiChevronLeft /> Previous</a> 
                   </li>
                   <li className='page-item'>
-                    <a href='#' rel="noreffere" className='page-link' onClick={next}>Next <FiChevronRight /></a>
+                    <a href='#!' rel="noreffere" className='page-link' onClick={()=>next()}>Next <FiChevronRight /></a> 
                   </li>
                 </ul>
               </nav>
-
           </div>
         )
       }
-
     </Wrapper>
   )
 }
