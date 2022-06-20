@@ -1,10 +1,11 @@
 const express = require('express');
 const { body, validationResult } = require('express-validator');
-const {AllMedicine,addMedicine,modalAddMedicine,editMedicine,deleteMedicine} = require('../controllers/usersController');
+const {AllMedicine,addMedicine,modalAddMedicine,findMedicine,updateMedicine,deleteMedicine} = require('../controllers/usersController');
 const {login, register,users,logout} = require('../controllers/indexController');
 const {getProfile,addProfile} = require('../controllers/usersProfile.Controller');
 const {hasAuthorization} = require('../middleware/auth.js');
 const router = express.Router();
+
 router.route('/register')
 .post( register);
 
@@ -16,26 +17,27 @@ router.route('/user')
 
 router.route('/addmedicine')
 .get(hasAuthorization,AllMedicine)
-.post(hasAuthorization,addMedicine)
+.post(hasAuthorization,addMedicine);
 
 router.route('/modaladdmedicine')
-.post(hasAuthorization,modalAddMedicine)
+.post(hasAuthorization,modalAddMedicine);
 
 router.route('/reports')
-.get(hasAuthorization,AllMedicine)
+.get(hasAuthorization,AllMedicine);
 
-router.route('/reports/:id/edit')
-.get(editMedicine)
-router.route('/reports/report/:id/edit')
-.get(editMedicine)
+router.route('/reports/report/:id')
+.get(hasAuthorization,findMedicine);
+
+router.route('/reportupdate/:id')
+.put(hasAuthorization,updateMedicine);
 
 router.route('/deletemedicine/:id')
-.delete(deleteMedicine)
+.delete(hasAuthorization,deleteMedicine);
 
 router.route('/profile')
 .get(getProfile)
-.post(addProfile)
+.post(addProfile);
 
 router.route('/logout').post(logout);
 
-module.exports = router
+module.exports = router;

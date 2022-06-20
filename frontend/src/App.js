@@ -62,7 +62,7 @@ useEffect(() => {
             <Route index element={<Reports />} />
             <Route path="report" element={<Mavhungu/>} />
             <Route path=":report/edit" element={<Repor/>} />
-            <Route path=":report/:id/edit" element={<Repor/>} />
+            <Route path=":report/:id" element={<Repor/>} />
           </Route>
 
         <Route path="profile" element={<Profile/>}/>

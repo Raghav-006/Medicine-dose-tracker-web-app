@@ -59,7 +59,7 @@ const modalAddMedicine = async (req, res)=>{
         frequency: data.frequency,
         notification: data.notification,
         timeZone: data.timeZone,
-        time: data.notifyTime //moment(req.body.birthDateISO8601, 'YYYY-MM-DD hh:mma')
+        time: data.notifyTime
     })
     const result = await medicine.save()
     /*if(result){
@@ -69,14 +69,39 @@ const modalAddMedicine = async (req, res)=>{
     res.json({me, msg: 'success'})
 }
 
-const editMedicine = async (req, res)=>{
-    const {id: medsId} = req.params
-    const meds = await Medicine.findOne({_id:medsId})
+const findMedicine = async (req,res)=>{
+    const {id: medsId} = req.params;
+    const meds = await Medicine.findById({_id:medsId});
     if (!meds) {
         return res.json({msg: 'failed'})
     }
     res.json({msg: "success",meds})
-}
+};
+
+const updateMedicine = function (req, res){
+    let {id: medsId} = req.params;
+    let data = req.body;
+    let inventory = {
+        _id: data._id,
+        id: data.id,
+        name: data.name,
+        dosage: data.dosage,
+        frequency: data.frequency,
+        notification: data.notification,
+        timeZone: data.timeZone,
+        time: data.time
+    };
+    console.log(inventory);
+    Medicine.findByIdAndUpdate({_id: medsId},inventory,{new:true},
+        function (err, meds) {
+        if (err) {
+            res.status(500).send(err);
+            return res.json({msg: 'failed'})
+        } else {
+            res.json({msg: "success",meds})
+        }
+    }).clone().catch(function(err){ console.log(err)});
+};
 
 const deleteMedicine = async (req, res)=>{
     const {id: medsID} = req.params
@@ -87,4 +112,4 @@ const deleteMedicine = async (req, res)=>{
     res.json({msg: "success",meds})
 };
 
-module.exports={AllMedicine, addMedicine,modalAddMedicine,editMedicine, deleteMedicine}
+module.exports={AllMedicine, addMedicine,modalAddMedicine,findMedicine,updateMedicine, deleteMedicine}

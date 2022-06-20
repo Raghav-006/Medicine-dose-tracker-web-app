@@ -10,7 +10,6 @@ import "react-datepicker/dist/react-datepicker.css"
 export default function NewMedicine() {
 
   const [name,setName]= useState('');
-  /*const [names,setNames]= useState('');*/
   const [dosage,setDosage]= useState(0);
   const [frequency,setFrequency]= useState(0);
   const [timeZone,setTimeZone] = useState('');

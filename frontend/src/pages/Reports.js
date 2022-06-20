@@ -59,8 +59,7 @@ const Reports = () => {
     setEditMeds(meds)
   };*/
 
-  const prev = (e)=>{
-    e.preventDefault()
+  const prev = ()=>{
     if(page > 1){
       setPage(page - 1)
     }
@@ -133,12 +132,12 @@ const Reports = () => {
                               <td className="justify-content-center text-center">{medication.notification} min</td>
                               <td className="justify-content-center text-center">
                                 <div className="btn-group">
-                                  <Link to={`/reports/report/${medication._id}/edit`} className="btn btn-sm btn-outline-secondary">Edit</Link>
+                                  <Link to={`/reports/report/${medication._id}`} className="btn btn-sm btn-outline-secondary">Edit</Link>
                                   <div className='ml-5' style={{marginLeft: '5px'}}>
                                     <a href="#!" rel="noreffere" className="btn btn-sm btn-outline-danger" onClick={()=>del(medication._id)}>Delete</a>
                                   </div>
                                   <div className='ml-5' style={{marginLeft: '5px'}}>
-                                    <Link to={`/reports/report/${medication._id}/edit`} className="btn btn-sm btn-outline-secondary">Download</Link>
+                                    <Link to={`/reports/report/${medication._id}/editss`} className="btn btn-sm btn-outline-secondary">Download</Link>
                                   </div>
                                 </div>
                               </td>

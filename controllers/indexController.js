@@ -16,6 +16,7 @@ const register = async (req, res)=>{
     if(checkUser){
         return res.status(401).json({msg:"E-mail already in use"});
     }*/
+    
     const hashpassword = await bcrypt.hash(req.body.password,salt);
     const avatars = gravatar.url(req.body.email, {s: '100', r: 'x', d: 'retro'}, true)
     const user = new User({
@@ -60,8 +61,7 @@ const users = async function(req, res){
             res.status(401).json({message: "unauthenticated try"})
         }
         const user = await User.findOne({_id:claim._id})
-        const {password,...data}= await user.toJSON()
-
+        const {password,...data}= await user.toJSON();
         res.json(data)
     } catch (error) {
         res.json({message: "Unauthenticated"})
