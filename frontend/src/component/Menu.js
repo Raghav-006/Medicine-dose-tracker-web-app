@@ -23,13 +23,13 @@ export default function Menu() {
                 Medicine 
               </Link>
             </li>
-            <li className="nav-item">
+            {/*<li className="nav-item">
               <Link className="nav-link" to="/reports">
                   <BarChart2 className='feather'/>
                 Reports
               </Link>
             </li>
-            {/*<li className="nav-item">
+            <li className="nav-item">
               <Link className="nav-link" to="#">
                   <Layers className='feather'/>
                 Integrations
