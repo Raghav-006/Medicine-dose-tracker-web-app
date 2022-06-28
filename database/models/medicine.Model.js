@@ -42,8 +42,6 @@ medicineSchema.methods.requiresNotification = function(date) {
 };
 
 medicineSchema.statics.sendNotifications = function(callback) {
-    // now
-    //console.log('Mavhungu Ronewa G')
     const searchDate = new Date();
     Medicine
       .find()
@@ -62,10 +60,8 @@ medicineSchema.statics.sendNotifications = function(callback) {
     */
     function sendNotifications(medicines) {
         const client = new Twilio(cfg.twilioAccountSid, cfg.twilioAuthToken);
-        //console.log('Mavhungu RGB')
         medicines.forEach(function(medicine) {
             // Create options to send the message
-            //console.log('Ronewa Mavhungu')
             const options = {
                 to: `+27786671901`,
                 from: cfg.twilioPhoneNumber,
