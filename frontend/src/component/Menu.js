@@ -23,6 +23,12 @@ export default function Menu() {
                 Medicine 
               </Link>
             </li>
+            <li className="nav-item">
+              <Link to="/profile" className="nav-link">
+                <span><Users className="feather"/></span>
+                Profile
+              </Link>
+            </li>
             {/*<li className="nav-item">
               <Link className="nav-link" to="/reports">
                   <BarChart2 className='feather'/>
@@ -35,12 +41,6 @@ export default function Menu() {
                 Integrations
               </Link>
             </li>*/}
-            <li className="nav-item">
-              <Link to="/profile" className="nav-link">
-                <span><Users className="feather"/></span>
-                Profile
-              </Link>
-            </li>
             {/*<li className="nav-item">
               <Link to="/theatre" className="nav-link">
                 <span><Film className="feather"/></span>
