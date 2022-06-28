@@ -35,6 +35,6 @@ const profileSchema = new mongoose.Schema({
         required: [true, 'Zip code is required']
     }
 
-})
+},{timestamps:true})
 
 module.exports = mongoose.model('Profile',profileSchema)

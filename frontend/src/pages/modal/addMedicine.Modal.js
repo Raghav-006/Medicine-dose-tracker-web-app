@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
-import {Modal,Button} from 'react-bootstrap'
-import {useForm} from 'react-hook-form'
-import TimezoneSelect from 'react-timezone-select'
+import {Modal,Button} from 'react-bootstrap';
+import {useForm} from 'react-hook-form';
+import TimezoneSelect from 'react-timezone-select';
 import axios from 'axios'; 
 import { toast } from 'react-toastify';
 
@@ -15,7 +15,7 @@ export default function AddMedicineModal(props) {
         const {data} = await axios.post('modaladdmedicine',datas,{withCredentials:true});
         await props.onHide(false);
         if(data.msg === 'success'){ toast.success("success data")}
-    }
+    };
 
   return (
     <>
@@ -63,10 +63,6 @@ export default function AddMedicineModal(props) {
                         </div>
                         <div className='form-row'>
                         </div>
-                        {/*<div className='form-row'>
-                            <TimezoneSelect className='form-control' value={selectedTimezone} onChange={()=>setSelectedTimezone()} {...register('timezone',{required:true})} />
-                        </div>*/}
-                        
                     </Modal.Body>
                         <Modal.Footer>
                             <Button onClick={props.onHide}>Close</Button>

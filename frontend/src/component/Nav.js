@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link,useNavigate} from 'react-router-dom';
 import axios from 'axios';
-import AccountMenu from '../pages/AccountMenu'
+import AccountMenu from '../pages/AccountMenu';
 
 const Nav = ({user}) =>{
     const navigate = useNavigate()

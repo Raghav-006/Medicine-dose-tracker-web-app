@@ -6,7 +6,6 @@ import '../Form.css';
 //const rootUrl = 'http://localhost:3010';
 
 const Login = ()=>{
-
     const [email,setEmail] = useState(' ');
     const [password,setPassword] = useState(' ');
     const navigate = useNavigate();
@@ -29,7 +28,7 @@ const Login = ()=>{
       if(data.message ==='user not found'){
        return toast.error('User not found')
       }
-    }
+    };
 
     return (
         <div id="intro" className="bg-images shadow-2-strong" style={{height: '100vh'}}>

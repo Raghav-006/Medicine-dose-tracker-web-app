@@ -1,10 +1,10 @@
 import React,{useEffect, useState} from 'react';
 import {Link } from 'react-router-dom';
-import Wrapper from '../component/Wrapper';
+import Wrapper from '../../component/Wrapper';
 import axios from 'axios';
 import {toast} from 'react-toastify';
 import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
-import AddMedicineModal from './modal/addMedicine.Modal';
+import AddMedicineModal from '../modal/addMedicine.Modal';
 import PuffLoader from 'react-spinners/PuffLoader';
 import { css } from "@emotion/react";
 
@@ -52,13 +52,6 @@ const Reports = () => {
     }
   };
 
-  /*const edi = async (id)=>{
-    setModalShows(true);
-    const {data} = await axios.get(`reports/${id}/edit`,{withCredentials:true});
-    const meds = data.meds;
-    setEditMeds(meds)
-  };*/
-
   const prev = ()=>{
     if(page > 1){
       setPage(page - 1)
@@ -86,9 +79,10 @@ const Reports = () => {
           
             <div className="pt-3 pb-2 mb-3 border-bottom">
               <div className="btn-toolbar mb-2 mb-md-0">
-                <button type='button' className="btn btn-sm btn-outline-secondary" onClick={() => setModalShow(true)}>Add</button>
+                <button type='button' className="btn btn-sm btn-outline-secondary" onClick={()=>setModalShow(true)}>Add</button>
+                <Link to={'/medicine/create'} className="btn btn-sm btn-outline-secondary">Edit</Link>
               </div>
-              <AddMedicineModal show={modalShow} onHide={() => setModalShow(false)}/>
+              <AddMedicineModal show={modalShow} onHide={()=>setModalShow(false)}/>
             </div>
               <div className="table-responsive">
                 <div className="table table-striped table-sm">
@@ -104,16 +98,16 @@ const Reports = () => {
             <div className="pt-3 pb-2 mb-3 border-bottom">
               <div className="btn-toolbar mb-2 mb-md-0">
                 <button type='button' className="btn btn-sm btn-outline-secondary" onClick={() => setModalShow(true)}>Add</button>
+                <Link to={'/medicine/create'} className="btn btn-sm btn-outline-secondary">Edit</Link>
               </div>
               <AddMedicineModal show={modalShow} onHide={() => setModalShow(false)}/>
-              {/*<EditMedicineModal show={modalShows} onHide={() => setModalShows(false)} editmeds={editMeds}/>*/}
             </div>
               <div className="table-responsive">
                 <table className="table table-striped table-sm">
                   <thead>
                       <tr className="justify-content-center text-center">
                       <th scope="col">#</th>
-                      <th scope="col">Mdedication Name</th>
+                      <th scope="col">Medication Name</th>
                       <th scope="col">Dosage </th>
                       <th scope="col">frequency / day</th>
                       <th scope="col">Notification Time</th>
@@ -132,13 +126,13 @@ const Reports = () => {
                               <td className="justify-content-center text-center">{medication.notification} min</td>
                               <td className="justify-content-center text-center">
                                 <div className="btn-group">
-                                  <Link to={`/reports/report/${medication._id}`} className="btn btn-sm btn-outline-secondary">Edit</Link>
+                                  <Link to={`/medicine/${medication._id}/edit`} className="btn btn-sm btn-outline-secondary">Edit</Link>
                                   <div className='ml-5' style={{marginLeft: '5px'}}>
                                     <a href="#!" rel="noreffere" className="btn btn-sm btn-outline-danger" onClick={()=>del(medication._id)}>Delete</a>
                                   </div>
-                                  <div className='ml-5' style={{marginLeft: '5px'}}>
-                                    <Link to={`/reports/report/${medication._id}/editss`} className="btn btn-sm btn-outline-secondary">Download</Link>
-                                  </div>
+                                  {/*<div className='ml-5' style={{marginLeft: '5px'}}>
+                                    <Link to={`/medicine/${medication._id}`} className="btn btn-sm btn-outline-secondary">Download</Link>
+                                  </div>*/}
                                 </div>
                               </td>
                             </tr>

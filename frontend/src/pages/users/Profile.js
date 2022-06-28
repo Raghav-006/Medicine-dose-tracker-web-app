@@ -1,12 +1,14 @@
 import React,{useState, useEffect} from 'react';
-import {useForm} from 'react-hook-form'
-import Wrapper from '../../component/Wrapper'
-import axios from 'axios'
-import {toast} from 'react-toastify'
+import {useNavigate} from "react-router-dom";
+import {useForm} from 'react-hook-form';
+import Wrapper from '../../component/Wrapper';
+import axios from 'axios';
+import {toast} from 'react-toastify';
 
 export default function Profile() {
-  const {register,handleSubmit,reset, formState:{errors}}= useForm()
-  const [profile,setProfile] = useState('')
+  let navigate = useNavigate();
+  const {register,handleSubmit,reset, formState:{errors}}= useForm();
+  const [profile,setProfile] = useState('');
 
   const onSubmit = async(data,e)=>{
     console.log(data)
@@ -15,7 +17,7 @@ export default function Profile() {
       toast.success(profile.msg)
     }
     e.target.reset();
-  }
+  };
   useEffect(() => {
     return async() => {
       const {data} = await axios.get('profile',{withCredentials:true})
@@ -23,8 +25,7 @@ export default function Profile() {
         setProfile(data)
       }
     };
-  }, [])
-
+  }, []);
 
   return (
     <Wrapper>
@@ -94,18 +95,5 @@ export default function Profile() {
     </Wrapper>
   );
 };
-
-/*const select = 
-  margin: 50px;
-  width: 150px;
-  padding: 5px 35px 5px 5px;
-  font-size: 16px;
-  border: 1px solid #CCC;
-  height: 34px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  background: url(https://stackoverflow.com/favicon.ico) 96% / 15% no-repeat #EEE;
-;*/
 
 

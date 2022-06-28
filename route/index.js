@@ -25,7 +25,7 @@ router.route('/modaladdmedicine')
 router.route('/reports')
 .get(hasAuthorization,AllMedicine);
 
-router.route('/reports/report/:id')
+router.route('/medicine/:id/edit')
 .get(hasAuthorization,findMedicine);
 
 router.route('/reportupdate/:id')

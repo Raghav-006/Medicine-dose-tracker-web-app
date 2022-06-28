@@ -49,8 +49,9 @@ const addMedicine = async function(req,res){
     res.json({me, msg: 'success'})
 };
 
-const modalAddMedicine = async (req, res)=>{
+const modalAddMedicine = async function(req,res){
     let id = req.user._id;
+    console.log(`I am logging data: ${id}`);
     const data = req.body;
     const medicine = new Medicine({
         id: id,

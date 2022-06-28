@@ -1,29 +1,29 @@
 import React,{useState} from 'react';
-import Wrapper from '../component/Wrapper';
+import {useNavigate} from "react-router-dom";
+import Wrapper from '../../component/Wrapper';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import momentTimeZone from 'moment-timezone';
 import DatePicker from "react-datepicker"; 
 import "./medicine.css";
-import "react-datepicker/dist/react-datepicker.css"
+import "react-datepicker/dist/react-datepicker.css";
 
-export default function NewMedicine() {
+export default function MedicineCreate() {
 
+  let navigate = useNavigate();
   const [name,setName]= useState('');
   const [dosage,setDosage]= useState(0);
   const [frequency,setFrequency]= useState(0);
   const [timeZone,setTimeZone] = useState('');
   const [notification,setNotification] = useState(new Date());
-  
-  const [values, ] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-  });
-
+    const [values, ] = useState({
+      firstName: "",
+      lastName: "",
+      email: "",
+    });
   const [submitted, setSubmitted] = useState(false);
   const [valid, setValid] = useState(false);
-  const [selectedDate, setselectedDate] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(null);
 
   const dateFormatAux = (date) => {
     var d = new Date(date),
@@ -41,37 +41,40 @@ export default function NewMedicine() {
 
   const dateFormat = (date) => {
     let formatYearMonthDay = dateFormatAux(date);
-    //console.log(formatYearMonthDay);
     let formatISO8601 = new Date(date).toISOString();
-    //console.log(formatISO8601);
     return [formatYearMonthDay, formatISO8601];
   }
   
   const getTimeZones = function() {
     return momentTimeZone.tz.names();
   };
-  const timeZones = getTimeZones()
+  const timeZones = getTimeZones();
+
   const Meds = async (e)=>{
     e.preventDefault();
     let birthDateYMD, birthDateISO8601;
       if (selectedDate != null)
         [birthDateYMD, birthDateISO8601] = dateFormat(selectedDate);
-      if(values.firstName && values.lastName && values.email)
+        if(values.firstName && values.lastName && values.email)
         setValid(true)
-      setSubmitted(true);
-      let formData = {
+        setSubmitted(true);
+        let formData = {
         birthDate: selectedDate,
         birthDateFmtYMD: birthDateYMD,
         birthDateFmtISO8601: birthDateISO8601,
       };
       console.log(formData);
-      //console.log(`Selected dates are: ${selectedDate}`)
 
     if (!name || !dosage || !frequency) return;
     const medicine = { name, dosage, frequency, timeZone, birthDateISO8601, notification };
       const {data} = await axios.post('addmedicine',medicine,{withCredentials:true});
-      if(data.msg === 'success'){ toast.success("success data")}
-  }
+      if(data.msg === 'success'){
+        toast.success("success data")
+          setTimeout(()=>{
+            navigate("/medicine");
+          },5000)
+      }
+  };
 
   return (
     <Wrapper>
@@ -85,11 +88,6 @@ export default function NewMedicine() {
               <label htmlFor="validationCustom01" className="form-label">Medicine name</label>
               <input type="text" className="form-control" id="validationCustom01" placeholder="Medicine Name" value={name} onChange={(e)=>setName(e.target.value)} required />
             </div>
-            {/*<div className="col-md-6">
-              <label htmlFor="validationCustom01" className="form-label">Medicine names</label>
-              <input type="text" className="form-control" id="validationCustom01" placeholder="Medicine Name" value={names} onChange={(e)=>setNames(e.target.value)} required />
-            </div>*/}
-            
             <div className="row g-3">
               <div className="col-md-1 mb-1">
                 <label htmlFor="validationCustom02" className="form-label">Dosage</label>
@@ -132,52 +130,15 @@ export default function NewMedicine() {
                   <label htmlFor='notifyDate' className='form-label'>Notification Date</label>
                   <DatePicker 
                     selected={selectedDate} 
-                    onChange={date => setselectedDate(date)}
+                    onChange={date => setSelectedDate(date)}
                     showTimeSelect
                     dateFormat="dd/MM/yyyy"
                     className="form-field"
-                    id="birthDate notifyDate"
+                    id="bierthDate notifyDate"
                     placeholderText="Notification Date"
                   />
-                  { submitted && !selectedDate ? <span id="email-error">Please enter notification date</span> : null }
                 </div>
               </div>
-            {/*<div className='col-auto'>
-              <label htmlFor="inputState" className="form-label">State</label>
-                <select id="inputState" className="form-field" name="time" onChange={(e)=>setTimeZone(e.target.value)} style={{background: '#f2f2f2'}}>
-                  {
-                    timeZones.map((timeZone, i)=>{
-                      return <option value={timeZone} key={i}>{timeZone}</option>
-                    })
-                  }
-                </select>
-            </div>
-            <div className='col-auto'>
-              <label htmlFor='' className='form-label'>Notifications</label>
-              <select name='notification' className="form-field" onChange={(e)=>setNotification(e.target.value)} style={{background: '#f2f2f2'}}>
-                <option value='' diasbled='true'>Select a time</option> 
-                <option value='15'> 15 Minutes</option>
-                <option value='30'> 30 Minutes</option>
-                <option value='45'> 45 Minutes</option>
-                <option value='60'> 60 Minutes</option>
-              </select>
-            </div>
-
-            <div className='col-auto'>
-            <label htmlFor='notifyDate' className='form-label'>Notification Date</label>
-              <DatePicker 
-                selected={selectedDate} 
-                onChange={date => setselectedDate(date)}
-                showTimeSelect
-                dateFormat="dd/MM/yyyy"
-                className="form-field"
-                id="birthDate notifyDate"
-                placeholderText="Notification Date"
-                //minDate={new Date()}
-              />
-              { submitted && !selectedDate ? <span id="email-error">Please enter an birthdate</span> : null }
-            </div>*/}
-
             <div className="col-12">
               <button className="btn btn-primary" type="submit">Save</button>
             </div>

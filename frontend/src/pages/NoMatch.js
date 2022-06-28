@@ -6,7 +6,7 @@ const NoMatch =()=>{
     <div>
         <h2>Nothing to see here!</h2>
         <p>
-          <Link to="/dashboard">Go to the home page</Link>
+          <Link to="/dashboard">Go to home page</Link>
         </p>
     </div>
   )

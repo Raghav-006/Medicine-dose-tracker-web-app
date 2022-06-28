@@ -2,7 +2,6 @@ const mongoose = require('mongoose')
 const moment = require('moment')
 const cfg = require('../../config');
 const Twilio = require('twilio');
-const {sendWelcomeEmail} = require('../../emails/account')
 
 const medicineSchema = new mongoose.Schema({
     id:{
@@ -34,14 +33,14 @@ const medicineSchema = new mongoose.Schema({
         index: true
     }
 
-});
+},{timestamps:true});
 
 medicineSchema.methods.requiresNotification = function(date) {
     return Math.round(moment.duration(moment(this.time).tz(this.timeZone).utc()
         .diff(moment(date).utc())
         ).asMinutes()) === this.notification;
 };
-  
+
 medicineSchema.statics.sendNotifications = function(callback) {
     // now
     //console.log('Mavhungu Ronewa G')
@@ -54,7 +53,6 @@ medicineSchema.statics.sendNotifications = function(callback) {
         });
         if (medicines.length > 0) {
           sendNotifications(medicines);
-          sendWelcomeEmail(medicines);
         }
       });
     }
@@ -83,9 +81,10 @@ medicineSchema.statics.sendNotifications = function(callback) {
                     console.error(err);
                 } else {
                     // Log the last few digits of a phone number
-                    let masked = medicine.phoneNumber.substr(0, medicine.phoneNumber.length - 5);
+                    /*let masked = medicine.phoneNumber.substr(0, medicine.phoneNumber.length - 5);
                     masked += '*****';
-                    console.log(`Message sent to ${masked}`);
+                    console.log(`Message sent to ${masked}`);*/
+                    console.log('Message sent to *******');
                 }
             });
         });

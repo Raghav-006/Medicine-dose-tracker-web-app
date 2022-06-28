@@ -2,25 +2,27 @@ import React,{useEffect,useState} from 'react';
 import {useParams, useNavigate } from 'react-router-dom';
 import momentTimeZone from 'moment-timezone';
 import moment from 'moment';
+//import DatePicker from 'react-datepicker';
 import axios from "axios"
 import { toast } from 'react-toastify';
-import Wrapper from '../component/Wrapper'
+import Wrapper from '../../component/Wrapper'
 
 const getTimeZones = function() {
   return momentTimeZone.tz.names();
 };
 const timeZones = getTimeZones();
 
-export default function Repor() {
+export default function MedicineEdit() {
+
   const navigate = useNavigate();
-  const [_id, set_Id] = useState();
-  const [ids, setId] = useState();
+  const [_id, set_Id] = useState("");
+  const [ids, setId] = useState("");
   const [name, setName] = useState();
-  const [dosage,setDosage] = useState();
-  const [frequency,setFrequency] = useState();
-  const [notification, setNotification] = useState();
-  const [time,setTime] = useState();
-  const [timeZone,setTimeZone] = useState();
+  const [dosage,setDosage] = useState("");
+  const [frequency,setFrequency] = useState("");
+  const [notification, setNotification] = useState("");
+  const [time,setTime] = useState("");
+  const [timeZone,setTimeZone] = useState("");
 
   moment.locale();
   moment().format();
@@ -37,7 +39,7 @@ export default function Repor() {
       //alert('Updated successfully!');
       toast.success("success data");
       setTimeout(()=>{
-        navigate("/reports");
+        navigate("/medicine");
       },5000)
     }).catch(err => {
       //alert('An error occurred! Try submitting the form again.');
@@ -48,7 +50,7 @@ export default function Repor() {
   useEffect(() => {
     (
       async () => {
-        const {data} = await axios.get(`reports/report/${id}`,{withCredentials:true});
+        const {data} = await axios.get(`medicine/${id}/edit`,{withCredentials:true});
         set_Id(data.meds._id);
         setId(data.meds.id);
         setName(data.meds.name);
@@ -64,9 +66,9 @@ export default function Repor() {
   return (
     <Wrapper>
       <form onSubmit={handleSubmit}>
-        <input className='form-control d-none' type='text' value={_id} /> 
+        <input className='form-control d-none' type='text' value={_id} onChange={(e)=>set_Id(e.target.value)} />
           <div className="form-row">
-            <input className='form-control d-none' type='text' value={ids} />
+            <input className='form-control d-none' type='text' value={ids} onChange={(e)=>setId(e.target.value)} />
           </div>
         <div className="form-row">
           <input className='form-control' type='text' maxLength={30} id="name" placeholder={'Medication name'} defaultValue={name} onChange={(e)=>setName(e.target.value)} />
@@ -83,7 +85,7 @@ export default function Repor() {
           <div className='col-md-4'>
             <label htmlFor='controlSelect' className='form-label'>Notifications</label>
               <select className="form-control" id='controlSelect' onChange={(e)=>setNotification(e.target.value)} >
-                <option value={notification} selected={true}>{notification} Minutes</option>
+                <option value={notification} defaultValue={notification}>{notification} Minutes</option>
                 <option value='15'> 15 Minutes</option>
                 <option value='30'> 30 Minutes</option>
                 <option value='45'> 45 Minutes</option>
@@ -94,7 +96,7 @@ export default function Repor() {
         <div className='col-auto'>
           <label htmlFor="inputState" className="form-label">TimeZone</label>
             <select id="inputState" className="form-control" onChange={(e)=>setTimeZone(e.target.value)} style={{background: '#f2f2f2'}} >
-              <option value={timeZone} selected={true}>{timeZone}</option>
+              <option value={timeZone} defaultValue={timeZone}>{timeZone}</option>
               {
                 timeZones.map((timeZone, i)=>{
                   return <option value={timeZone} key={i}>{timeZone}</option>
@@ -104,7 +106,7 @@ export default function Repor() {
         </div>
         <div className="col-auto">
           <label htmlFor='notifyDate' className='form-label'>Notification Date</label>
-            <input type="datetime-local" className="form-control" value={time} onChange={(e)=>setTime(e.target.value)} id="nofifyDate" />
+            <input type="datetime-local" className="form-control" defaultValue={time} onChange={(e)=>setTime(e.target.value)} id="nofifyDate" />
         </div>
           <input type="submit" className="btn btn-primary mt-5" />
       </form>
