@@ -1,5 +1,5 @@
 # Medicine dose tracker App
-
+[Medicine dose tracker](https://github.com/mavhungu/medicine-dose-tracker-web-app) developed using React and Express, Nodejs.
 
 ## Description
 
