@@ -97,8 +97,8 @@ const Reports = () => {
           </div>
             <div className="pt-3 pb-2 mb-3 border-bottom">
               <div className="btn-toolbar mb-2 mb-md-0">
-                <button type='button' className="btn btn-sm btn-outline-secondary" onClick={() => setModalShow(true)}>Add</button>
-                <Link to={'/medicine/create'} className="btn btn-sm btn-outline-secondary">Edit</Link>
+			  {/*<button type='button' className="btn btn-sm btn-outline-secondary" onClick={() => setModalShow(true)}>Add</button>*/}
+                <Link to={'/medicine/create'} className="btn btn-sm btn-outline-secondary">Add</Link>
               </div>
               <AddMedicineModal show={modalShow} onHide={() => setModalShow(false)}/>
             </div>
