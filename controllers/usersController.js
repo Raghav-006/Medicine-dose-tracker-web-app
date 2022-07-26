@@ -4,10 +4,10 @@ const moment = require('moment');
 const AllMedicine = async function(req,res){
     //const query = {id:req.user._id};
     let id = req.user._id;
-    let take = 1;
+    let take = 10;
     let page = req.query.page;
     const skip = ((page - 1) * take);
-    const limit = 1;
+    const limit = 10;
     try{
         const [medication, countResult] = await Promise.all([
             Medicine.find({id}).skip(skip).limit(limit),

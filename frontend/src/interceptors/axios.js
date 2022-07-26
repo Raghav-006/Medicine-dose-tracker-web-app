@@ -1,7 +1,8 @@
 import axios from "axios";
 
-axios.defaults.baseURL = 'http://localhost:8000/api/';
-//axios.defaults.baseURL = 'https://ronewa-medicine-tracker.herokuapp.com/api';
+//axios.defaults.baseURL = 'http://localhost:8000/api/';
+//axios.defaults.baseURL = process.env.BASE_URL;
+axios.defaults.baseURL = 'https://ronewa-medicine-tracker.herokuapp.com/api';
 
 axios.defaults.withCredentials = true;
 

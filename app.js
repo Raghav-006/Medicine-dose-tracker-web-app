@@ -27,8 +27,9 @@ app.use(xss())
 app.use(mongoSanitize())
 app.use(cookieParser())
 app.use(cors({
-    origin: ['http://localhost:3000'],
-    //origin: ['https://ronewa-medicine-tracker.herokuapp.com'],
+    //origin: ['http://localhost:3000'],
+    origin: ['https://ronewa-medicine-tracker.herokuapp.com'],
+	//origin: process.env.ORIGIN,
     credentials: true,
 }));
 
