@@ -11,7 +11,7 @@ require('better-logging')(console)
 const mongoSanitize = require('express-mongo-sanitize')
 const port = process.env.PORT || 8000
 
-require('dotenv').config()
+require('dotenv').config();
 require('./database/db');
 
 const indexRouter = require('./route')
@@ -21,15 +21,14 @@ const scheduler = require('./schedule');
 
 const app = express()
 const server = http.createServer(app)
-const io = new Server(server)
-
+const io = new Server(server) 
 app.use(xss())
 app.use(mongoSanitize())
 app.use(cookieParser())
 app.use(cors({
-    //origin: ['http://localhost:3000'],
-    origin: ['https://ronewa-medicine-tracker.herokuapp.com'],
-	//origin: process.env.ORIGIN,
+   //origin: ['http://localhost:3000'],
+    //origin: ['https://ronewa-medicine-tracker.herokuapp.com'],
+	  origin: process.env.ORIGIN_LOCAL,
     credentials: true,
 }));
 
