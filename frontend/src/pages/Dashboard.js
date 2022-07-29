@@ -2,7 +2,7 @@ import React from 'react';
 import Wrapper from '../component/Wrapper';
 import {Calendar} from 'react-feather';
 import './Dashboard.css';
-import Graph from './Graph';
+//import Graph from './Graph';
 
 const Dashboard =()=> {
   return (
