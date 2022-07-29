@@ -26,16 +26,6 @@ body {
     /*.sidebar {
       top: 5rem;
     }*/
-    .logout{
-      margin-right: 10px !important;
-      padding-right: 15px !important;
-      color: red;
-    }
-  }
-
-  .navbar-orange{
-    background-color:#fd7e14;
-    color:#1f2d3d;
   }
   
   .sidebar-sticky {
