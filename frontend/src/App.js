@@ -8,7 +8,6 @@ import Users from "./pages/Users";
 import MedicineEdit from "./pages/medicine/MedicineEdit"
 import MedicineCreate from "./pages/medicine/MedicineCreate";
 import Medicine from './pages/medicine/Medicine';
-//import Theatre from './component/Theatre'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Profile from "./pages/users/Profile";
@@ -29,7 +28,7 @@ function App() {
   });
   AOS.refresh();
 
-  // initialize the studio so the editing tools will show up on the screen
+  // initialize the studio
   //studio.initialize()
   useEffect(() => {
     setLoader(true)

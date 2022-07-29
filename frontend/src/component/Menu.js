@@ -3,6 +3,8 @@ import {Link} from 'react-router-dom';
 import { BarChart2, Users, Home } from 'react-feather'; //Layers, PlusCircle, Film,
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPills } from '@fortawesome/free-solid-svg-icons'
+import { GrHome } from 'react-icons/gr'
+import { MdOutlineHome } from 'react-icons/md' //MdOutlineHome
 
 export default function Menu() {
   return (
@@ -12,7 +14,7 @@ export default function Menu() {
           <ul className="nav flex-column">
             <li className="nav-item">
               <Link to="/dashboard" active='true' className="nav-link" aria-current="page">
-                <span><Home className='feather'/></span>
+                <span><MdOutlineHome className='feather'/></span>
                 Dashboard
               </Link>
             </li>
