@@ -2,7 +2,7 @@ import React from 'react';
 import Wrapper from '../component/Wrapper';
 import {Calendar} from 'react-feather';
 import './Dashboard.css';
-//import Graph from './Graph';
+import Graph from './Graph';
 
 const Dashboard =()=> {
   return (
@@ -20,7 +20,7 @@ const Dashboard =()=> {
             </button>
           </div>
       </div>
-      {/*<Graph className="my-4 w-100" style={{width:"900",height:"180"}} />*/}
+      <Graph className="my-4 w-100" style={{width:"900",height:"180"}} />
     </Wrapper>
   )
 }

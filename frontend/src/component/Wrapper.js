@@ -3,20 +3,19 @@ import { useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import Nav from './Nav';
 import Menu from './Menu';
-//const rootUrl = 'http://localhost:3010/';
 
 const Wrapper =(props)=> {
   const navigate = useNavigate();
   const [user,setUser]= useState('');
 
   useEffect(() => {
-      (
-        async () => {
-          const {data} = await axios.get('user',{withCredentials:true});
-          setUser(data);
-          if(!data.name){navigate('/')}
-        }
-      )();
+    (
+      async () => {
+        const {data} = await axios.get('user',{withCredentials:true});
+        setUser(data);
+        if(!data.name){navigate('/')}
+      }
+    )();
   }, [navigate]);
 
   return (
@@ -32,7 +31,6 @@ const Wrapper =(props)=> {
         </div>
     </>
   )
-  
 }
 
 export default Wrapper;
