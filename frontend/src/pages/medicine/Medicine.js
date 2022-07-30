@@ -143,7 +143,7 @@ const Reports = () => {
                 </table>
               </div>
 
-              <nav>
+              <nav className="mt-3">
                 <ul className='pagination'>
                   <li className='page-item'>
                     <a href='#!' rel="noreffere" className='page-link' onClick={()=>prev()}><FiChevronLeft /> Previous</a> 
