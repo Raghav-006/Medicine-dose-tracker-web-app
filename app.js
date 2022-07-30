@@ -27,7 +27,7 @@ app.use(mongoSanitize())
 app.use(cookieParser())
 app.use(cors({
   origin: process.env.ORIGIN_PRO,
-    credentials: true,
+  credentials: true,
 }));
 
 // express-session
