@@ -31,7 +31,6 @@ const Reports = () => {
         setTimeout(() => {
           setLoader(false)
         },3000);
-        console.log(data);
         const datas = data.data;
           if(datas.length === 0){
             setNodata(true)
@@ -72,8 +71,8 @@ const Reports = () => {
           </div>
         :(
           nodata ?
-            <div>
-              <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <div>
+            <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
               <h1 className='h2 text-muted'>Medication Records</h1>
             </div>
           
