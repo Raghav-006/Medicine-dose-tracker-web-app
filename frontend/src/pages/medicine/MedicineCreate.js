@@ -69,7 +69,7 @@ export default function MedicineCreate() {
     const medicine = { name, dosage, frequency, timeZone, birthDateISO8601, notification };
       const {data} = await axios.post('addmedicine',medicine,{withCredentials:true});
       if(data.msg === 'success'){
-        toast.success("success data")
+        toast.success("Data saved successfully!")
           setTimeout(()=>{
             navigate("/medicine");
           },5000)
@@ -79,7 +79,7 @@ export default function MedicineCreate() {
   return (
     <Wrapper>
       <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 className='h2 text-muted'>Record Medication</h1>
+        <h1 className='h2 text-muted'>Create Medication Records</h1>
       </div>
       <div className='form-container'>
           <form className="row g-3" onSubmit={Meds}>

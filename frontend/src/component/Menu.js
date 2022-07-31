@@ -1,10 +1,10 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import { BarChart2, Users, Home } from 'react-feather'; //Layers, PlusCircle, Film,
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPills, FaLayerGroup } from '@fortawesome/free-solid-svg-icons'
-import { GrHome } from 'react-icons/gr'
-import { MdOutlineHome } from 'react-icons/md' //MdOutlineHome
+import { Users } from 'react-feather'; //Layers, PlusCircle, Film, BarChart2, Home
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPills } from '@fortawesome/free-solid-svg-icons'; //, FaLayerGroup
+//import { GrHome } from 'react-icons/gr';
+import { MdOutlineHome } from 'react-icons/md'; //MdOutlineHome
 
 export default function Menu() {
   return (
@@ -15,7 +15,7 @@ export default function Menu() {
             <li className="nav-item">
               <Link to="/dashboard" active='true' className="nav-link" aria-current="page">
                 <span data-feather="file"></span>
-                <MdOutlineHome className='feather'/>
+                <MdOutlineHome size={'22px'} color={'#727272'} className="feathers" />
                 Dashboard
               </Link>
             </li>

@@ -37,13 +37,13 @@ export default function MedicineEdit() {
     await axios.put(`reportupdate/${id}`,Medsa,{withCredentials:true})
     .then( res => {
       //alert('Updated successfully!');
-      toast.success("success data");
+      toast.success("Updated successfully!");
       setTimeout(()=>{
         navigate("/medicine");
       },5000)
     }).catch(err => {
       //alert('An error occurred! Try submitting the form again.');
-      toast.warning("An error occurred! Try again");
+      toast.warning("An error occurred! Try submitting the form again");
     });
   };
   
@@ -65,7 +65,10 @@ export default function MedicineEdit() {
 
   return (
     <Wrapper>
-      <form onSubmit={handleSubmit}>
+      <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 className='h2 text-muted'>Edit {name}</h1>
+      </div>
+      <form onSubmit={handleSubmit} className='g-3'>
         <input className='form-control d-none' type='text' value={_id} onChange={(e)=>set_Id(e.target.value)} />
           <div className="form-row">
             <input className='form-control d-none' type='text' value={ids} onChange={(e)=>setId(e.target.value)} />

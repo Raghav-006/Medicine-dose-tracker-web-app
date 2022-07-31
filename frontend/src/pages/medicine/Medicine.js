@@ -74,18 +74,18 @@ const Reports = () => {
           nodata ?
             <div>
               <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-              <h1 className='h2 text-muted'>Medication</h1>
+              <h1 className='h2 text-muted'>Medication Records</h1>
             </div>
           
             <div className="pt-3 pb-2 mb-3 border-bottom">
               <div className="btn-toolbar mb-2 mb-md-0">
 			  {/*<button type='button' className="btn btn-sm btn-outline-secondary" onClick={()=>setModalShow(true)}>Add</button>*/}
-                <Link to={'/medicine/create'} className="btn btn-sm btn-outline-secondary">Add</Link>
+                <Link to={'/medicine/create'} className="btn btn-sm btn-outline-info">Add</Link>
               </div>
               <AddMedicineModal show={modalShow} onHide={()=>setModalShow(false)}/>
             </div>
               <div className="table-responsive">
-                <div className="table table-striped table-sm">
+                <div className="table table-striped table-sm text-center">
                   <p>No data has been found at the moment</p>
                 </div>
               </div>
@@ -93,12 +93,12 @@ const Reports = () => {
           :
         <div>
           <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 className='h2 text-muted'>Medication</h1>
+            <h1 className='h2 text-muted'>Medication Records</h1>
           </div>
             <div className="pt-3 pb-2 mb-3 border-bottom">
               <div className="btn-toolbar mb-2 mb-md-0">
 			  {/*<button type='button' className="btn btn-sm btn-outline-secondary" onClick={() => setModalShow(true)}>Add</button>*/}
-                <Link to={'/medicine/create'} className="btn btn-sm btn-outline-secondary">Add</Link>
+                <Link to={'/medicine/create'} className="btn btn-sm btn-outline-info">Add</Link>
               </div>
               <AddMedicineModal show={modalShow} onHide={() => setModalShow(false)}/>
             </div>
@@ -125,8 +125,8 @@ const Reports = () => {
                               <td>{medication.frequency}</td>
                               <td className="justify-content-center text-center">{medication.notification} min</td>
                               <td className="justify-content-center text-center">
-                                <div className="btn-group">
-                                  <Link to={`/medicine/${medication._id}/edit`} className="btn btn-sm btn-outline-secondary">Edit</Link>
+                                <div className="d-flex justify-content-center text-center">
+                                  <Link to={`/medicine/${medication._id}/edit`} className="btn btn-sm btn-outline-info">Edit</Link>
                                   <div className='ml-5' style={{marginLeft: '5px'}}>
                                     <a href="#!" rel="noreffere" className="btn btn-sm btn-outline-danger" onClick={()=>del(medication._id)}>Delete</a>
                                   </div>

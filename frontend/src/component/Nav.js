@@ -14,7 +14,7 @@ const Nav = ({user}) =>{
 
   return (
     <div>
-      <header className="navbar navbar-dark sticky-top bg-dark">
+      <header className="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
         <div className="container-fluid">
           <Link to={'/dashboard'} className="navbar-brand">{user.name}</Link>
             <div className="navbar-nav ml-auto">

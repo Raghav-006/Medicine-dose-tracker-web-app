@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import {useNavigate,Link} from 'react-router-dom';
-import '../Form.css';
-//const rootUrl = 'http://localhost:3010';
+//import '../Form.css';
+import '../css/loginRegister.css';
 
 const RegisterUser = () =>{
 
