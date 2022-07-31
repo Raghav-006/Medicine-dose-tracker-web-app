@@ -26,7 +26,7 @@ app.use(xss())
 app.use(mongoSanitize())
 app.use(cookieParser())
 app.use(cors({
-  origin: process.env.ORIGIN_LOCAL,
+  origin: process.env.ORIGIN_PROD,
   credentials: true,
 }));
 
