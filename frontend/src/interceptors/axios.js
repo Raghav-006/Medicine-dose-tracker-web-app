@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = process.env.REACT_APP_BASE_URL_PRO;
+axios.defaults.baseURL = process.env.REACT_APP_BASE_URL_LOCAL;
 axios.defaults.withCredentials = true;
 let refresh = false;
 
