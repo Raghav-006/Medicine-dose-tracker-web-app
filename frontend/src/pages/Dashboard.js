@@ -21,6 +21,15 @@ const Dashboard =()=> {
           </div>
       </div>
       {/*<Graph className="my-4 w-100" style={{width:"900",height:"180"}} />*/}
+      <div className="p-5 mb-4 bg-light rounded-3">
+        <div className="container-fluid py-5">
+          <h1 className="display-5 fw-bold">Medicine Tracking App</h1>
+          <p className="col-md-8 fs-4">This is a simple application that reminds people about thier Medice intake. Uses Twilio API and SendGrid API to send SMS and Emails.
+          In order to start enter ant Medication records in Medication section.
+          </p>
+          <button className="btn btn-primary btn-lg" type="button" href="https://unsplash.com" target="_blank">Learn more</button>
+        </div>
+      </div>
     </Wrapper>
   )
 }
