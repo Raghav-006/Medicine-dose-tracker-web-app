@@ -23,6 +23,7 @@
   --grey-700: #334155;
   --grey-800: #1e293b;
   --grey-900: #0f172a;
+
   /* rest of the colors */
   --black: #222;
   --white: #fff;
@@ -35,6 +36,7 @@
   --headingFont: 'Roboto', sans-serif;
   --bodyFont: 'Nunito', sans-serif;
   --smallText: 0.7em;
+  
   /* rest of the vars */
   --backgroundColor: var(--grey-50);
   --textColor: var(--grey-900);
@@ -60,14 +62,13 @@ a {
 }
 
 #intro {
-  /*background-image: url(https://mdbootstrap.com/img/new/fluid/city/008.jpg);*/
   background-image: url(../images/mesh-gradient.png);
   background-size: cover;
   background-repeat: no-repeat;
 }
 
 /*.tt{
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.205);
 }*/
 
 .form {
