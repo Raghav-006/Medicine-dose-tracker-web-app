@@ -6,6 +6,9 @@ const profileSchema = new mongoose.Schema({
         required: true,
         ref: 'User'
     },
+    avatars:{
+        type: String
+    },
     name:{
         type: String,
         required: [true, 'Name is required']

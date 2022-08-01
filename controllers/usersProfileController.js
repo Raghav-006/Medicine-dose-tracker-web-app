@@ -1,4 +1,5 @@
 const Profile = require('../database/models/User.Profile.Model');
+const gravatar = require('gravatar');
 require('better-logging')(console);
 
 const getProfile = async(req,res)=>{
@@ -22,8 +23,10 @@ const getProfile = async(req,res)=>{
 const addProfile = async(req,res)=>{
   let id = req.user._id;
   const data = req.body;
+  const avatars = gravatar.url(data.name, {s: '100', r: 'x', d: 'retro'}, true)
   const profile = new Profile({
     id,
+    avatars,
     name: data.name,
     surname: data.surname,
     cellphone: data.cellphone,
