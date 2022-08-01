@@ -50,6 +50,7 @@
     "xss-clean": "^0.1.1"
   },
   "devDependencies": {
+    "chalk": "^4.1.2",
     "husky": "^7.0.4",
     "nodemon": "^2.0.15"
   }

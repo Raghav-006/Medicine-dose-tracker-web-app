@@ -10,7 +10,7 @@ try {
     console.log('unable to connect') 
 };*/
 const mongoose = require("mongoose");
-const chalk = require('chalk');
+const chalk = require("chalk");
 const log = console.log;
 
 const connectDB = (uri) => {
@@ -38,7 +38,7 @@ const connectDB = (uri) => {
             log(chalk.redBright(`reconnected again to database: ${uri}`))
         });
     } catch (error) {
-        console.log(chalk.white('unable to connect to database URl: ' + error));
+    console.log(chalk.white('unable to connect to database URl: ' + error));
     }
 };
 
