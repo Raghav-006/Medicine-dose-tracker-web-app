@@ -4,39 +4,59 @@ import {useForm} from 'react-hook-form';
 import Wrapper from '../../component/Wrapper';
 import axios from 'axios';
 import {toast} from 'react-toastify';
+import PuffLoader from 'react-spinners/PuffLoader';
+import { css } from "@emotion/react";
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
 
 export default function Profile() {
   //let navigate = useNavigate();
   const {register,handleSubmit,reset, formState:{errors}}= useForm();
   const [profiles,setProfile] = useState([]);
+  const [loader,setLoader] = useState(false);
   const [nodata, setNodata] = useState(false);
+
+  useEffect(() => {
+    ( 
+      async () => {
+        setLoader(true);
+      const {data} = await axios.get('profile',{withCredentials:true});
+      setTimeout(() => {
+        setLoader(false)
+      },3000);
+      console.log(data);
+      const datas = data.data;
+      if(datas.length === 0){
+        setNodata(true)
+      };
+      setProfile(datas)
+    })();
+  }, []);
 
   const onSubmit = async(data,e)=>{
     console.log(data)
     const profile =  await axios.post('profile',data,{withCredentials:true})
+    console.log(profile)
     if(profile.msg=== 'success'){
       toast.success(profile.msg)
     }
     e.target.reset();
   };
-  useEffect(() => {
-    return async() => {
-      const {data} = await axios.get('profile',{withCredentials:true})
-      /*if(data.msg !== 'nothing found'){
-        setProfile(data)
-      }*/
-      const datas = data.data;
-        if(datas.length === 0){
-          setNodata(true)
-        };
-        setProfile(datas)
-    };
-  }, []);
 
   return (
     <Wrapper>
-      {nodata ? 
-        <>
+      {
+        loader ?
+          <div style={style}>
+            <PuffLoader size={40} color={'#F37A24'} css={override} loading={loader} />
+          </div>
+        :(
+          nodata ? 
+          <>
           <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 className='h2 text-muted'>No Profile yet, Let's add one!</h1>
           </div>
@@ -55,7 +75,7 @@ export default function Profile() {
                       <div className="col">
                         <div className='form-outline mb-4'>
                           <label htmlFor="LastName" className="form-label">Last Name</label>
-                          <input type={"text"} id='LastName' placeholder={'Last Name'} value={profiles.surname} {...register("email", {required:true})} className={'form-control'} />
+                          <input type={"text"} id='LastName' placeholder={'Last Name'} value={profiles.surname} {...register("surname", {required:true})} className={'form-control'} />
                           {errors.email && <span>This field is required</span>}
                         </div>
                       </div>
@@ -80,18 +100,12 @@ export default function Profile() {
                       </div>
                       <div className="col-md-4 mb-4">
                         <label htmlFor="inputState" className="form-label">State</label>
-                        <select id="inputState" className="form-select form-select-lg" value={profiles.gender} {...register("gender",{required: true})}>
-                          <option value='' className="text-muted">Choose...</option>
-                          <option value=''>...</option>
-                          <option value="female">female</option>
-                          <option value="male">male</option>
-                          <option value="other">other</option>
-                        </select>
+                        <input type="text" className="form-control" placeholder='Province' value={profiles.state} id="inputCity" {...register('state',{required:true})}/>
                           {errors.gender && <span>This field is required</span>}
                       </div>
                       <div className="col-md-2 mb-4">
                         <label htmlFor="inputZip" className="form-label">Zip</label>
-                        <input type="text" className="form-control" value={profiles.zipcode} placeholder='0002' id="inputZip" {...register('Zipcode',{required:true})}/>
+                        <input type="text" className="form-control" value={profiles.zipcode} placeholder='0002' id="inputZip" {...register('zipcode',{required:true})}/>
                         {errors.Zipcode && <span>Zip code is required</span>}
                       </div>
                     </div>
@@ -102,7 +116,7 @@ export default function Profile() {
               </div>
             </div>
         </>
-      :(
+      :
         <>
           <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 className='h2 text-muted'>Profile</h1>
@@ -113,8 +127,8 @@ export default function Profile() {
                 profiles.map((profile)=>{
                   return (
                     <div key={profile._id}>
-                      <div className="col-md-4"></div>
-                      <div className="col-md-8"></div>
+                      <div className="col-md-4">1</div>
+                      <div className="col-md-8">2</div>
                     </div>
                   )
                 })
@@ -126,5 +140,7 @@ export default function Profile() {
     </Wrapper>
   );
 };
+
+const style = { position: "fixed", top: "50%", left: "60%", transform: "translate(-50%, -50%)" };
 
 

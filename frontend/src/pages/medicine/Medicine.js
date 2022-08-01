@@ -31,6 +31,7 @@ const Reports = () => {
         setTimeout(() => {
           setLoader(false)
         },3000);
+        console.log(data);
         const datas = data.data;
           if(datas.length === 0){
             setNodata(true)

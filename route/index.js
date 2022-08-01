@@ -2,7 +2,7 @@ const express = require('express');
 const { body, validationResult } = require('express-validator');
 const {AllMedicine,addMedicine,modalAddMedicine,findMedicine,updateMedicine,deleteMedicine} = require('../controllers/usersController');
 const {login, register,users,logout} = require('../controllers/indexController');
-const {getProfile,addProfile} = require('../controllers/usersProfile.Controller');
+const {getProfile,addProfile} = require('../controllers/usersProfileController');
 const {hasAuthorization} = require('../middleware/auth.js');
 const router = express.Router();
 
@@ -35,8 +35,8 @@ router.route('/deletemedicine/:id')
 .delete(hasAuthorization,deleteMedicine);
 
 router.route('/profile')
-.get(getProfile)
-.post(addProfile);
+.get(hasAuthorization,getProfile)
+.post(hasAuthorization,addProfile);
 
 router.route('/logout').post(logout);
 

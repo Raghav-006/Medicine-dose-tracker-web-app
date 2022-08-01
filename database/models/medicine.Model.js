@@ -63,7 +63,7 @@ medicineSchema.statics.sendNotifications = function(callback) {
         medicines.forEach(function(medicine) {
           // Create options to send the message
           const options = {
-            to: `+27786671901`,
+            to: cfg.twilioUserPhoneNumber,
             from: cfg.twilioPhoneNumber,
             /* eslint-disable max-len */
             body: `Hi Ronewa. Just a reminder that you have an appointment coming up.`,
