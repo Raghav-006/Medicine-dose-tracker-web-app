@@ -4,7 +4,6 @@ import Login from './pages/Login';
 import RegisterUser from './pages/RegisterUser';
 import NoMatch from "./pages/NoMatch";
 import Dashboard from "./pages/Dashboard";
-import Users from "./pages/Users";
 import MedicineEdit from "./pages/medicine/MedicineEdit"
 import MedicineCreate from "./pages/medicine/MedicineCreate";
 import Medicine from './pages/medicine/Medicine';
@@ -27,7 +26,6 @@ function App() {
     offset: 200,
   });
   AOS.refresh();
-
   // initialize the studio
   //studio.initialize()
   useEffect(() => {
@@ -50,7 +48,6 @@ function App() {
         <Route index element={<Login/>} />
         <Route path="register" element={<RegisterUser/>} />
         <Route path='dashboard' element={<Dashboard/>}/>
-        <Route path="users" element={<Users/>}/>
 
           <Route path="medicine">
             <Route index element={<Medicine />} />
