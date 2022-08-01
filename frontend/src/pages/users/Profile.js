@@ -5,6 +5,7 @@ import Wrapper from '../../component/Wrapper';
 import axios from 'axios';
 import {toast} from 'react-toastify';
 import PuffLoader from 'react-spinners/PuffLoader';
+import ProfileView from './ProfileView';
 import { css } from "@emotion/react";
 
 const override = css`
@@ -124,12 +125,20 @@ export default function Profile() {
             <div className="container">
               <div className="row">
               {
-                profiles.map((profile)=>{
+                profiles.map((profile,i)=>{
                   return (
-                    <div key={profile._id}>
-                      <div className="col-md-4">1</div>
-                      <div className="col-md-8">2</div>
-                    </div>
+                    <ProfileView
+                      key={i}
+                      avator={profile.avator}
+                      name={profile.name}
+                      surname={profile.surname}
+                      cellphone={data.cellphone}
+                      address={data.address}
+                      city={profile.city}
+                      state={profile.state}
+                      id={profile.id}
+                      zipcode={profile.zipcode}
+                    />
                   )
                 })
               }

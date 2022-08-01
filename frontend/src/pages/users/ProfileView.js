@@ -4,7 +4,7 @@ import Avatar from '@mui/material/Avatar';
 import { deepPurple } from '@mui/material/colors';
 import Pta from '../../images/pta.jpg';
 
-const ProfileView = ({avator, name, surname, zipcode, state, city})=>{
+const ProfileView = ({avator, name, surname, cellphone, address, zipcode, state, city})=>{
     return (
         <>
             <div className="col-md-4">
