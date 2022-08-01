@@ -11,9 +11,7 @@ const connectDB = require('./database/db');
 const mongoSanitize = require('express-mongo-sanitize')
 const port = process.env.PORT || 8000
 require('better-logging')(console);
-
 require('dotenv').config();
-//require('./database/db');
 
 const indexRouter = require('./route')
 const rRouter = require('./route/r')
@@ -72,14 +70,13 @@ if(process.env.NODE_ENV ==='production'){
 const start = async()=>{
   try{
     await connectDB(`${process.env.ATLAS_URI}`);
-    await app.listen(port, () => {
+    app.listen(port, () => {
       console.info(`Medicine app listening on port ${port}`)
     })
   }catch(error){
     console.log(error)
   }
 }
-
 start()
 
 scheduler.start();
